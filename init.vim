@@ -45,7 +45,7 @@ if !exists('g:vscode')
     Plug 'tpope/vim-fugitive'
     
     " Auto restore previous sessions
-    Plug 'rmagatti/auto-session'
+    "Plug 'rmagatti/auto-session'
 
     " Alt file manager, using vifm
     Plug 'vifm/vifm.vim'
@@ -61,6 +61,12 @@ if !exists('g:vscode')
     
     " Highlight same words and lines as cursor
     Plug 'yamatsum/nvim-cursorline'
+
+    " Better wildmenu
+    Plug 'gelguy/wilder.nvim', { 'do': ':UpdateRemotePlugins' }
+
+     " Vim autosaver
+    Plug 'Pocco81/AutoSave.nvim'
 endif
 
 Plug 'preservim/nerdcommenter'
@@ -106,6 +112,7 @@ if !exists('g:vscode')
 	set expandtab
 	set shiftwidth=4
 	set autoindent
+    set wildmenu
 	set wildmode=longest,list
 	set cc=80
 	set mouse=a
@@ -190,6 +197,28 @@ if !exists('g:vscode')
     " TODO: USE THE COMMANDS HERE:
     " https://www.youtube.com/watch?v=I4Rz0qoWYBIkl
     let g:c_syntax_for_h = 1
+
+    " wilder setup, see wilder github page
+    call wilder#setup({
+      \ 'modes': [':', '/', '?'],
+      \ 'next_key': '<Tab>',
+      \ 'previous_key': '<S-Tab>',
+      \ 'accept_key': '<Up>',
+      \ 'reject_key': '<Down>',
+      \ })
+
+    
+    " 'highlighter' : applies highlighting to the candidates
+    call wilder#set_option('renderer', wilder#popupmenu_renderer({
+      \ 'highlighter': wilder#basic_highlighter(),
+      \ 'left': [
+      \   ' ', wilder#popupmenu_devicons(),
+      \ ],
+      \ 'right': [
+      \   ' ', wilder#popupmenu_scrollbar(),
+      \ ],
+      \ }))
+
 else
 	set clipboard=unnamedplus
 endif
