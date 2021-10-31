@@ -10,7 +10,7 @@ function! Cond(cond, ...)
   return a:cond ? opts : extend(opts, { 'on': [], 'for': [] })
 endfunction
 
-call plug#begin('C:/Users/Pc/AppData/Local/nvim/plugged') 
+call plug#begin('~/AppData/Local/nvim/plugged') 
 
 if !exists('g:vscode')
 	Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
@@ -344,6 +344,6 @@ nmap <A-l> $
 "Aliases
 "
 "Allows to :cd $github for easy access
-let $github = "C:\\Users\\Pc\\Documents\\GitHub"
+let $github = "~\\Documents\\GitHub"
 "Type :e $init for easy config access
-let $init = "C:\\Users\\Pc\\AppData\\Local\\nvim\\init.vim"
+let $init = "~\\AppData\\Local\\nvim\\init.vim"
