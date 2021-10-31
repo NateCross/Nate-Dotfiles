@@ -1,4 +1,5 @@
-"Nate's vim config
+" Nate's vim config
+" Install me first: https://github.com/junegunn/vim-plug
 
 " For some reason this only works if I put it up here
 let mapleader = ";"
@@ -14,9 +15,10 @@ call plug#begin('C:/Users/Pc/AppData/Local/nvim/plugged')
 if !exists('g:vscode')
 	Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
 	Plug 'ryanoasis/vim-devicons'
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    "Plug 'neoclide/coc.nvim', {'branch': 'release'}
+	Plug 'neoclide/coc.nvim', {'branch': 'feat/use-ts-hi-group', 'do': 'yarn install --frozen-lockfile'}
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-	Plug 'junegunn/fzf.vim'
+    Plug 'junegunn/fzf.vim'
 
 	"Preferred color scheme; should be customized
 	Plug 'mangeshrex/uwu.vim'
@@ -44,8 +46,11 @@ if !exists('g:vscode')
     " Git management
     Plug 'tpope/vim-fugitive'
     
+    " Git blame
+    Plug 'f-person/git-blame.nvim'
+
     " Auto restore previous sessions
-    "Plug 'rmagatti/auto-session'
+    Plug 'rmagatti/auto-session'
 
     " Alt file manager, using vifm
     Plug 'vifm/vifm.vim'
@@ -64,9 +69,34 @@ if !exists('g:vscode')
 
     " Better wildmenu
     Plug 'gelguy/wilder.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
 
      " Vim autosaver
     Plug 'Pocco81/AutoSave.nvim'
+
+    " Todo highlighter
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'folke/todo-comments.nvim'
+
+    " Autoread fixer
+    Plug 'TheZoq2/neovim-auto-autoread'
+    
+    " Shows markdown through glow
+    Plug 'ellisonleao/glow.nvim'
+
+    " Allows you to follow links in markdown
+    Plug 'jakewvincent/mkdnflow.nvim'
+
+    " Smooth scrolling
+    Plug 'karb94/neoscroll.nvim'
+
+    " Treesitter for syntax highlight
+    " We recommend updating the parsers on update
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  
+
+    " Treesitter, autoclose html tags
+    Plug 'windwp/nvim-ts-autotag'
 endif
 
 Plug 'preservim/nerdcommenter'
@@ -94,6 +124,70 @@ lua << EOF
   }
 EOF
 
+lua << EOF
+    require("todo-comments").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+    }
+EOF
+
+lua << EOF
+	require('neoscroll').setup({
+		-- All these keys will be mapped to their corresponding default scrolling animation
+		mappings = {'<C-u>', '<C-d>', '<C-b>', '<C-f>',
+					'<C-y>', '<C-e>', 'zt', 'zz', 'zb'},
+		hide_cursor = true,          -- Hide cursor while scrolling
+		stop_eof = true,             -- Stop at <EOF> when scrolling downwards
+		use_local_scrolloff = false, -- Use the local scope of scrolloff instead of the global scope
+		respect_scrolloff = false,   -- Stop scrolling when the cursor reaches the scrolloff margin of the file
+		cursor_scrolls_alone = true, -- The cursor will keep on scrolling even if the window cannot scroll further
+		easing_function = nil,        -- Default easing function
+		pre_hook = nil,              -- Function to run before the scrolling animation starts
+		post_hook = nil,              -- Function to run after the scrolling animation ends
+	})
+EOF
+
+lua << EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = {"c", "cpp"}, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  ignore_install = {}, -- List of parsers to ignore installing
+  highlight = {
+    enable = true,              -- false will disable the whole extension
+    disable = {},  -- list of language that will be disabled
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+    -- Instead of true it can also be a list of languages
+    additional_vim_regex_highlighting = false,
+  },
+}
+EOF
+
+lua << EOF
+local autosave = require("autosave")
+
+autosave.setup(
+    {
+        enabled = true,
+        execution_message = "AutoSave: saved at " .. vim.fn.strftime("%H:%M:%S"),
+        events = {"InsertLeave", "TextChanged"},
+        conditions = {
+            exists = true,
+            filename_is_not = {},
+            filetype_is_not = {},
+            modifiable = true
+        },
+        write_all_buffers = false,
+        on_off_commands = true,
+        clean_command_line_interval = 0,
+        debounce_delay = 135
+    }
+)
+EOF
+
+lua require('nvim-ts-autotag').setup()
+
 if !exists('g:vscode')
     lua require"surround".setup{}
 endif
@@ -103,31 +197,32 @@ if !exists('g:vscode')
 	colorscheme vimdark
     set noswapfile
     set ignorecase
-	set number
-	set showmatch
-	set mouse=v
-	set hlsearch
-	set tabstop=4
-	set softtabstop=4
-	set expandtab
-	set shiftwidth=4
-	set autoindent
-    set wildmenu
-	set wildmode=longest,list
-	set cc=80
-	set mouse=a
-	set clipboard=unnamedplus
-	set cursorline
+    set number
+    set showmatch
+    set mouse=v
+    set hlsearch
+    set tabstop=4
+    set softtabstop=4
+    set expandtab
+    set shiftwidth=4
+    set autoindent
+    "set wildmenu
+    set wildmode=longest,list
+    set cc=80
+    set mouse=a
+    set clipboard=unnamedplus
+    set nocursorline
     set backup
     set backupdir=D:\\VimTemp
     set relativenumber
+	set autoread
 
     "Press i to enter insert mode, and ii to exit insert mode.
     inoremap ii <Esc>
     inoremap jk <Esc>
     inoremap kj <Esc>
-    vnoremap jk <Esc>
-    vnoremap kj <Esc>
+    vnoremap ii <Esc>
+    "vnoremap kj <Esc>
     
     "Open chadtree   
     nnoremap <leader>v <cmd>CHADopen<cr>
@@ -206,7 +301,6 @@ if !exists('g:vscode')
       \ 'accept_key': '<Up>',
       \ 'reject_key': '<Down>',
       \ })
-
     
     " 'highlighter' : applies highlighting to the candidates
     call wilder#set_option('renderer', wilder#popupmenu_renderer({
@@ -218,7 +312,11 @@ if !exists('g:vscode')
       \   ' ', wilder#popupmenu_scrollbar(),
       \ ],
       \ }))
-
+	
+	"let g:auto_session_root_dir = "C:\Users\Pc\AppData\Local\nvim\sessions"
+    
+    " Auto set working directory to wherever file is
+    autocmd BufEnter * silent! lcd %:p:h
 else
 	set clipboard=unnamedplus
 endif
@@ -249,4 +347,3 @@ nmap <A-l> $
 let $github = "C:\\Users\\Pc\\Documents\\GitHub"
 "Type :e $init for easy config access
 let $init = "C:\\Users\\Pc\\AppData\\Local\\nvim\\init.vim"
-
