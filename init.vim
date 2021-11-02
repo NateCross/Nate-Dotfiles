@@ -68,9 +68,11 @@ if !exists('g:vscode')
     Plug 'yamatsum/nvim-cursorline'
 
     " Better wildmenu
-    Plug 'gelguy/wilder.nvim', { 'do': ':UpdateRemotePlugins' }
-    Plug 'roxma/nvim-yarp'
-    Plug 'roxma/vim-hug-neovim-rpc'
+    Plug 'gelguy/wilder.nvim'
+    " ', { 'do': ':UpdateRemotePlugins' }
+
+    "Plug 'roxma/nvim-yarp'
+    "Plug 'roxma/vim-hug-neovim-rpc'
 
      " Vim autosaver
     Plug 'Pocco81/AutoSave.nvim'
@@ -97,6 +99,9 @@ if !exists('g:vscode')
 
     " Treesitter, autoclose html tags
     Plug 'windwp/nvim-ts-autotag'
+	
+	" Pop up for key guides
+	Plug 'folke/which-key.nvim'
 endif
 
 Plug 'preservim/nerdcommenter'
@@ -109,27 +114,27 @@ Plug 'easymotion/vim-easymotion', Cond(!exists('g:vscode'))
 " use vscode easymotion when in vscode mode
 Plug 'asvetliakov/vim-easymotion', Cond(exists('g:vscode'), { 'as': 'vsc-easymotion' })
 
-" Pop up for key guides
-Plug 'folke/which-key.nvim'
+
 
 call plug#end()
 
 " Lua setup
+if !exists('g:vscode')
 
 lua << EOF
-  require('which-key').setup {
-    -- your configuration comes here
-    -- or leave it empty to use the default settings
-    -- refer to the configuration section below
+	require('which-key').setup {
+	-- your configuration comes here
+	-- or leave it empty to use the default settings
+	-- refer to the configuration section below
   }
 EOF
 
 lua << EOF
-    require("todo-comments").setup {
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
-    }
+	require("todo-comments").setup {
+		-- your configuration comes here
+		-- or leave it empty to use the default settings
+		-- refer to the configuration section below
+	}
 EOF
 
 lua << EOF
@@ -153,13 +158,13 @@ require'nvim-treesitter.configs'.setup {
   ensure_installed = {"c", "cpp"}, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
   ignore_install = {}, -- List of parsers to ignore installing
   highlight = {
-    enable = true,              -- false will disable the whole extension
-    disable = {},  -- list of language that will be disabled
-    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-    -- Using this option may slow down your editor, and you may see some duplicate highlights.
-    -- Instead of true it can also be a list of languages
-    additional_vim_regex_highlighting = false,
+	enable = true,              -- false will disable the whole extension
+	disable = {},  -- list of language that will be disabled
+	-- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+	-- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+	-- Using this option may slow down your editor, and you may see some duplicate highlights.
+	-- Instead of true it can also be a list of languages
+	additional_vim_regex_highlighting = false,
   },
 }
 EOF
@@ -168,28 +173,28 @@ lua << EOF
 local autosave = require("autosave")
 
 autosave.setup(
-    {
-        enabled = true,
-        execution_message = "AutoSave: saved at " .. vim.fn.strftime("%H:%M:%S"),
-        events = {"InsertLeave", "TextChanged"},
-        conditions = {
-            exists = true,
-            filename_is_not = {},
-            filetype_is_not = {},
-            modifiable = true
-        },
-        write_all_buffers = false,
-        on_off_commands = true,
-        clean_command_line_interval = 0,
-        debounce_delay = 135
-    }
+	{
+		enabled = true,
+		execution_message = "AutoSave: saved at " .. vim.fn.strftime("%H:%M:%S"),
+		events = {"InsertLeave", "TextChanged"},
+		conditions = {
+			exists = true,
+			filename_is_not = {},
+			filetype_is_not = {},
+			modifiable = true
+		},
+		write_all_buffers = false,
+		on_off_commands = true,
+		clean_command_line_interval = 0,
+		debounce_delay = 135
+	}
 )
 EOF
 
 lua require('nvim-ts-autotag').setup()
 
-if !exists('g:vscode')
-    lua require"surround".setup{}
+lua require"surround".setup{}
+	
 endif
 
 "Vim Config stuff
@@ -206,7 +211,7 @@ if !exists('g:vscode')
     set expandtab
     set shiftwidth=4
     set autoindent
-    "set wildmenu
+    set wildmenu
     set wildmode=longest,list
     set cc=80
     set mouse=a
@@ -289,8 +294,6 @@ if !exists('g:vscode')
     " autocmd vimenter * CHADopen
     
     " C/CPP Dev Stuff
-    " TODO: USE THE COMMANDS HERE:
-    " https://www.youtube.com/watch?v=I4Rz0qoWYBIkl
     let g:c_syntax_for_h = 1
 
     " wilder setup, see wilder github page
@@ -317,8 +320,7 @@ if !exists('g:vscode')
     
     " Auto set working directory to wherever file is
     autocmd BufEnter * silent! lcd %:p:h
-else
-	set clipboard=unnamedplus
+
 endif
 
 "Both vscode and nvim
