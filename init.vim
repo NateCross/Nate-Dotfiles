@@ -13,35 +13,35 @@ endfunction
 call plug#begin('~/AppData/Local/nvim/plugged') 
 
 if !exists('g:vscode')
-	Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
-	Plug 'ryanoasis/vim-devicons'
-    "Plug 'neoclide/coc.nvim', {'branch': 'release'}
-	Plug 'neoclide/coc.nvim', {'branch': 'feat/use-ts-hi-group', 'do': 'yarn install --frozen-lockfile'}
+    Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
+    Plug 'ryanoasis/vim-devicons'
+    " Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    Plug 'neoclide/coc.nvim', {'branch': 'feat/use-ts-hi-group', 'do': 'yarn install --frozen-lockfile'}
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
 
-	"Preferred color scheme; should be customized
-	Plug 'mangeshrex/uwu.vim'
+    "Preferred color scheme; should be customized
+    "Plug 'mangeshrex/uwu.vim'
     Plug 'ldelossa/vimdark'
 	
     "Plug 'mhinz/vim-startify'
 	
     "Dashboard plugin config
-    Plug 'glepnir/dashboard-nvim'
-    let g:dashboard_default_executive ='fzf'
-    nmap <Leader>ss :<C-u>SessionSave<CR>
-    nmap <Leader>sl :<C-u>SessionLoad<CR>
-    nmap <Leader>cn :<C-u>DashboardNewFile<CR>
-    nnoremap <silent> <Leader>fh :History<CR>
-    nnoremap <silent> <Leader>ff :Files<CR>
-    nnoremap <silent> <Leader>tc :Colors<CR>
-    nnoremap <silent> <Leader>fa :Rg<CR>
-    nnoremap <silent> <Leader>fb :Marks<CR>
+    "Plug 'glepnir/dashboard-nvim'
+    "let g:dashboard_default_executive ='fzf'
+    "nmap <Leader>ss :<C-u>SessionSave<CR>
+    "nmap <Leader>sl :<C-u>SessionLoad<CR>
+    "nmap <Leader>cn :<C-u>DashboardNewFile<CR>
+    "nnoremap <silent> <Leader>fh :History<CR>
+    "nnoremap <silent> <Leader>ff :Files<CR>
+    "nnoremap <silent> <Leader>tc :Colors<CR>
+    "nnoremap <silent> <Leader>fa :Rg<CR>
+    "nnoremap <silent> <Leader>fb :Marks<CR>
 
-	Plug 'SirVer/ultisnips'
+    Plug 'SirVer/ultisnips'
     Plug 'honza/vim-snippets'
-	Plug 'vim-airline/vim-airline'
-	Plug 'jiangmiao/auto-pairs'
+    Plug 'vim-airline/vim-airline'
+    Plug 'jiangmiao/auto-pairs'
     
     " Git management
     Plug 'tpope/vim-fugitive'
@@ -53,19 +53,16 @@ if !exists('g:vscode')
     Plug 'rmagatti/auto-session'
 
     " Alt file manager, using vifm
-    Plug 'vifm/vifm.vim'
+    " Plug vifm/vifm.vim'
 
     " Colorize hex colors
     Plug 'norcalli/nvim-colorizer.lua'
-
-    " Quickly surround text for brackets, parentheses, etc
-    Plug 'blackcauldron7/surround.nvim'
 
     " Peek at register with double quotes 
     Plug 'gennaro-tedesco/nvim-peekup'
     
     " Highlight same words and lines as cursor
-    Plug 'yamatsum/nvim-cursorline'
+    " Plug 'yamatsum/nvim-cursorline'
 
     " Better wildmenu
     Plug 'gelguy/wilder.nvim'
@@ -74,7 +71,7 @@ if !exists('g:vscode')
     "Plug 'roxma/nvim-yarp'
     "Plug 'roxma/vim-hug-neovim-rpc'
 
-     " Vim autosaver
+    " Vim autosaver
     Plug 'Pocco81/AutoSave.nvim'
 
     " Todo highlighter
@@ -100,8 +97,20 @@ if !exists('g:vscode')
     " Treesitter, autoclose html tags
     Plug 'windwp/nvim-ts-autotag'
 	
-	" Pop up for key guides
-	Plug 'folke/which-key.nvim'
+    " Pop up for key guides
+    Plug 'folke/which-key.nvim'
+
+    " Better tabs
+    " Plug 'romgrk/barbar.nvim'
+    " 
+    " For better escape trigger
+    " Plug 'max397574/better-escape.nvim'
+    
+	" Hit space twice to trigger menu
+	" TODO: Customize menu below
+    Plug 'skywind3000/vim-quickui'
+	
+	Plug 'romgrk/nvim-treesitter-context'
 endif
 
 Plug 'preservim/nerdcommenter'
@@ -113,6 +122,9 @@ Plug 'junegunn/vim-easy-align'
 Plug 'easymotion/vim-easymotion', Cond(!exists('g:vscode'))
 " use vscode easymotion when in vscode mode
 Plug 'asvetliakov/vim-easymotion', Cond(exists('g:vscode'), { 'as': 'vsc-easymotion' })
+
+" Quickly surround text for brackets, parentheses, etc
+Plug 'blackcauldron7/surround.nvim'
 
 
 
@@ -191,6 +203,35 @@ autosave.setup(
 )
 EOF
 
+lua << EOF
+require'treesitter-context'.setup{
+    enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
+    throttle = true, -- Throttles plugin updates (may improve performance)
+    max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
+    patterns = { -- Match patterns for TS nodes. These get wrapped to match at word boundaries.
+        -- For all filetypes
+        -- Note that setting an entry here replaces all other patterns for this entry.
+        -- By setting the 'default' entry below, you can control which nodes you want to
+        -- appear in the context window.
+        default = {
+            'class',
+            'function',
+            'method',
+            -- 'for', -- These won't appear in the context
+            -- 'while',
+            -- 'if',
+            -- 'switch',
+            -- 'case',
+        },
+        -- Example for a specific filetype.
+        -- If a pattern is missing, *open a PR* so everyone can benefit.
+        --   rust = {
+        --       'impl_item',
+        --   },
+    },
+}
+EOF
+
 lua require('nvim-ts-autotag').setup()
 
 lua require"surround".setup{}
@@ -199,35 +240,36 @@ endif
 
 "Vim Config stuff
 if !exists('g:vscode')
-	colorscheme vimdark
+    colorscheme vimdark
     set noswapfile
     set ignorecase
     set number
     set showmatch
     set mouse=v
     set hlsearch
-    set tabstop=4
-    set softtabstop=4
-    set expandtab
-    set shiftwidth=4
-    set autoindent
-    set wildmenu
+    " set tabstop=4
+    " set softtabstop=4
+    " set expandtab
+    " set autoindent
+    " set wildmenu
     set wildmode=longest,list
     set cc=80
     set mouse=a
-    set clipboard=unnamedplus
-    set nocursorline
+    " set clipboard=unnamedplus
+    set cursorline
     set backup
     set backupdir=D:\\VimTemp
     set relativenumber
-	set autoread
+    set autoread
+    set signcolumn=yes
+    " set termguicolors
 
     "Press i to enter insert mode, and ii to exit insert mode.
     inoremap ii <Esc>
     inoremap jk <Esc>
     inoremap kj <Esc>
     vnoremap ii <Esc>
-    "vnoremap kj <Esc>
+    vnoremap kj <Esc>
     
     "Open chadtree   
     nnoremap <leader>v <cmd>CHADopen<cr>
@@ -240,6 +282,9 @@ if !exists('g:vscode')
 
     "COC Config
     inoremap <silent><expr> <c-space> coc#refresh()
+    
+    " Highlight the symbol and its references when holding the cursor.
+    autocmd CursorHold * silent call CocActionAsync('highlight')
 
     " gd - go to definition of word under cursor
     nmap <silent> gd <Plug>(coc-definition)
@@ -252,8 +297,18 @@ if !exists('g:vscode')
     nmap <silent> gr <Plug>(coc-references)
 
     " gh - get hint on whatever's under the cursor
-    "nnoremap <silent> K :call <SID>show_documentation()<CR>
-    "nnoremap <silent> gh :call <SID>show_documentation()<CR>
+    nnoremap <silent> K :call <SID>show_documentation()<CR>
+    nnoremap <silent> gh :call <SID>show_documentation()<CR>
+    
+    function! s:show_documentation()
+      if (index(['vim','help'], &filetype) >= 0)
+        execute 'h '.expand('<cword>')
+      elseif (coc#rpc#ready())
+        call CocActionAsync('doHover')
+      else
+        execute '!' . &keywordprg . " " . expand('<cword>')
+      endif
+    endfunction
     
     " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
     " delays and poor user experience.
@@ -295,6 +350,11 @@ if !exists('g:vscode')
     
     " C/CPP Dev Stuff
     let g:c_syntax_for_h = 1
+    autocmd Filetype c setlocal makeprg=gcc\ -o\ %<\ %
+    autocmd Filetype cpp setlocal makeprg=g++\ -o\ %<\ %
+
+    " clang++ -MJ a.o.json -Wall -std=c++11 -o a.o -c a.cpp
+    " Create function for the above command
 
     " wilder setup, see wilder github page
     call wilder#setup({
@@ -321,11 +381,73 @@ if !exists('g:vscode')
     " Auto set working directory to wherever file is
     autocmd BufEnter * silent! lcd %:p:h
 
+	" clear all the menus
+	call quickui#menu#reset()
+
+	" install a 'File' menu, use [text, command] to represent an item.
+	call quickui#menu#install('&File', [
+				\ [ "&New File\tCtrl+n", 'echo 0' ],
+				\ [ "&Open File\t(F3)", 'echo 1' ],
+				\ [ "&Close", 'echo 2' ],
+				\ [ "--", '' ],
+				\ [ "&Save\tCtrl+s", 'echo 3'],
+				\ [ "Save &As", 'echo 4' ],
+				\ [ "Save All", 'echo 5' ],
+				\ [ "--", '' ],
+				\ [ "E&xit\tAlt+x", 'echo 6' ],
+				\ ])
+
+	" items containing tips, tips will display in the cmdline
+	call quickui#menu#install('&Edit', [
+				\ [ '&Copy', 'echo 1', 'help 1' ],
+				\ [ '&Paste', 'echo 2', 'help 2' ],
+				\ [ '&Find', 'echo 3', 'help 3' ],
+				\ ])
+
+	" script inside %{...} will be evaluated and expanded in the string
+	call quickui#menu#install("&Option", [
+				\ ['Set &Spell %{&spell? "Off":"On"}', 'set spell!'],
+				\ ['Set &Cursor Line %{&cursorline? "Off":"On"}', 'set cursorline!'],
+				\ ['Set &Paste %{&paste? "Off":"On"}', 'set paste!'],
+				\ ])
+
+	" register HELP menu with weight 10000
+	call quickui#menu#install('H&elp', [
+				\ ["&Cheatsheet", 'help index', ''],
+				\ ['T&ips', 'help tips', ''],
+				\ ['--',''],
+				\ ["&Tutorial", 'help tutor', ''],
+				\ ['&Quick Reference', 'help quickref', ''],
+				\ ['&Summary', 'help summary', ''],
+				\ ], 10000)
+
+	" enable to display tips in the cmdline
+	let g:quickui_show_tip = 1
+
+	" hit space twice to open menu
+	noremap <space><space> :call quickui#menu#open()<cr>
+	
 endif
 
 "Both vscode and nvim
+"
+set tabstop=4
+set softtabstop=4
+set expandtab
+set autoindent    
+set smartindent
+set ignorecase
+set smartcase
+set showcmd
+set incsearch
+set shiftwidth=4
+set clipboard=unnamedplus
 
 "Keybinds
+
+" j/k will move virtual lines (lines that wrap)
+noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
+noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
 
 "Ctrl+/ to clear last search highlight
 nnoremap <silent> <Esc><Esc> :let @/=""<CR>
