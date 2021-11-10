@@ -15,8 +15,6 @@ This init.vim is intended to be used with Neovim and VSCode.
 
 ## TODO
 
-- Move the Lua configs to exclude vscode
-- Setup c and cpp compiler
-  - Maybe we just use gcc and g++?
 - Make the github my "home" directory; not User/PC
-- Find a way to make Chadtree open on startup
+- Tweak statusline to fit the colors
+- Customize quick menu; add compile commands

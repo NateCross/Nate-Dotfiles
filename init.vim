@@ -13,22 +13,57 @@ endfunction
 call plug#begin('~/AppData/Local/nvim/plugged') 
 
 if !exists('g:vscode')
-    Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
-    Plug 'ryanoasis/vim-devicons'
+
+	" Speed up loading Lua files
+  Plug 'lewis6991/impatient.nvim'
+    "Plug 'nathom/filetype.nvim'
+    
+    "Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
+    Plug 'kyazdani42/nvim-tree.lua'
+    Plug 'kyazdani42/nvim-web-devicons'
+    "Plug 'ryanoasis/vim-devicons'
     " Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'neoclide/coc.nvim', {'branch': 'feat/use-ts-hi-group', 'do': 'yarn install --frozen-lockfile'}
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
 
+    "Plug 'goolord/alpha-nvim'
+
     "Preferred color scheme; should be customized
-    "Plug 'mangeshrex/uwu.vim'
-    Plug 'ldelossa/vimdark'
+    Plug 'mangeshrex/uwu.vim'
+    "Plug 'ldelossa/vimdark'
+    "Plug 'rktjmp/lush.nvim'
+    "Plug 'ellisonleao/gruvbox.nvim'
+	"Plug 'tjdevries/colorbuddy.vim'
+	"Plug 'RishabhRD/nvim-rdark'
+	"Plug 'blackbirdtheme/vim'
+	"Plug 'rose-pine/neovim'
+	"Plug 'elvessousa/sobrio'
 	
     "Plug 'mhinz/vim-startify'
 	
     "Dashboard plugin config
     "Plug 'glepnir/dashboard-nvim'
     "let g:dashboard_default_executive ='fzf'
+    "let g:dashboard_custom_shortcut={
+                "\ 'last_session'       : '; s l',
+                "\ 'find_history'       : '; f h',
+                "\ 'find_file'          : '; f f',
+                "\ 'new_file'           : '; c n',
+                "\ 'change_colorscheme' : '; t c',
+                "\ 'find_word'          : '; f a',
+                "\ 'book_marks'         : '; f b',
+                "\ }
+	"let g:dashboard_custom_header = [
+		"\' 	               _                                           ',
+		"\'               _(_)_                          wWWWw   _      ',
+		"\'   @@@@       (_)@(_)   vVVVv     _     @@@@  (___) _(_)_    ',
+		"\'  @@()@@ wWWWw  (_)\    (___)   _(_)_  @@()@@   Y  (_)@(_)   ',
+		"\'   @@@@  (___)     `|/    Y    (_)@(_)  @@@@   \|/   (_)\    ',
+		"\'    /      Y       \|    \|/    /(_)    \|      |/      |    ',
+		"\' \ |     \ |/       | / \ | /  \|/       |/    \|      \|/   ',
+		"\' \\|//   \\|///  \\\|//\\\|/// \|///  \\\|//  \\|//  \\\|//  ',
+		"\]
     "nmap <Leader>ss :<C-u>SessionSave<CR>
     "nmap <Leader>sl :<C-u>SessionLoad<CR>
     "nmap <Leader>cn :<C-u>DashboardNewFile<CR>
@@ -40,15 +75,17 @@ if !exists('g:vscode')
 
     Plug 'SirVer/ultisnips'
     Plug 'honza/vim-snippets'
-    Plug 'vim-airline/vim-airline'
+    "Plug 'vim-airline/vim-airline'
+    "Plug 'vim-airline/vim-airline-themes'
     Plug 'jiangmiao/auto-pairs'
     
     " Git management
     Plug 'tpope/vim-fugitive'
     
     " Git blame
-    Plug 'f-person/git-blame.nvim'
-
+    "Plug 'f-person/git-blame.nvim'
+	Plug 'lewis6991/gitsigns.nvim'
+    
     " Auto restore previous sessions
     Plug 'rmagatti/auto-session'
 
@@ -88,7 +125,7 @@ if !exists('g:vscode')
     Plug 'jakewvincent/mkdnflow.nvim'
 
     " Smooth scrolling
-    Plug 'karb94/neoscroll.nvim'
+    "Plug 'karb94/neoscroll.nvim'
 
     " Treesitter for syntax highlight
     " We recommend updating the parsers on update
@@ -102,7 +139,7 @@ if !exists('g:vscode')
 
     " Better tabs
     " Plug 'romgrk/barbar.nvim'
-    " 
+     
     " For better escape trigger
     " Plug 'max397574/better-escape.nvim'
     
@@ -110,7 +147,94 @@ if !exists('g:vscode')
 	" TODO: Customize menu below
     Plug 'skywind3000/vim-quickui'
 	
+	" Show which function you're in if you scroll down
 	Plug 'romgrk/nvim-treesitter-context'
+	
+    " Finally allow for proper compiling and running of c/cpp
+	Plug 'skywind3000/asyncrun.vim'
+	Plug 'skywind3000/asynctasks.vim'
+
+    " Better statusline than airline
+    "Plug 'nvim-lualine/lualine.nvim'
+    Plug 'famiu/feline.nvim'
+
+    "Plug 'dstein64/vim-startuptime'
+	
+	" Vim Script
+	" Plug 'folke/twilight.nvim'
+  
+    " Nvim tree config
+    nnoremap <leader>v :NvimTreeToggle<CR>
+    nnoremap <leader>r :NvimTreeRefresh<CR>
+    nnoremap <leader>n :NvimTreeFindFile<CR>
+
+  let g:nvim_tree_gitignore = 1 "0 by default
+  let g:nvim_tree_quit_on_open = 1 "0 by default, closes the tree when you open a file
+  let g:nvim_tree_indent_markers = 1 "0 by default, this option shows indent markers when folders are open
+  let g:nvim_tree_git_hl = 1 "0 by default, will enable file highlight for git attributes (can be used without the icons).
+  let g:nvim_tree_highlight_opened_files = 3 "0 by default, will enable folder and file icon highlight for opened files/directories.
+  let g:nvim_tree_root_folder_modifier = ':~' "This is the default. See :help filename-modifiers for more options
+  let g:nvim_tree_add_trailing = 1 "0 by default, append a trailing slash to folder names
+  let g:nvim_tree_group_empty = 1 " 0 by default, compact folders that only contain a single folder into one node in the file tree
+  let g:nvim_tree_disable_window_picker = 1 "0 by default, will disable the window picker.
+  let g:nvim_tree_icon_padding = ' ' "one space by default, used for rendering the space between the icon and the filename. Use with caution, it could break rendering if you set an empty string depending on your font.
+  let g:nvim_tree_symlink_arrow = ' >> ' " defaults to ' ➛ '. used as a separator between symlinks' source and target.
+  let g:nvim_tree_respect_buf_cwd = 1 "0 by default, will change cwd of nvim-tree to that of new buffer's when opening nvim-tree.
+  let g:nvim_tree_create_in_closed_folder = 0 "1 by default, When creating files, sets the path of a file when cursor is on a closed folder to the parent folder when 0, and inside the folder when 1.
+  let g:nvim_tree_refresh_wait = 500 "1000 by default, control how often the tree can be refreshed, 1000 means the tree can be refresh once per 1000ms.
+  let g:nvim_tree_window_picker_exclude = {
+      \   'filetype': [
+      \     'notify',
+      \     'packer',
+      \     'qf'
+      \   ],
+      \   'buftype': [
+      \     'terminal'
+      \   ]
+      \ }
+  " Dictionary of buffer option names mapped to a list of option values that
+  " indicates to the window picker that the buffer's window should not be
+  " selectable.
+  let g:nvim_tree_special_files = { 'README.md': 1, 'Makefile': 1, 'MAKEFILE': 1 } " List of filenames that gets highlighted with NvimTreeSpecialFile
+  let g:nvim_tree_show_icons = {
+      \ 'git': 1,
+      \ 'folders': 1,
+      \ 'files': 1,
+      \ 'folder_arrows': 1,
+      \ }
+  "If 0, do not show the icons for one of 'git' 'folder' and 'files'
+  "1 by default, notice that if 'files' is 1, it will only display
+  "if nvim-web-devicons is installed and on your runtimepath.
+  "if folder is 1, you can also tell folder_arrows 1 to show small arrows next to the folder icons.
+  "but this will not work when you set indent_markers (because of UI conflict)
+
+  " default will show icon by default if no icon is provided
+  " default shows no icon by default
+  let g:nvim_tree_icons = {
+      \ 'default': '',
+      \ 'symlink': '',
+      \ 'git': {
+      \   'unstaged': "✗",
+      \   'staged': "✓",
+      \   'unmerged': "",
+      \   'renamed': "➜",
+      \   'untracked': "★",
+      \   'deleted': "",
+      \   'ignored': "◌"
+      \   },
+      \ 'folder': {
+      \   'arrow_open': "",
+      \   'arrow_closed': "",
+      \   'default': "",
+      \   'open': "",
+      \   'empty': "",
+      \   'empty_open': "",
+      \   'symlink': "",
+      \   'symlink_open': "",
+      \   }
+      \ }
+
+	set termguicolors
 endif
 
 Plug 'preservim/nerdcommenter'
@@ -133,6 +257,8 @@ call plug#end()
 " Lua setup
 if !exists('g:vscode')
 
+lua require('impatient')
+
 lua << EOF
 	require('which-key').setup {
 	-- your configuration comes here
@@ -150,24 +276,8 @@ lua << EOF
 EOF
 
 lua << EOF
-	require('neoscroll').setup({
-		-- All these keys will be mapped to their corresponding default scrolling animation
-		mappings = {'<C-u>', '<C-d>', '<C-b>', '<C-f>',
-					'<C-y>', '<C-e>', 'zt', 'zz', 'zb'},
-		hide_cursor = true,          -- Hide cursor while scrolling
-		stop_eof = true,             -- Stop at <EOF> when scrolling downwards
-		use_local_scrolloff = false, -- Use the local scope of scrolloff instead of the global scope
-		respect_scrolloff = false,   -- Stop scrolling when the cursor reaches the scrolloff margin of the file
-		cursor_scrolls_alone = true, -- The cursor will keep on scrolling even if the window cannot scroll further
-		easing_function = nil,        -- Default easing function
-		pre_hook = nil,              -- Function to run before the scrolling animation starts
-		post_hook = nil,              -- Function to run after the scrolling animation ends
-	})
-EOF
-
-lua << EOF
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = {"c", "cpp"}, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  ensure_installed = {}, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
   ignore_install = {}, -- List of parsers to ignore installing
   highlight = {
 	enable = true,              -- false will disable the whole extension
@@ -232,6 +342,135 @@ require'treesitter-context'.setup{
 }
 EOF
 
+lua << EOF
+require'nvim-tree'.setup {
+  disable_netrw       = true,
+  hijack_netrw        = true,
+  open_on_setup       = false,
+  ignore_ft_on_setup  = {},
+  auto_close          = false,
+  open_on_tab         = false,
+  hijack_cursor       = false,
+  update_cwd          = false,
+  update_to_buf_dir   = {
+    enable = true,
+    auto_open = true,
+  },
+  diagnostics = {
+    enable = false,
+    icons = {
+      hint = "",
+      info = "",
+      warning = "",
+      error = "",
+    }
+  },
+  update_focused_file = {
+    enable      = false,
+    update_cwd  = false,
+    ignore_list = {}
+  },
+  system_open = {
+    cmd  = nil,
+    args = {}
+  },
+  filters = {
+    dotfiles = false,
+    custom = {}
+  },
+  view = {
+    width = 30,
+    height = 30,
+    hide_root_folder = false,
+    side = 'left',
+    auto_resize = false,
+    mappings = {
+      custom_only = false,
+      list = {}
+    }
+  }
+}
+EOF
+
+lua << EOF
+require('auto-session').setup {
+        auto_session_enable_last_session=true,
+}
+EOF
+
+lua << EOF
+require('gitsigns').setup {
+  signs = {
+    add          = {hl = 'GitSignsAdd'   , text = '│', numhl='GitSignsAddNr'   , linehl='GitSignsAddLn'},
+    change       = {hl = 'GitSignsChange', text = '│', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
+    delete       = {hl = 'GitSignsDelete', text = '_', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
+    topdelete    = {hl = 'GitSignsDelete', text = '‾', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
+    changedelete = {hl = 'GitSignsChange', text = '~', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
+  },
+  signcolumn = true,  -- Toggle with `:Gitsigns toggle_signs`
+  numhl      = true, -- Toggle with `:Gitsigns toggle_numhl`
+  linehl     = false, -- Toggle with `:Gitsigns toggle_linehl`
+  word_diff  = false, -- Toggle with `:Gitsigns toggle_word_diff`
+  keymaps = {
+    -- Default keymap options
+    noremap = true,
+
+    ['n ]c'] = { expr = true, "&diff ? ']c' : '<cmd>lua require\"gitsigns.actions\".next_hunk()<CR>'"},
+    ['n [c'] = { expr = true, "&diff ? '[c' : '<cmd>lua require\"gitsigns.actions\".prev_hunk()<CR>'"},
+
+    ['n <leader>hs'] = '<cmd>lua require"gitsigns".stage_hunk()<CR>',
+    ['v <leader>hs'] = '<cmd>lua require"gitsigns".stage_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>',
+    ['n <leader>hu'] = '<cmd>lua require"gitsigns".undo_stage_hunk()<CR>',
+    ['n <leader>hr'] = '<cmd>lua require"gitsigns".reset_hunk()<CR>',
+    ['v <leader>hr'] = '<cmd>lua require"gitsigns".reset_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>',
+    ['n <leader>hR'] = '<cmd>lua require"gitsigns".reset_buffer()<CR>',
+    ['n <leader>hp'] = '<cmd>lua require"gitsigns".preview_hunk()<CR>',
+    ['n <leader>hb'] = '<cmd>lua require"gitsigns".blame_line(true)<CR>',
+    ['n <leader>hS'] = '<cmd>lua require"gitsigns".stage_buffer()<CR>',
+    ['n <leader>hU'] = '<cmd>lua require"gitsigns".reset_buffer_index()<CR>',
+
+    -- Text objects
+    ['o ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>',
+    ['x ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>'
+  },
+  watch_gitdir = {
+    interval = 1000,
+    follow_files = true
+  },
+  attach_to_untracked = true,
+  current_line_blame = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
+  current_line_blame_opts = {
+    virt_text = true,
+    virt_text_pos = 'eol', -- 'eol' | 'overlay' | 'right_align'
+    delay = 250,
+  },
+  current_line_blame_formatter_opts = {
+    relative_time = false
+  },
+  sign_priority = 6,
+  update_debounce = 100,
+  status_formatter = nil, -- Use default
+  max_file_length = 40000,
+  preview_config = {
+    -- Options passed to nvim_open_win
+    border = 'single',
+    style = 'minimal',
+    relative = 'cursor',
+    row = 0,
+    col = 1
+  },
+  yadm = {
+    enable = false
+  },
+}
+EOF
+
+lua << EOF
+require('feline').setup({
+    preset = 'feline'
+})
+EOF
+
 lua require('nvim-ts-autotag').setup()
 
 lua require"surround".setup{}
@@ -240,7 +479,9 @@ endif
 
 "Vim Config stuff
 if !exists('g:vscode')
-    colorscheme vimdark
+    filetype plugin indent on
+    colorscheme uwu
+    "let g:airline_theme='google_dark'
     set noswapfile
     set ignorecase
     set number
@@ -262,17 +503,19 @@ if !exists('g:vscode')
     set relativenumber
     set autoread
     set signcolumn=yes
-    " set termguicolors
+    "set guicursor=a:blinkon100
+    set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
+              \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
+              \,sm:block-blinkwait175-blinkoff150-blinkon175
 
     "Press i to enter insert mode, and ii to exit insert mode.
     inoremap ii <Esc>
     inoremap jk <Esc>
     inoremap kj <Esc>
     vnoremap ii <Esc>
-    vnoremap kj <Esc>
     
     "Open chadtree   
-    nnoremap <leader>v <cmd>CHADopen<cr>
+    "nnoremap <leader>v <cmd>CHADopen<cr>
 
     "Move lines up and down by alt+j/k
     inoremap <A-j> <Esc>:m .+1<CR>==gi
@@ -299,6 +542,11 @@ if !exists('g:vscode')
     " gh - get hint on whatever's under the cursor
     nnoremap <silent> K :call <SID>show_documentation()<CR>
     nnoremap <silent> gh :call <SID>show_documentation()<CR>
+    
+    " Applying codeAction to the selected region.
+    " Example: `<leader>aap` for current paragraph
+    xmap <leader>a  <Plug>(coc-codeaction-selected)
+    nmap <leader>a  <Plug>(coc-codeaction-selected)
     
     function! s:show_documentation()
       if (index(['vim','help'], &filetype) >= 0)
@@ -350,8 +598,6 @@ if !exists('g:vscode')
     
     " C/CPP Dev Stuff
     let g:c_syntax_for_h = 1
-    autocmd Filetype c setlocal makeprg=gcc\ -o\ %<\ %
-    autocmd Filetype cpp setlocal makeprg=g++\ -o\ %<\ %
 
     " clang++ -MJ a.o.json -Wall -std=c++11 -o a.o -c a.cpp
     " Create function for the above command
@@ -389,6 +635,7 @@ if !exists('g:vscode')
 				\ [ "&New File\tCtrl+n", 'echo 0' ],
 				\ [ "&Open File\t(F3)", 'echo 1' ],
 				\ [ "&Close", 'echo 2' ],
+        \ [ "Open File &Browser", 'NvimTreeToggle'],
 				\ [ "--", '' ],
 				\ [ "&Save\tCtrl+s", 'echo 3'],
 				\ [ "Save &As", 'echo 4' ],
@@ -423,14 +670,24 @@ if !exists('g:vscode')
 
 	" enable to display tips in the cmdline
 	let g:quickui_show_tip = 1
-
+	
 	" hit space twice to open menu
 	noremap <space><space> :call quickui#menu#open()<cr>
+
+    " set statusline=%<%f%h%m%r%=%b\ 0x%B\ \ %l,%c%V\ %P
 	
+    " Needed to config for async tasks
+    let g:asyncrun_open = 6
+    let g:asynctasks_term_pos = 'external'
+
+    noremap <silent><f6> :AsyncTask file-build<cr>
+    noremap <silent><f7> :AsyncTask file-run<cr>
+    noremap <silent><leader>q :cclose<cr>
+
 endif
 
-"Both vscode and nvim
-"
+" Both vscode and nvim
+
 set tabstop=4
 set softtabstop=4
 set expandtab
@@ -446,8 +703,11 @@ set clipboard=unnamedplus
 "Keybinds
 
 " j/k will move virtual lines (lines that wrap)
-noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
-noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
+ noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
+ noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
+
+" Select recently pasted stuff
+nnoremap gp `[v`]
 
 "Ctrl+/ to clear last search highlight
 nnoremap <silent> <Esc><Esc> :let @/=""<CR>
