@@ -41,12 +41,12 @@ if !exists('g:vscode')
 	Plug 'hrsh7th/cmp-buffer'
 	Plug 'hrsh7th/cmp-path'
 	"Plug 'hrsh7th/cmp-cmdline'
-	Plug 'hrsh7th/nvim-cmp'
-	Plug 'quangnguyen30192/cmp-nvim-ultisnips'
+    Plug 'hrsh7th/nvim-cmp'
+    Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 	Plug 'onsails/lspkind-nvim'
 	
 	" Tabnine main install is currently broken, use this instead
-	Plug 'adrianiy/cmp-tabnine', { 'do': './install.sh' }
+    Plug 'adrianiy/cmp-tabnine', { 'do': './install.sh' }
 	"Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
 
     Plug 'rcarriga/nvim-notify'
@@ -76,10 +76,13 @@ if !exists('g:vscode')
     " For tags
     Plug 'liuchengxu/vista.vim'
 
-    "Plug 'goolord/alpha-nvim'
+    Plug 'goolord/alpha-nvim'
 
     "Preferred color scheme; should be customized
     Plug 'mangeshrex/uwu.vim'
+
+    " TODO: Use me as inspiration in configuring text
+    Plug 'shaeinst/roshnivim-cs'
 	
     "Plug 'ldelossa/vimdark'
     "Plug 'rktjmp/lush.nvim'
@@ -93,42 +96,42 @@ if !exists('g:vscode')
     "Plug 'mhinz/vim-startify'
 	
     "Dashboard plugin config
-    Plug 'glepnir/dashboard-nvim'
-    let g:dashboard_default_executive ='telescope'
-    let g:dashboard_custom_shortcut={
-                \ 'last_session'       : '; s l',
-                \ 'find_history'       : '; f h',
-                \ 'find_file'          : '; f f',
-                \ 'new_file'           : '; c n',
-                \ 'change_colorscheme' : '; t c',
-                \ 'find_word'          : '; f a',
-                \ 'book_marks'         : '; f b',
-                \ }
-    let g:dashboard_custom_header = [
-        \' 	               _                                           ',
-        \'               _(_)_                          wWWWw   _      ',
-        \'   @@@@       (_)@(_)   vVVVv     _     @@@@  (___) _(_)_    ',
-        \'  @@()@@ wWWWw  (_)\    (___)   _(_)_  @@()@@   Y  (_)@(_)   ',
-        \'   @@@@  (___)     `|/    Y    (_)@(_)  @@@@   \|/   (_)\    ',
-        \'    /      Y       \|    \|/    /(_)    \|      |/      |    ',
-        \' \ |     \ |/       | / \ | /  \|/       |/    \|      \|/   ',
-        \' \\|//   \\|///  \\\|//\\\|/// \|///  \\\|//  \\|//  \\\|//  ',
-        \]
-	let g:dashboard_custom_footer = [
-		\'              Nate Cross               ',
-		\'                                       ',
-		\'Press spacebar twice to open quick menu',
-		\'     Press K to open context menu      ',
-		\]
+    " Plug 'glepnir/dashboard-nvim'
+    " let g:dashboard_default_executive ='telescope'
+    " let g:dashboard_custom_shortcut={
+                " \ 'last_session'       : '; s l',
+                " \ 'find_history'       : '; f h',
+                " \ 'find_file'          : '; f f',
+                " \ 'new_file'           : '; c n',
+                " \ 'change_colorscheme' : '; t c',
+                " \ 'find_word'          : '; f a',
+                " \ 'book_marks'         : '; f b',
+                " \ }
+    " let g:dashboard_custom_header = [
+        " \' 	               _                                           ',
+        " \'               _(_)_                          wWWWw   _      ',
+        " \'   @@@@       (_)@(_)   vVVVv     _     @@@@  (___) _(_)_    ',
+        " \'  @@()@@ wWWWw  (_)\    (___)   _(_)_  @@()@@   Y  (_)@(_)   ',
+        " \'   @@@@  (___)     `|/    Y    (_)@(_)  @@@@   \|/   (_)\    ',
+        " \'    /      Y       \|    \|/    /(_)    \|      |/      |    ',
+        " \' \ |     \ |/       | / \ | /  \|/       |/    \|      \|/   ',
+        " \' \\|//   \\|///  \\\|//\\\|/// \|///  \\\|//  \\|//  \\\|//  ',
+        " \]
+	" let g:dashboard_custom_footer = [
+		" \'              Nate Cross               ',
+		" \'                                       ',
+		" \'Press spacebar twice to open quick menu',
+		" \'     Press K to open context menu      ',
+		" \]
     " TODO: Work on remaking the menu and maybe with custom binds!
 	"let g:dashboard_custom_section={
     "  \ 'buffer_list': {
     "      \ 'description': [' Search Github Files                   ; b b'],
     "      \ 'command': ('GithubFiles') }
     "  \ }
-    nmap <Leader>ss :<C-u>SessionSave<CR>
-    nmap <Leader>sl :<C-u>SessionLoad<CR>
-    nmap <Leader>cn :<C-u>DashboardNewFile<CR>
+    " nmap <Leader>ss :<C-u>SessionSave<CR>
+    " nmap <Leader>sl :<C-u>SessionLoad<CR>
+    " nmap <Leader>cn :<C-u>DashboardNewFile<CR>
     "nnoremap <silent> <Leader>fh :History<CR>
     "nnoremap <silent> <Leader>ff :Files<CR>
     "nnoremap <silent> <Leader>tc :Colors<CR>
@@ -136,18 +139,18 @@ if !exists('g:vscode')
     "nnoremap <silent> <Leader>fb :Marks<CR>
     "nnoremap <silent> <Leader>bb :GithubFiles<CR>
 	
-	nnoremap <silent> <Leader>fh :DashboardFindHistory<CR>
-	nnoremap <silent> <Leader>ff :DashboardFindFile<CR>
-	nnoremap <silent> <Leader>tc :DashboardChangeColorscheme<CR>
-	nnoremap <silent> <Leader>fa :DashboardFindWord<CR>
-	nnoremap <silent> <Leader>fb :DashboardJumpMark<CR>
-	nnoremap <silent> <Leader>cn :DashboardNewFile<CR>
+	" nnoremap <silent> <Leader>fh :DashboardFindHistory<CR>
+	" nnoremap <silent> <Leader>ff :DashboardFindFile<CR>
+	" nnoremap <silent> <Leader>tc :DashboardChangeColorscheme<CR>
+	" nnoremap <silent> <Leader>fa :DashboardFindWord<CR>
+	" nnoremap <silent> <Leader>fb :DashboardJumpMark<CR>
+	" nnoremap <silent> <Leader>cn :DashboardNewFile<CR>
 
     "Plug 'SirVer/ultisnips'
     Plug 'honza/vim-snippets'
     "Plug 'vim-airline/vim-airline'
     "Plug 'vim-airline/vim-airline-themes'
-    Plug 'jiangmiao/auto-pairs'
+    " Plug 'jiangmiao/auto-pairs'
     
     " Git management
     Plug 'tpope/vim-fugitive'
@@ -195,7 +198,7 @@ if !exists('g:vscode')
     Plug 'jakewvincent/mkdnflow.nvim'
 
     " Smooth scrolling
-    "Plug 'karb94/neoscroll.nvim'
+    Plug 'karb94/neoscroll.nvim'
 
     " Treesitter for syntax highlight
     " We recommend updating the parsers on update
@@ -225,8 +228,8 @@ if !exists('g:vscode')
 	Plug 'skywind3000/asynctasks.vim'
 
     " Better statusline than airline
-    "Plug 'nvim-lualine/lualine.nvim'
-    Plug 'famiu/feline.nvim'
+    Plug 'nvim-lualine/lualine.nvim'
+    "Plug 'famiu/feline.nvim'
 
 	" Better marks management
     " Plug 'chentau/marks.nvim'
@@ -239,6 +242,7 @@ if !exists('g:vscode')
     nnoremap <leader>R :NvimTreeRefresh<CR>
     nnoremap <leader>n :NvimTreeFindFile<CR>
 
+  " let g:nvim_tree_disable_netrw = 0
   let g:nvim_tree_gitignore = 1 "0 by default
   let g:nvim_tree_quit_on_open = 1 "0 by default, closes the tree when you open a file
   let g:nvim_tree_indent_markers = 1 "0 by default, this option shows indent markers when folders are open
@@ -312,6 +316,43 @@ if !exists('g:vscode')
 
     " Better fzf functionality
     Plug 'vijaymarupudi/nvim-fzf'
+
+    " New statusline that's animated
+    "Plug 'windwp/windline.nvim'
+    
+    Plug 'sudormrfbin/cheatsheet.nvim'
+    Plug 'nvim-lua/popup.nvim'
+
+    " Better search display
+    Plug 'kevinhwang91/nvim-hlslens'
+
+    " Auto resumption of session + telescope integeration
+    " Plug 'Shatur/neovim-session-manager'
+
+    " Easy tabbing out with tab
+    Plug 'abecodes/tabout.nvim'
+
+    " Auto add parentheses
+    Plug 'windwp/nvim-autopairs'
+
+    " Better repeating
+    Plug 'tpope/vim-repeat'
+
+    " Better easymotion
+    Plug 'ggandor/lightspeed.nvim'
+
+    " Nicer commandline
+    " TODO: Integrate with wilder
+    Plug 'MunifTanjim/nui.nvim'
+    Plug 'VonHeikemen/fine-cmdline.nvim'
+
+    " Scrollbar
+    Plug 'dstein64/nvim-scrollview'
+
+    " Startup time
+    Plug 'dstein64/vim-startuptime'
+
+" END OF PLUG
 endif
 
 Plug 'preservim/nerdcommenter'
@@ -320,7 +361,7 @@ Plug 'junegunn/vim-easy-align'
 " Plug 'asvetliakov/vim-easymotion'
 " inside plug#begin:
 " use normal easymotion when in vim mode
-Plug 'easymotion/vim-easymotion', Cond(!exists('g:vscode'))
+" Plug 'easymotion/vim-easymotion', Cond(!exists('g:vscode'))
 " use vscode easymotion when in vscode mode
 Plug 'asvetliakov/vim-easymotion', Cond(exists('g:vscode'), { 'as': 'vsc-easymotion' })
 
@@ -334,10 +375,40 @@ if !exists('g:vscode')
 
 lua require('impatient')
 
+lua << EOF
+require'lualine'.setup {
+  options = {
+    icons_enabled = true,
+    theme = 'molokai',
+    component_separators = { left = '', right = ''},
+    section_separators = { left = '', right = ''},
+    disabled_filetypes = {},
+    always_divide_middle = true,
+  },
+  sections = {
+    lualine_a = {'mode'},
+    -- lualine_b = {'branch', 'diff',
+    --              {'diagnostics', sources={'nvim_lsp', 'coc'}}},
+    lualine_b = { {'b:gitsigns_head', icon = ''}, },
+    lualine_c = {'filename'},
+    lualine_x = {'encoding', 'fileformat', 'filetype'},
+    lualine_y = {'progress'},
+    lualine_z = {'location'}
+  },
+  inactive_sections = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {'filename'},
+    lualine_x = {'location'},
+    lualine_y = {},
+    lualine_z = {}
+  },
+  tabline = {},
+  extensions = {'nvim-tree', 'fugitive', 'quickfix'}
+}
+EOF
 
 lua << EOF
-
-
 local nvim_lsp = require('lspconfig')
 
 -- Use an on_attach function to only map the following keys
@@ -371,6 +442,12 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
   buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 
+    vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+      virtual_text = true,
+      signs = true,
+      underline = true,
+  update_in_insert = true,
+})
 end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
@@ -428,6 +505,14 @@ else
     vim.lsp.handlers['textDocument/symbol'] = function(_, _, result, _, bufn)
         require('lsputil.symbols').workspace_handler(nil, result, { bufnr = bufn }, nil)
     end
+end
+
+-- Tweaking display icons
+local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+
+for type, icon in pairs(signs) do
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
 
 EOF
@@ -505,8 +590,30 @@ end
 EOF
 
 lua << EOF
+
+-- Ignore files bigger than a threshold
+local previewers = require('telescope.previewers')
+
+local new_maker = function(filepath, bufnr, opts)
+  opts = opts or {}
+
+  filepath = vim.fn.expand(filepath)
+  vim.loop.fs_stat(filepath, function(_, stat)
+    if not stat then return end
+    if stat.size > 100000 then
+      return
+    else
+      previewers.buffer_previewer_maker(filepath, bufnr, opts)
+    end
+  end)
+end
+
+
 require('telescope').setup{
   defaults = {
+    buffer_previewer_maker = new_maker,
+
+    require('telescope').load_extension('fzf'),
     -- Default configuration for telescope goes here:
     -- config_key = value,
     mappings = {
@@ -515,7 +622,8 @@ require('telescope').setup{
         -- actions.which_key shows the mappings for your picker,
         -- e.g. git_{create, delete, ...}_branch for the git_branches picker
         ["<C-h>"] = "which_key",
-      }
+         ["<esc>"] = "close",
+      },
     }
   },
   pickers = {
@@ -526,6 +634,9 @@ require('telescope').setup{
     -- }
     -- Now the picker_config_key will be applied every time you call this
     -- builtin picker
+    lsp_references = {
+        theme = "cursor",
+    },
   },
   extensions = {
     -- Your extension configuration goes here:
@@ -542,9 +653,11 @@ require('telescope').setup{
     }
   }
 }
+
+-- require('telescope').load_extension('sessions')
+
 EOF
 
-lua require('telescope').load_extension('fzf')
 
 lua << EOF
 	require('which-key').setup {
@@ -559,6 +672,59 @@ lua << EOF
 		-- your configuration comes here
 		-- or leave it empty to use the default settings
 		-- refer to the configuration section below
+    signs = true, -- show icons in the signs column
+      sign_priority = 8, -- sign priority
+      -- keywords recognized as todo comments
+      keywords = {
+        FIX = {
+          icon = " ", -- icon used for the sign, and in search results
+          color = "error", -- can be a hex color, or a named color (see below)
+          alt = { "FIXME", "BUG", "FIXIT", "ISSUE" }, -- a set of other keywords that all map to this FIX keywords
+          -- signs = false, -- configure signs for some keywords individually
+        },
+        TODO = { icon = " ", color = "info" },
+        HACK = { icon = " ", color = "warning" },
+        WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
+        PERF = { icon = " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
+        NOTE = { icon = " ", color = "hint", alt = { "INFO" } },
+      },
+      merge_keywords = true, -- when true, custom keywords will be merged with the defaults
+      -- highlighting of the line containing the todo comment
+      -- * before: highlights before the keyword (typically comment characters)
+      -- * keyword: highlights of the keyword
+      -- * after: highlights after the keyword (todo text)
+      highlight = {
+        before = "", -- "fg" or "bg" or empty
+        keyword = "wide", -- "fg", "bg", "wide" or empty. (wide is the same as bg, but will also highlight surrounding characters)
+        after = "fg", -- "fg" or "bg" or empty
+        pattern = [[.*<(KEYWORDS)\s*:]], -- pattern or table of patterns, used for highlightng (vim regex)
+        comments_only = true, -- uses treesitter to match keywords in comments only
+        max_line_len = 400, -- ignore lines longer than this
+        exclude = {}, -- list of file types to exclude highlighting
+      },
+      -- list of named colors where we try to extract the guifg from the
+      -- list of hilight groups or use the hex color if hl not found as a fallback
+      colors = {
+        error = { "LspDiagnosticsDefaultError", "ErrorMsg", "#DC2626" },
+        warning = { "LspDiagnosticsDefaultWarning", "WarningMsg", "#FBBF24" },
+        info = { "LspDiagnosticsDefaultInformation", "#2563EB" },
+        hint = { "LspDiagnosticsDefaultHint", "#10B981" },
+        default = { "Identifier", "#7C3AED" },
+      },
+      search = {
+        command = "rg",
+        args = {
+          "--color=never",
+          "--no-heading",
+          "--with-filename",
+          "--line-number",
+          "--column",
+        },
+        -- regex that will be used to match keywords.
+        -- don't replace the (KEYWORDS) placeholder
+        pattern = [[\b(KEYWORDS):]], -- ripgrep regex
+        -- pattern = [[\b(KEYWORDS)\b]], -- match without the extra colon. You'll likely get false positives
+      },
 	}
 EOF
 
@@ -639,7 +805,7 @@ EOF
 
 lua << EOF
 require'nvim-tree'.setup {
-  disable_netrw       = true,
+  disable_netrw       = false,
   hijack_netrw        = true,
   open_on_setup       = true,
   ignore_ft_on_setup  = {},
@@ -755,9 +921,9 @@ require('gitsigns').setup {
 EOF
 
 lua << EOF
-require('feline').setup({
-    preset = 'feline'
-})
+-- require('feline').setup({
+--   preset = 'feline'
+-- })
 EOF
 
 lua require('nvim-ts-autotag').setup()
@@ -821,8 +987,11 @@ lua << EOF
 
   cmp.setup({
 	sources = {
-		{ name = 'cmp_tabnine' },
+	 	{ name = 'cmp_tabnine' },
 	},
+     completion = {
+        completeopt = 'menu,menuone,noinsert',
+      },
 	formatting = {
 		format = lspkind.cmp_format({
 			with_text = true,
@@ -882,6 +1051,7 @@ lua << EOF
         c = cmp.mapping.close(),
       }),
     },
+
     sources = cmp.config.sources({
       { name = 'nvim_lsp' },
       { name = 'vsnip' }, -- For vsnip users.
@@ -894,6 +1064,7 @@ lua << EOF
     })
   })
 
+  
   -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
   cmp.setup.cmdline('/', {
     sources = {
@@ -1026,6 +1197,184 @@ require('lint').linters_by_ft = {
 }
 EOF
 
+lua << EOF
+require("cheatsheet").setup({
+    -- Whether to show bundled cheatsheets
+
+    -- For generic cheatsheets like default, unicode, nerd-fonts, etc
+    bundled_cheatsheets = true,
+    -- bundled_cheatsheets = {
+    --     enabled = {},
+    --     disabled = {},
+    -- },
+
+    -- For plugin specific cheatsheets
+    bundled_plugin_cheatsheets = true,
+    -- bundled_plugin_cheatsheets = {
+    --     enabled = {},
+    --     disabled = {},
+    -- }
+
+    -- For bundled plugin cheatsheets, do not show a sheet if you
+    -- don't have the plugin installed (searches runtimepath for
+    -- same directory name)
+    include_only_installed_plugins = true,
+})
+EOF
+
+lua << EOF
+require('neoscroll').setup({
+    -- All these keys will be mapped to their corresponding default scrolling animation
+    mappings = {'<C-u>', '<C-d>', '<C-b>', '<C-f>',
+                '<C-y>', '<C-e>', 'zt', 'zz', 'zb'},
+    hide_cursor = true,          -- Hide cursor while scrolling
+    stop_eof = true,             -- Stop at <EOF> when scrolling downwards
+    use_local_scrolloff = false, -- Use the local scope of scrolloff instead of the global scope
+    respect_scrolloff = false,   -- Stop scrolling when the cursor reaches the scrolloff margin of the file
+    cursor_scrolls_alone = true, -- The cursor will keep on scrolling even if the window cannot scroll further
+    easing_function = "sine",        -- Default easing function
+    pre_hook = nil,              -- Function to run before the scrolling animation starts
+    post_hook = nil,              -- Function to run after the scrolling animation ends
+})
+EOF
+
+lua << EOF
+require('tabout').setup {
+    tabkey = '<Tab>', -- key to trigger tabout, set to an empty string to disable
+    backwards_tabkey = '<S-Tab>', -- key to trigger backwards tabout, set to an empty string to disable
+    act_as_tab = true, -- shift content if tab out is not possible
+    act_as_shift_tab = false, -- reverse shift content if tab out is not possible (if your keyboard/terminal supports <S-Tab>)
+    enable_backwards = true, -- well ...
+    completion = true, -- if the tabkey is used in a completion pum
+    tabouts = {
+      {open = "'", close = "'"},
+      {open = '"', close = '"'},
+      {open = '`', close = '`'},
+      {open = '(', close = ')'},
+      {open = '[', close = ']'},
+      {open = '{', close = '}'}
+    },
+    ignore_beginning = true, --[[ if the cursor is at the beginning of a filled element it will rather tab out than shift the content ]]
+    exclude = {} -- tabout will ignore these filetypes
+}
+EOF
+
+lua << EOF
+-- require('nvim-autopairs').setup({
+--   disable_filetype = { "TelescopePrompt" , "vim" },
+--   enable_check_bracket_line = false,
+--   check_ts = true,
+-- })
+-- -- If you want insert `(` after select function or method item
+-- local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+-- local cmp = require('cmp')
+-- cmp.event:on( 'confirm_done', cmp_autopairs.on_confirm_done({  map_char = { tex = '' } }))
+EOF
+
+lua << EOF
+require("nvim-autopairs").setup {fast_wrap = {}}
+
+    -- If you want insert `(` after select function or method item
+    local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+    local cmp = require("cmp")
+    cmp.event:on(
+        "confirm_done",
+        cmp_autopairs.on_confirm_done({map_char = {tex = ""}})
+    )
+EOF
+
+lua << EOF
+require'lightspeed'.setup {
+  exit_after_idle_msecs = { labeled = 1500, unlabeled = 1000 },
+
+  -- s/x
+  grey_out_search_area = true,
+  highlight_unique_chars = true,
+  match_only_the_start_of_same_char_seqs = true,
+  jump_on_partial_input_safety_timeout = 400,
+  substitute_chars = { ['\r'] = '¬' },
+  -- Leaving the appropriate list empty effectively disables
+  -- "smart" mode, and forces auto-jump to be on or off.
+  -- safe_labels = { ... },
+  safe_labels = {
+    "s", "f", "n",
+         "u", "t",
+         "/", "S", "F", "L", "N", "H", "G", "M", "U", "T", "?", "Z"
+      },
+  -- labels = { ... },
+  labels = {
+            "s", "f", "n",
+     "j", "k", "l", "o", "i", "w", "e", "h", "g",
+     "u", "t",
+     "m", "v", "c", ";", "a", ".", "z",
+     "/", "S", "F", "L", "N", "H", "G", "M", "U", "T", "?", "Z"},
+  cycle_group_fwd_key = '<space>',
+  cycle_group_bwd_key = '<tab>',
+  x_mode_prefix_key = '<c-x>',
+
+  -- f/t
+  limit_ft_matches = 4,
+  instant_repeat_fwd_key = nil,
+  instant_repeat_bwd_key = nil,
+}
+EOF
+
+lua << EOF
+local alpha = require'alpha'
+local dashboard = require'alpha.themes.dashboard'
+    dashboard.section.header.val = {
+     [[	               _                                         ]],
+     [[               _(_)_                          wWWWw   _      ]],
+     [[   @@@@       (_)@(_)   vVVVv     _     @@@@  (___) _(_)_    ]],
+     [[  @@()@@ wWWWw  (_)\    (___)   _(_)_  @@()@@   Y  (_)@(_)   ]],
+     [[   @@@@  (___)     `|/    Y    (_)@(_)  @@@@   \|/   (_)\    ]],
+     [[    /      Y       \|    \|/    /(_)    \|      |/      |    ]],
+     [[ \ |     \ |/       | / \ | /  \|/       |/    \|      \|/   ]],
+     [[ \\|//   \\|///  \\\|//\\\|/// \|///  \\\|//  \\|//  \\\|//  ]],
+    }
+
+-- Menu
+dashboard.section.buttons.val = {
+    dashboard.button( "e", "  > New file" , ":ene <BAR> startinsert <CR>"),
+    dashboard.button( "f", "  > Find file", ":cd C:/ | Telescope find_files<CR>"),
+    dashboard.button( "g", "  > Find in Github directory", ":cd ~/Documents/Github | Telescope find_files<CR>"),
+    dashboard.button( "r", "  > Recent"   , ":Telescope oldfiles<CR>"),
+    dashboard.button( "s", "  > Settings" , ":e $MYVIMRC<CR>"),
+    dashboard.button( "q", "  > Quit NVIM", ":qa<CR>"),
+},
+
+ alpha.setup(dashboard.opts)
+
+EOF
+
+lua << EOF
+local fineline = require('fine-cmdline')
+local fn = fineline.fn
+
+fineline.setup({
+  cmdline = {
+    enable_keymaps = false
+  },
+  hooks = {
+    before_mount = function(input)
+      -- Prompt can influence the completion engine.
+      -- This is your chance to change it to something that works for you
+      input.input_props.prompt = ': '
+    end,
+    set_keymaps = function(imap, feedkeys)
+      -- Restore default keybindings...
+      -- Except for `<Tab>`, that's what everyone uses to autocomplete
+      imap('<Esc>', fn.close)
+      imap('<C-c>', fn.close)
+
+      imap('<Up>', fn.up_history)
+      imap('<Down>', fn.down_history)
+    end
+  }
+})
+EOF
+
+" END OF LUA
 endif
 
 "Vim Config stuff
@@ -1062,6 +1411,7 @@ if !exists('g:vscode')
     set sessionoptions+=options,resize,winpos,terminal
     set foldmethod=manual
     set foldnestmax=1
+    set synmaxcol=200
 	
 	" From nvim cmp
 	set completeopt=menu,menuone,noselect
@@ -1073,6 +1423,7 @@ if !exists('g:vscode')
     inoremap ii <Esc>
     inoremap jk <Esc>
     inoremap kj <Esc>
+    inoremap hj <ESC>
     vnoremap ii <Esc>
     
     "Open chadtree   
@@ -1094,6 +1445,7 @@ if !exists('g:vscode')
 	nnoremap <silent> gr    <cmd>lua require'telescope.builtin'.lsp_references{}<CR>
 	nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
 	nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
+    nnoremap <silent> <space>e <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
 	
 	" Rename highlighted thing
 	nnoremap <silent> cr 	<cmd>lua vim.lsp.buf.rename()<CR>
@@ -1244,10 +1596,10 @@ if !exists('g:vscode')
 	let g:context_menu_k = [
 			\ ["&Peek Definition\tgh", 'call CocActionAsync("doHover")'],
 			\ ["S&earch in Project\t\\cx", 'grep <cword> *'],
+            \ ["Open &Cheatsheet\t;?", 'Cheatsheet'],
 			\ [ "--", ],
 			\ [ "Find &Definition\t\gd", 'call feedkeys("\gd")', 'CoC Find Definition'],
 			\ [ "Find &Symbol\t\\cs", 'call MenuHelp_Fscope("s")', 'GNU Gloal search s'],
-			\ [ "Find &Called by\t\\cd", 'call MenuHelp_Fscope("d")', 'GNU Global search d'],
 			\ [ "Find C&alling\t\\cc", 'call MenuHelp_Fscope("c")', 'GNU Global search c'],
 			\ [ "Find &From Ctags\t\\cz", 'call MenuHelp_Fscope("z")', 'GNU Global search c'],
 			\ [ "--", ],
@@ -1287,10 +1639,36 @@ if !exists('g:vscode')
 	" For linting
 	au BufWritePost <buffer> lua require('lint').try_lint()
 
-    let g:indent_blankline_filetype_exclude = ['help', 'dashboard']
+    let g:indent_blankline_filetype_exclude = ['help', 'dashboard', 'alpha', 'quickui']
 
     autocmd BufAdd NvimTree*,terminal,your_buffer_name.rb,*.js :let b:vim_current_word_disabled_in_this_buffer = 1
-	
+
+    " Hlslens config
+    noremap <silent> n <Cmd>execute('normal! ' . v:count1 . 'n')<CR>
+                \<Cmd>lua require('hlslens').start()<CR>
+    noremap <silent> N <Cmd>execute('normal! ' . v:count1 . 'N')<CR>
+                \<Cmd>lua require('hlslens').start()<CR>
+    noremap * *<Cmd>lua require('hlslens').start()<CR>
+    noremap # #<Cmd>lua require('hlslens').start()<CR>
+    noremap g* g*<Cmd>lua require('hlslens').start()<CR>
+    noremap g# g#<Cmd>lua require('hlslens').start()<CR>
+
+    set updatetime=100
+
+    nmap <space>s <Plug>Lightspeed_s
+    nmap <space>S <Plug>Lightspeed_S
+
+    " Lazyload wilder for faster startup
+    " autocmd CmdlineEnter * ++once call s:wilder_init() | call s:wilder#main#start()
+
+    " function! s:wilder_init() abort
+      " call wilder#setup(...)
+      " call wilder#set_option(..., ...)
+
+      " call wilder#set_option('pipeline', ...)
+      " call wilder#set_option('renderer', ...)
+    " endfunction
+    " nnoremap : <cmd>lua require('fine-cmdline').open()<CR>
 endif
 
 " Both vscode and nvim
@@ -1332,20 +1710,49 @@ map <f2> :w<CR>
 nmap <A-h> ^
 nmap <A-l> $
 
+" Making H, M, L do zz after 
+" nnoremap H H zz 
+" nnoremap L L zz
+
+" Nerdcommenter, add spaces
+let g:NERDSpaceDelims = 1
+
+" Make capital Y copy till end of line
+map Y y$
+
+" ;+Enter to split text to next line
+nnoremap <silent> <leader><CR> i<CR><ESC>
+
+" Easy align
+" TODO: Add easyalign to VSCode
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
+
+" SPACE COMMANDS
+
+" Space + movement keys for window movement
+nnoremap <space>h <C-w>h
+nnoremap <space>j <C-w>j
+nnoremap <space>k <C-w>k
+nnoremap <space>l <C-w>l
+
+" Space + f to quick find and replace
+nnoremap <space>f :%sm/
+xnoremap <space>f :sm/
+
+" Space + p to select block of code
+nnoremap <space>p vip
+
+" Highlight yanked text
+augroup highlight_yank
+    autocmd!
+    au TextYankPost * silent! lua vim.highlight.on_yank { higroup='IncSearch', timeout=200 }
+augroup END
+
 "Aliases
-"
+
 "Allows to :cd $github for easy access
 let $github = "~\\Documents\\GitHub"
 "Type :e $init for easy config access
 let $init = "~\\AppData\\Local\\nvim\\init.vim"
-
-" Other configuration
-if exists('g:nvui')
-  " Configure nvui
-  NvuiCmdFontFamily CaskaydiaCove
-  NvuiCmdFontSize 12.0
-  NvuiScrollAnimationDuration 0.2
-    set guifont=CaskaydiaCove\ Nerd\ Font\ Mono:h12
-endif
-
 
