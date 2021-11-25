@@ -2,6 +2,7 @@
 --- Nvim-Tree ---
 -----------------
 -- Taken from https://github.com/kyazdani42/nvim-tree.lua
+-- Also this https://github.com/brainfucksec/neovim-lua/blob/main/nvim/lua/plugins/nvim-tree.lua
 
 -- following options are the default
 -- each of these are documented in `:help nvim-tree.OPTION_NAME`
