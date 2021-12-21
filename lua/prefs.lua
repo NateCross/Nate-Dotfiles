@@ -35,22 +35,26 @@ vim.o.cmdheight       = 1	    -- Better Error Messages
 vim.wo.signcolumn     = 'yes'	-- Adds sign column for plugins
 
 opt.showmatch   = true          -- highlight matching parenthesis
-opt.foldmethod  = 'indent'      -- enable folding
+opt.foldmethod  = 'manual'      -- enable folding
 opt.colorcolumn = '80'          -- line lenght marker at 80 columns
 opt.splitright  = true          -- vertical split to the right
 opt.splitbelow  = true          -- orizontal split to the bottom
 opt.ignorecase  = true          -- ignore case letters when search
 opt.smartcase   = true          -- ignore lowercase for the whole pattern
 opt.linebreak   = true          -- wrap on word boundary
-vim.cmd[[set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
-              \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
-              \,sm:block-blinkwait175-blinkoff150-blinkon175]]
+opt.wrap        = true          -- allows text to wrap around
+opt.title       = true          -- Sets title to titlestring
+opt.cursorline  = true
 
 -------------------
 --- Colorscheme ---
 -------------------
 opt.termguicolors   = true	-- More colors; for colorscheme
-cmd [[colorscheme uwu]]
+-- Tokyodark exclusive settings
+g.tokyodark_enable_italic_comment = true
+g.tokyodark_color_gamma = "0.8"
+cmd [[colorscheme tokyodark]]
+
 
 -------------------
 --- Performance ---
@@ -75,14 +79,21 @@ opt.breakindent = true
 opt.undofile    = true 	      -- Saves an undofile to store history
 opt.updatetime  = 100 	      -- Decrease update time for plugins
 opt.inccommand  = 'nosplit'   -- Incrememental live completion
-opt.undodir     = vim.fn.stdpath("cache") .. "/undo"
+opt.undodir     = vim.fn.stdpath("data") .. "/undo"
 opt.completeopt = "menu,menuone,noselect" -- For nvim=cmp
 
--- /////////////////////
--- /// Misc. Options ///
--- /////////////////////
+---------------------
+--- Misc. Options ---
+---------------------
 
--- don't auto commenting new lines
+-- Tweak markdown and lua to use two spaces when tabbing
+cmd [[autocmd FileType markdown setlocal shiftwidth=2 softtabstop=2 expandtab]]
+cmd [[autocmd FileType lua setlocal shiftwidth=2 softtabstop=2 expandtab]]
+
+-- Make .h files be recognized as c, not cpp
+cmd [[let g:c_syntax_for_h = 1]]
+
+-- don't auto comment new lines
 cmd [[au BufEnter * set fo-=c fo-=r fo-=o]]
 
 -- Highlight on yank
@@ -92,6 +103,9 @@ exec([[
     autocmd TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=700}
   augroup end
 ]], false)
+
+-- Automatically open all folds on entering a buffer
+-- cmd [[au BufEnter * normal zR]]
 
 -- Auto run :PackerCompile when plugins.lua is updated
 -- vim.cmd([[
@@ -104,3 +118,19 @@ exec([[
 -- OLD HACK
 -- Auto set working directory to wherever file is
 cmd[[autocmd BufEnter * if expand("%:p:h") !~ '^/tmp' | silent! lcd %:p:h | endif]]
+
+-- Async Tasks options
+vim.g['asyncrun_open'] = 6
+vim.g['asynctasks_term_pos'] = 'external'
+vim.g.asyncrun_open = 6
+vim.g.asynctasks_term_pos = 'external'
+
+-- Limelight
+-- Runs Goyo when limelight is on
+cmd [[
+  autocmd! User GoyoEnter Limelight
+  autocmd! User GoyoLeave Limelight!
+]]
+
+-- Neovide GUI
+-- https://github.com/neovide/neovide/wiki/Configuration

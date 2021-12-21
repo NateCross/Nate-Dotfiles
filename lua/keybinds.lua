@@ -26,13 +26,11 @@ local nmap = Utils.tnoremap
 vim.g.mapleader = ';'
 vim.g.maplocalleader = ';'
 
+-- Reload lua config 
+-- nnoremap("<f1>", ":luafile $MYVIMRC")
+-- Might wanna see the vimpeccable's reload plugin for this
+
 -- Insert/visual mode exit commands
-
--- "hj" is my preferred escape bind,
--- because you can piano your index and middle fingers
--- so it's faster and more convenient
-inoremap("hj", "<Esc>")
-
 inoremap("ii", "<Esc>")
 inoremap("jk", "<Esc>")
 inoremap("kj", "<Esc>")
@@ -59,6 +57,42 @@ nnoremap("Y", "y$")
 vnoremap("<", "<gv")
 vnoremap(">", ">gv")
 
+-- Select recently pasted stuff
+nnoremap("gp", "`[v`]")
+
+-- Enter to insert line below; \Enter to insert above
+-- Shift + Enter doesn't seem to work so here's the next best thing
+nnoremap("<Enter>", "o<ESC>")
+nnoremap("\\<Enter>", "O<ESC>")
+
+-- Make Y copy till end of line 
+nnoremap("Y", "y$")
+
+-- <leader>Enter to split text to next line 
+nnoremap("<leader><CR>", "i<CR><ESC>")
+
+-- Hit Esc twice to clear search
+nnoremap("<Esc><Esc>", ":let @/=\"\"<CR>")
+
+-- I like using space so have some
+-- SPACE COMMANDS
+
+-- Space + hjkl for window movement
+nnoremap("<space>h", "<C-w>h")
+nnoremap("<space>j", "<C-w>j")
+nnoremap("<space>k", "<C-w>k")
+nnoremap("<space>l", "<C-w>l")
+
+-- Space + f to quick find and replace
+nnoremap("<space>f", ":%sm/")
+xnoremap("<space>f", ":sm/")
+
+-- Space + p to quick select a block of code
+nnoremap("<space>p", "vip")
+
+-- Caps lock to go next line
+inoremap("<f13>", "<CR>")
+
 -----------------------
 --- PLUGIN MAPPINGS ---
 -----------------------
@@ -77,6 +111,71 @@ nnoremap("cr", "<cmd>lua vim.lsp.buf.rename()<CR>")
 -- See https://github.com/nvim-telescope/telescope.nvim/issues/394
 nnoremap("<leader>ff", "<cmd>lua require('telescope.builtin').find_files()<cr>")
 nnoremap("<leader>fd", "<cmd>lua require('telescope.builtin').live_grep()<cr>")
+
+-- Bufferline
+-- https://github.com/akinsho/bufferline.nvim
+nnoremap("gb", ":BufferLineCycleNext<CR>")
+nnoremap("gB", ":BufferLineCyclePrev<CR>")
+
+-- Quick UI
+-- https://github.com/skywind3000/vim-quickui
+nnoremap("<space><space>", ":call quickui#menu#open()<cr>")
+nnoremap("K", ":call quickui#tools#clever_context('k', g:context_menu_k, {})<cr>")
+
+-- Async Tasks
+-- https://github.com/skywind3000/asynctasks.vim
+nnoremap("<f6>", ":AsyncTask file-build<cr>")
+nnoremap("<f7>", ":AsyncTask project-build<cr>")
+nnoremap("<f8>", ":AsyncTask file-run<cr>")
+nnoremap("<leader>q", ":cclose<cr>")
+
+-- Easy Align
+-- https://github.com/junegunn/vim-easy-align
+vim.api.nvim_set_keymap('n', 'ga', '<Plug>(EasyAlign)', {} )
+vim.api.nvim_set_keymap('x', 'ga', '<Plug>(EasyAlign)', {} )
+
+-- Renamer: Use as alternate in case LSP doesn't work
+-- https://github.com/filipdutescu/renamer.nvim
+vim.api.nvim_set_keymap('i', '<F2>', '<cmd>lua require("renamer").rename()<cr>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', 'cR', '<cmd>lua require("renamer").rename()<cr>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', 'cR', '<cmd>lua require("renamer").rename()<cr>', { noremap = true, silent = true })
+
+-- Vista
+nnoremap("<leader>b", ":Vista!!<cr>")
+
+-- LSP
+nnoremap("gs", "<cmd>lua vim.lsp.buf.declaration()<CR>")
+nnoremap("gd", "<cmd>lua require'telescope.builtin'.lsp_definitions{}<CR>")
+nnoremap("gh", "<cmd>lua vim.lsp.buf.hover()<CR>")
+nnoremap("gD", "<cmd>lua vim.lsp.buf.implementation()<CR>")
+nnoremap("<c-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
+nnoremap("<space>gd", "<cmd>lua vim.lsp.buf.type_definition()<CR>")
+nnoremap("gr", "<cmd>lua require'telescope.builtin'.lsp_references{}<CR>")
+nnoremap("g0", "<cmd>lua vim.lsp.buf.document_symbol()<CR>")
+nnoremap("gW", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>")
+nnoremap("<space>e", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>")
+nnoremap("<space>a", "<cmd>lua require'telescope.builtin'.lsp_code_actions{}<CR>")
+vnoremap("<space>a", "<cmd>lua require'telescope.builtin'.lsp_range_code_actions{}<CR>")
+
+-- Neovide
+-- There's something funky when I use ctrl+f and ctrl+b
+nnoremap("<c-f>", "<c-f>M")
+nnoremap("<c-b>", "<c-b>M")
+
+-- Trouble
+-- https://github.com/folke/trouble.nvim
+nnoremap("<leader>xx", "<cmd>TroubleToggle<cr>")
+nnoremap("<leader>xw", "<cmd>TroubleToggle lsp_workspace_diagnostics<cr>")
+nnoremap("<leader>xd", "<cmd>TroubleToggle lsp_document_diagnostics<cr>")
+nnoremap("<leader>xq", "<cmd>TroubleToggle quickfix<cr>")
+nnoremap("<leader>xl", "<cmd>TroubleToggle loclist<cr>")
+nnoremap("gR", "<cmd>TroubleToggle lsp_references<cr>")
+
+-- Goyo
+-- https://github.com/junegunn/goyo.vim
+nnoremap("<leader>gg", ":Goyo<cr>")
+
+
 
 
 
