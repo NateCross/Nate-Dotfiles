@@ -90,6 +90,10 @@ xnoremap("<space>f", ":sm/")
 -- Space + p to quick select a block of code
 nnoremap("<space>p", "vip")
 
+-- 'cd' towards the directory in which the current file is edited
+-- but only change the path for the current window
+nnoremap("<leader>cd", ":lcd %:h<CR>") 
+
 -- Caps lock to go next line
 inoremap("<f13>", "<CR>")
 
@@ -140,8 +144,8 @@ vim.api.nvim_set_keymap('i', '<F2>', '<cmd>lua require("renamer").rename()<cr>',
 vim.api.nvim_set_keymap('n', 'cR', '<cmd>lua require("renamer").rename()<cr>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('v', 'cR', '<cmd>lua require("renamer").rename()<cr>', { noremap = true, silent = true })
 
--- Vista
-nnoremap("<leader>b", ":Vista!!<cr>")
+-- Symbols Outline
+nnoremap("<leader>b", ":SymbolsOutline<CR>")
 
 -- LSP
 nnoremap("gs", "<cmd>lua vim.lsp.buf.declaration()<CR>")
@@ -170,12 +174,5 @@ nnoremap("<leader>xd", "<cmd>TroubleToggle lsp_document_diagnostics<cr>")
 nnoremap("<leader>xq", "<cmd>TroubleToggle quickfix<cr>")
 nnoremap("<leader>xl", "<cmd>TroubleToggle loclist<cr>")
 nnoremap("gR", "<cmd>TroubleToggle lsp_references<cr>")
-
--- Goyo
--- https://github.com/junegunn/goyo.vim
-nnoremap("<leader>gg", ":Goyo<cr>")
-
-
-
 
 

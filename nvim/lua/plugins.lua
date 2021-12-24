@@ -119,9 +119,10 @@ use 'onsails/lspkind-nvim'
 -- Tabnine source for autocompletion
 -- https://github.com/tzachar/cmp-tabnine
 -- ON HOLD UNTIL WINDOWS VERSION WORKS
+
 use {
-  'adrianiy/cmp-tabnine',
-  -- run = './install.sh',
+  'tzachar/cmp-tabnine',
+  run = './install.sh',
   requires = 'hrsh7th/nvim-cmp'
 }
 
@@ -140,14 +141,6 @@ use {
 -- Needed for vsnip
 -- https://github.com/rafamadriz/friendly-snippets
 use "rafamadriz/friendly-snippets"
-
--- Colorscheme
-use { 'mangeshrex/uwu.vim' }
--- Alternatively, use my own based on Dark Horizon from VSCode
-
--- Alt colorscheme
-use 'elvessousa/sobrio'
-
 
 -- Treesitter for syntax highlighting
 -- https://github.com/nvim-treesitter/nvim-treesitter
@@ -170,42 +163,42 @@ use {
   end,
 }
 
--- Colored bracket highlighter for Treesitter 
+-- Colored bracket highlighter for Treesitter
 -- https://github.com/p00f/nvim-ts-rainbow
 use 'p00f/nvim-ts-rainbow'
 
--- Treesitter Context: Show which function you're currently in at top 
-use {
-  'romgrk/nvim-treesitter-context',
-  config = function()
-  require'treesitter-context'.setup{
-    enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
-    throttle = true, -- Throttles plugin updates (may improve performance)
-    max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
-    patterns = { -- Match patterns for TS nodes. These get wrapped to match at word boundaries.
+-- Treesitter Context: Show which function you're currently in at top
+--use {
+--  'romgrk/nvim-treesitter-context',
+--  config = function()
+--  require'treesitter-context'.setup{
+--    enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
+--    throttle = true, -- Throttles plugin updates (may improve performance)
+--    max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
+--    patterns = { -- Match patterns for TS nodes. These get wrapped to match at word boundaries.
         -- For all filetypes
         -- Note that setting an entry here replaces all other patterns for this entry.
         -- By setting the 'default' entry below, you can control which nodes you want to
         -- appear in the context window.
-        default = {
-            'class',
-            'function',
-            'method',
+--        default = {
+--            'class',
+--            'function',
+--            'method',
             -- 'for', -- These won't appear in the context
             -- 'while',
             -- 'if',
             -- 'switch',
             -- 'case',
-        },
+--        },
         -- Example for a specific filetype.
         -- If a pattern is missing, *open a PR* so everyone can benefit.
         --   rust = {
         --       'impl_item',
         --   },
-    },
-  }
-  end
-}
+--    },
+--  }
+--  end
+--}
 
 -- Wilder: a better, customizable wildmenu
 -- https://github.com/gelguy/wilder.nvim
@@ -454,15 +447,15 @@ use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 
 -- Goyo: Distraction free writing
 -- https://github.com/junegunn/goyo.vim
-use {
-  'junegunn/goyo.vim',
-}
+--use {
+--  'junegunn/goyo.vim',
+--}
 
 -- Limelight: Highlights only active text
 -- https://github.com/junegunn/limelight.vim
-use {
-  'junegunn/limelight.vim',
-}
+--use {
+--  'junegunn/limelight.vim',
+--}
 
 -- Tabline: A tab and bufferline
 -- https://github.com/kdheepak/tabline.nvim
@@ -491,6 +484,93 @@ use {
   end,
   requires = { { 'hoob3rt/lualine.nvim', opt=true }, {'kyazdani42/nvim-web-devicons', opt = true} }
 }
+
+-- Neoscroll: Make scrolling fancier
+-- https://github.com/karb94/neoscroll.nvim
+use {
+  'karb94/neoscroll.nvim',
+  config = function()
+    require('neoscroll').setup({
+      -- All these keys will be mapped to their corresponding default scrolling animation
+      mappings = {'<C-u>', '<C-d>', '<C-b>', '<C-f>',
+                  '<C-y>', '<C-e>', 'zt', 'zz', 'zb'},
+      hide_cursor = true,          -- Hide cursor while scrolling
+      stop_eof = true,             -- Stop at <EOF> when scrolling downwards
+      use_local_scrolloff = false, -- Use the local scope of scrolloff instead of the global scope
+      respect_scrolloff = false,   -- Stop scrolling when the cursor reaches the scrolloff margin of the file
+      cursor_scrolls_alone = true, -- The cursor will keep on scrolling even if the window cannot scroll further
+      easing_function = sine,        -- Default easing function
+      pre_hook = nil,              -- Function to run before the scrolling animation starts
+      post_hook = nil,              -- Function to run after the scrolling animation ends
+    })
+  end
+}
+
+-- Kanagawa: New highly customizable theme based on Tokyodark
+-- https://github.com/rebelot/kanagawa.nvim
+use {
+  "rebelot/kanagawa.nvim",
+  config = function()
+    require('kanagawa').setup({
+      undercurl = true,           -- enable undercurls
+      commentStyle = "italic",
+      functionStyle = "NONE",
+      keywordStyle = "italic",
+      statementStyle = "bold",
+      typeStyle = "NONE",
+      variablebuiltinStyle = "italic",
+      specialReturn = true,       -- special highlight for the return keyword
+      specialException = true,    -- special highlight for exception handling keywords 
+      transparent = false,        -- do not set background color
+      colors = {},
+      overrides = {},
+    })
+  end
+}
+
+-- Nate UwU Custom
+-- Custom colorscheme, needs modification
+-- https://github.com/NateCross/uwu.vim
+use {
+  'NateCross/nate-uwu',
+}
+
+-- Symbols outline: Vista alternative
+-- NOTE: Config is in prefs.lua
+-- https://github.com/simrat39/symbols-outline.nvim
+use { 'simrat39/symbols-outline.nvim' }
+
+-- Focus: Arranges buffers
+-- https://github.com/beauwilliams/focus.nvim
+use { "beauwilliams/focus.nvim", config = function() require("focus").setup() end }
+-- Or lazy load with `module` option. See further down for info on how to lazy load when using FocusSplit commands
+-- Or lazy load this plugin by creating an arbitrary command using the cmd option in packer.nvim
+-- use { 'beauwilliams/focus.nvim', cmd = { "FocusSplitNicely", "FocusSplitCycle" }, module = "focus",
+--     config = function()
+--         require("focus").setup({hybridnumber = true})
+--     end
+-- }
+
+-- Shade: Dims inactive regions
+-- https://github.com/sunjon/Shade.nvim
+use {
+  'sunjon/shade.nvim',
+  config = function()
+    require'shade'.setup({
+      overlay_opacity = 50,
+      opacity_step = 1,
+      keys = {
+        brightness_up    = '<C-Up>',
+        brightness_down  = '<C-Down>',
+        toggle           = '<Leader>s',
+      }
+    })
+  end
+}
+
+-- Colorizer: Highlights hex code colors
+-- https://github.com/chrisbra/Colorizer
+use 'chrisbra/Colorizer'
 
 ------------------------
 --- PLUGINS END HERE ---

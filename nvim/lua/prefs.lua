@@ -51,9 +51,19 @@ opt.cursorline  = true
 -------------------
 opt.termguicolors   = true	-- More colors; for colorscheme
 -- Tokyodark exclusive settings
-g.tokyodark_enable_italic_comment = true
-g.tokyodark_color_gamma = "0.8"
-cmd [[colorscheme tokyodark]]
+-- g.tokyodark_enable_italic_comment = true
+-- g.tokyodark_color_gamma = "0.8"
+
+-- local overrides = {
+--
+-- }
+--
+-- local colors = {
+--   sumiInk1 = "#0E0E0E",
+-- }
+-- require'kanagawa'.setup({ overrides = overrides, colors = colors })
+
+cmd [[colorscheme uwu]]
 
 
 -------------------
@@ -117,7 +127,10 @@ exec([[
 
 -- OLD HACK
 -- Auto set working directory to wherever file is
-cmd[[autocmd BufEnter * if expand("%:p:h") !~ '^/tmp' | silent! lcd %:p:h | endif]]
+-- NOTE: This command doesn't work in Neovim 0.7 beta, Kubuntu 20.04
+-- cmd[[autocmd BufEnter * if expand("%:p:h") !~ '^/tmp' | silent! lcd %:p:h | endif]]
+-- The above doesn't work; try this instead
+-- nnoremap <leader>cd :lcd %:h<CR>
 
 -- Async Tasks options
 vim.g['asyncrun_open'] = 6
@@ -125,12 +138,62 @@ vim.g['asynctasks_term_pos'] = 'external'
 vim.g.asyncrun_open = 6
 vim.g.asynctasks_term_pos = 'external'
 
--- Limelight
--- Runs Goyo when limelight is on
-cmd [[
-  autocmd! User GoyoEnter Limelight
-  autocmd! User GoyoLeave Limelight!
-]]
-
 -- Neovide GUI
 -- https://github.com/neovide/neovide/wiki/Configuration
+
+-- Symbols outline
+-- These are mostly default, so
+-- change as needed
+-- https://github.com/simrat39/symbols-outline.nvim
+vim.g.symbols_outline = {
+    highlight_hovered_item = true,
+    show_guides = true,
+    auto_preview = true,
+    position = 'right',
+    relative_width = true,
+    width = 25,
+    auto_close = false,
+    show_numbers = false,
+    show_relative_numbers = false,
+    show_symbol_details = true,
+    preview_bg_highlight = 'Pmenu',
+    keymaps = { -- These keymaps can be a string or a table for multiple keys
+        close = {"<Esc>", "q"},
+        goto_location = "<Cr>",
+        focus_location = "o",
+        hover_symbol = "<C-space>",
+        toggle_preview = "K",
+        rename_symbol = "r",
+        code_actions = "a",
+    },
+    lsp_blacklist = {},
+    symbol_blacklist = {},
+    symbols = {
+        File = {icon = "", hl = "TSURI"},
+        Module = {icon = "", hl = "TSNamespace"},
+        Namespace = {icon = "", hl = "TSNamespace"},
+        Package = {icon = "", hl = "TSNamespace"},
+        Class = {icon = "𝓒", hl = "TSType"},
+        Method = {icon = "ƒ", hl = "TSMethod"},
+        Property = {icon = "", hl = "TSMethod"},
+        Field = {icon = "", hl = "TSField"},
+        Constructor = {icon = "", hl = "TSConstructor"},
+        Enum = {icon = "ℰ", hl = "TSType"},
+        Interface = {icon = "ﰮ", hl = "TSType"},
+        Function = {icon = "", hl = "TSFunction"},
+        Variable = {icon = "", hl = "TSConstant"},
+        Constant = {icon = "", hl = "TSConstant"},
+        String = {icon = "𝓐", hl = "TSString"},
+        Number = {icon = "#", hl = "TSNumber"},
+        Boolean = {icon = "⊨", hl = "TSBoolean"},
+        Array = {icon = "", hl = "TSConstant"},
+        Object = {icon = "⦿", hl = "TSType"},
+        Key = {icon = "🔐", hl = "TSType"},
+        Null = {icon = "NULL", hl = "TSType"},
+        EnumMember = {icon = "", hl = "TSField"},
+        Struct = {icon = "𝓢", hl = "TSType"},
+        Event = {icon = "🗲", hl = "TSType"},
+        Operator = {icon = "+", hl = "TSOperator"},
+        TypeParameter = {icon = "𝙏", hl = "TSParameter"}
+    }
+}
