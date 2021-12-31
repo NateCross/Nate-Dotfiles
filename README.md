@@ -1,24 +1,27 @@
 # Nate-Dotfiles
 
 Syncing my personal configs.
+
 This init.vim is intended to be used with Neovim and VSCode.
+
 As of 12/14/2021, this config is no longer intended to be used with
 VSCode because it is now written in lua.
+
 As of 12/31/2021, this repo also includes the configs for my Linux setup.
 This includes KDE Plasma 5, Kitty Terminal, and zsh.
 
 ## When Transferring Setup
-This repository now uses [dotdrop](https://github.com/deadc0de6/dotdrop) to manage files
+This repository now uses [dotdrop](https://github.com/deadc0de6/dotdrop) to manage files.
 
-Run the following command once cloned
+Run the following command once cloned.
 ```
 # For coding, includes nvim, zsh, kitty
-dotdrop compare -p coding # We compare to double-check
-dotdrop install -p coding
+./dotdrop.sh compare -p coding # We compare to double-check
+./dotdrop.sh install -p coding
 
 # For KDE
-dotdrop compare -p kde
-dotdrop install -p kde
+./dotdrop.sh compare -p kde
+./dotdrop.sh install -p kde
 ```
 
 ## Prerequisites
