@@ -9,6 +9,7 @@ This includes KDE Plasma 5, Kitty Terminal, and zsh.
 
 ## When Transferring Setup
 This repository now uses [dotdrop](https://github.com/deadc0de6/dotdrop) to manage files
+
 Run the following command once cloned
 ```
 # For coding, includes nvim, zsh, kitty
