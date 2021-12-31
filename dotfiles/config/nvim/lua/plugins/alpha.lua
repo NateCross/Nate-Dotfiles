@@ -19,9 +19,9 @@ dashboard.section.footer.val = "☆.。.:*・°☆.。.:*・°"
 -- Menu
 dashboard.section.buttons.val = {
     dashboard.button( "e", "  > New file" , ":ene <BAR> startinsert <CR>"),
-    dashboard.button( "f", "  > Find file", ":cd ~/ | :Telescope find_files<CR>"),
+    dashboard.button( "f", "  > Find file", ":cd ~/ | :Telescope find_files find_command=rg,--ignore,--hidden,--files<CR>"),
     -- Change the following setting to wherever Github files are
-    dashboard.button( "g", "  > Find in Github directory", ":cd ~/Documents/Github | Telescope find_files<CR>"),
+    dashboard.button( "g", "  > Find in Github directory", ":cd ~/HDD/Github | :Telescope find_files find_command=rg,--ignore,--hidden,--files<CR>"),
     dashboard.button( "r", "  > Recent"   , ":Telescope oldfiles<CR>"),
     dashboard.button( "s", "  > Settings" , ":e $MYVIMRC<CR>"),
     dashboard.button( "q", "  > Quit NVIM", ":qa<CR>"),

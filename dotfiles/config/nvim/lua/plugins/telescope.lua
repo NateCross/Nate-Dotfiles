@@ -14,7 +14,6 @@ local new_maker = function(filepath, bufnr, opts)
   end)
 end
 
-
 require('telescope').setup{
   defaults = {
     file_ignore_patterns = {"C:/Windows/"},
@@ -28,7 +27,10 @@ require('telescope').setup{
         -- actions.which_key shows the mappings for your picker,
         -- e.g. git_{create, delete, ...}_branch for the git_branches picker
         ["<C-h>"] = "which_key",
-        ["<esc>"] = "close",
+        ["`"] = "close",
+      },
+      n = {
+        ["q"] = "close",
       },
     },
     -- file_ignore_patterns = {"Windows"},
@@ -50,8 +52,10 @@ require('telescope').setup{
 	-- Find through symlnks
 	-- Taken from https://github.com/nvim-telescope/telescope.nvim/issues/394
 	find_files = {
+      hidden = true,
 		-- This command below seems buggy
 		-- find_command = { "rg", "--ignore", "--hidden", "--files", "-L" },
+        -- find_command = { "rg", "-L" },
 	},
   },
   extensions = {
@@ -60,8 +64,18 @@ require('telescope').setup{
       override_generic_sorter = true,  -- override the generic sorter
       override_file_sorter = true,     -- override the file sorter
       case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
-                                       -- the default case_mode is "smart_case"
-    }
+    },
+    file_browser = {
+      theme = "ivy",
+      mappings = {
+        ["i"] = {
+          -- your custom insert mode mappings
+        },
+        ["n"] = {
+          -- your custom normal mode mappings
+        },
+      },
+    },
     -- Your extension configuration goes here:
     -- extension_name = {
     --   extension_config_key = value,
@@ -71,3 +85,5 @@ require('telescope').setup{
 }
 
 require('telescope').load_extension('fzf')
+-- require('telescope').load_extension('command_palette')
+

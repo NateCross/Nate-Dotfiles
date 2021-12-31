@@ -39,29 +39,29 @@ use 'wbthomason/packer.nvim'
 
 -- File tree viewer
 use {
-    'kyazdani42/nvim-tree.lua',
-    requires = 'kyazdani42/nvim-web-devicons',
-    -- config = function() require'nvim-tree'.setup {} end
-	config = function()
-		require("plugins/nvim-tree")
-	end
+  'kyazdani42/nvim-tree.lua',
+  requires = 'kyazdani42/nvim-web-devicons',
+  -- config = function() require'nvim-tree'.setup {} end
+  config = function()
+      require("plugins/nvim-tree")
+  end
 }
 
 -- Native LSP
 -- https://github.com/neovim/nvim-lspconfig
 use {
-    'neovim/nvim-lspconfig',
-    config = function()
-		require("plugins/lsp-config")
-	end,
+  'neovim/nvim-lspconfig',
+  config = function()
+      require("plugins/lsp-config")
+  end,
 }
 
 -- https://github.com/williamboman/nvim-lsp-installer
 use {
-	'williamboman/nvim-lsp-installer',
-	config = function()
-		require("plugins/lsp-installer")
-	end,
+  'williamboman/nvim-lsp-installer',
+  config = function()
+    require("plugins/lsp-installer")
+  end,
 }
 
 -- Telescope fuzzy finder
@@ -69,11 +69,11 @@ use {
 -- Plus, more plugin integration
 -- https://github.com/nvim-telescope/telescope.nvim
 use {
-    'nvim-telescope/telescope.nvim',
-    requires = { {'nvim-lua/plenary.nvim'} },
-	config = function()
-		require("plugins/telescope")
-	end,
+  'nvim-telescope/telescope.nvim',
+  requires = { {'nvim-lua/plenary.nvim'} },
+  config = function()
+    require("plugins/telescope")
+  end,
 }
 
 -- Tim Pope's fugitive, for git integration
@@ -84,14 +84,14 @@ use { 'tpope/vim-rhubarb' }
 -- Git diff and stuff in nvim
 -- https://github.com/lewis6991/gitsigns.nvim
 use {
-	'lewis6991/gitsigns.nvim',
-	requires = {
-		'nvim-lua/plenary.nvim'
-	},
-	config = function()
-		require("plugins/gitsigns")
-	end,
-	-- tag = 'release' -- To use the latest release
+  'lewis6991/gitsigns.nvim',
+  requires = {
+    'nvim-lua/plenary.nvim'
+  },
+  config = function()
+    require("plugins/gitsigns")
+  end,
+  -- tag = 'release' -- To use the latest release
 }
 
 -- nvim-cmp
@@ -108,8 +108,8 @@ use {
     -- Plug 'hrsh7th/cmp-cmdline'
   },
   config = function()
-		require("plugins/nvim-cmp")
-	end,
+    require("plugins/nvim-cmp")
+  end,
 }
 
 -- Fancy icons for LSP using nvim-cmp
@@ -168,37 +168,37 @@ use {
 use 'p00f/nvim-ts-rainbow'
 
 -- Treesitter Context: Show which function you're currently in at top
---use {
---  'romgrk/nvim-treesitter-context',
---  config = function()
---  require'treesitter-context'.setup{
---    enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
---    throttle = true, -- Throttles plugin updates (may improve performance)
---    max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
---    patterns = { -- Match patterns for TS nodes. These get wrapped to match at word boundaries.
-        -- For all filetypes
-        -- Note that setting an entry here replaces all other patterns for this entry.
-        -- By setting the 'default' entry below, you can control which nodes you want to
-        -- appear in the context window.
---        default = {
---            'class',
---            'function',
---            'method',
-            -- 'for', -- These won't appear in the context
-            -- 'while',
-            -- 'if',
-            -- 'switch',
-            -- 'case',
---        },
-        -- Example for a specific filetype.
-        -- If a pattern is missing, *open a PR* so everyone can benefit.
-        --   rust = {
-        --       'impl_item',
-        --   },
---    },
---  }
---  end
---}
+use {
+  'romgrk/nvim-treesitter-context',
+  config = function()
+  require'treesitter-context'.setup{
+    enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
+    throttle = true, -- Throttles plugin updates (may improve performance)
+    max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
+    patterns = { -- Match patterns for TS nodes. These get wrapped to match at word boundaries.
+      -- For all filetypes
+      -- Note that setting an entry here replaces all other patterns for this entry.
+      -- By setting the 'default' entry below, you can control which nodes you want to
+      -- appear in the context window.
+        default = {
+            'class',
+            'function',
+            'method',
+          -- 'for', -- These won't appear in the context
+          -- 'while',
+          -- 'if',
+          -- 'switch',
+          -- 'case',
+        },
+      -- Example for a specific filetype.
+      -- If a pattern is missing, *open a PR* so everyone can benefit.
+      --   rust = {
+      --       'impl_item',
+      --   },
+    },
+  }
+  end
+}
 
 -- Wilder: a better, customizable wildmenu
 -- https://github.com/gelguy/wilder.nvim
@@ -233,7 +233,7 @@ use {
 -- https://github.com/akinsho/bufferline.nvim
 -- TODO: FINISH CONFIG
 -- use {
-  -- 'akinsho/bufferline.nvim', 
+  -- 'akinsho/bufferline.nvim',
   -- requires = 'kyazdani42/nvim-web-devicons',
   -- config = function()
     -- require("plugins/bufferline")
@@ -295,7 +295,7 @@ use {
   end
 }
 
--- Which-Key: A keybinding reference when you press stuff 
+-- Which-Key: A keybinding reference when you press stuff
 -- https://github.com/folke/which-key.nvim
 use {
   'folke/which-key.nvim',
@@ -408,7 +408,7 @@ use 'tiagovla/tokyodark.nvim'
 -- Mini: A collection of mini lua modules
 -- https://github.com/echasnovski/mini.nvim
 -- TODO: Setup proper config that disables the correct things
-use 'echasnovski/mini.nvim'
+-- use 'echasnovski/mini.nvim'
 
 -- Todo-comments: A highlighter for todos
 -- https://github.com/folke/todo-comments.nvim
@@ -444,18 +444,6 @@ use {
 -- Telescope-fzf support
 -- https://github.com/nvim-telescope/telescope-fzf-native.nvim
 use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-
--- Goyo: Distraction free writing
--- https://github.com/junegunn/goyo.vim
---use {
---  'junegunn/goyo.vim',
---}
-
--- Limelight: Highlights only active text
--- https://github.com/junegunn/limelight.vim
---use {
---  'junegunn/limelight.vim',
---}
 
 -- Tabline: A tab and bufferline
 -- https://github.com/kdheepak/tabline.nvim
@@ -506,28 +494,6 @@ use {
   end
 }
 
--- Kanagawa: New highly customizable theme based on Tokyodark
--- https://github.com/rebelot/kanagawa.nvim
-use {
-  "rebelot/kanagawa.nvim",
-  config = function()
-    require('kanagawa').setup({
-      undercurl = true,           -- enable undercurls
-      commentStyle = "italic",
-      functionStyle = "NONE",
-      keywordStyle = "italic",
-      statementStyle = "bold",
-      typeStyle = "NONE",
-      variablebuiltinStyle = "italic",
-      specialReturn = true,       -- special highlight for the return keyword
-      specialException = true,    -- special highlight for exception handling keywords 
-      transparent = false,        -- do not set background color
-      colors = {},
-      overrides = {},
-    })
-  end
-}
-
 -- Nate UwU Custom
 -- Custom colorscheme, needs modification
 -- https://github.com/NateCross/uwu.vim
@@ -539,17 +505,6 @@ use {
 -- NOTE: Config is in prefs.lua
 -- https://github.com/simrat39/symbols-outline.nvim
 use { 'simrat39/symbols-outline.nvim' }
-
--- Focus: Arranges buffers
--- https://github.com/beauwilliams/focus.nvim
-use { "beauwilliams/focus.nvim", config = function() require("focus").setup() end }
--- Or lazy load with `module` option. See further down for info on how to lazy load when using FocusSplit commands
--- Or lazy load this plugin by creating an arbitrary command using the cmd option in packer.nvim
--- use { 'beauwilliams/focus.nvim', cmd = { "FocusSplitNicely", "FocusSplitCycle" }, module = "focus",
---     config = function()
---         require("focus").setup({hybridnumber = true})
---     end
--- }
 
 -- Shade: Dims inactive regions
 -- https://github.com/sunjon/Shade.nvim
@@ -571,6 +526,90 @@ use {
 -- Colorizer: Highlights hex code colors
 -- https://github.com/chrisbra/Colorizer
 use 'chrisbra/Colorizer'
+
+-- Indent-blankline: Has bars to show indentation
+-- https://github.com/lukas-reineke/indent-blankline.nvim
+use {
+  'lukas-reineke/indent-blankline.nvim',
+  config = function()
+    require('plugins/indent-blankline')
+  end
+}
+
+-- Treesitter Refactor: Highlights same word in scope, among others
+-- https://github.com/nvim-treesitter/nvim-treesitter-refactor
+use {
+  'nvim-treesitter/nvim-treesitter-refactor',
+  config = function()
+    require'nvim-treesitter.configs'.setup {
+      refactor = {
+        highlight_definitions = { enable = true },
+      },
+    }
+  end
+}
+
+-- Nvim-DAP-UI: A debugging tool. plus UI
+-- https://github.com/rcarriga/nvim-dap-ui
+use {
+  'rcarriga/nvim-dap-ui',
+  requires = 'mfussenegger/nvim-dap',
+  config = function()
+    require("plugins/nvim-dap-ui")
+  end
+}
+
+-- DAP Install: So I can actually get the debuggers to work
+-- https://github.com/Pocco81/DAPInstall.nvim
+use {
+  "Pocco81/DAPInstall.nvim",
+  requires = 'mfussenegger/nvim-dap',
+  config = function()
+    require("plugins/nvim-dap-install")
+  end
+}
+-- NOTE: THE ABOVE TWO DAP PLUGINS DO NOT WORK RIGHT ON WINDOWS
+-- KEEP AN EYE OUT FOR WINDOWS SUPPORT IN THE FUTURE
+
+-- DAP Virtual Text: Shows variable values as virtual text
+-- https://github.com/theHamsta/nvim-dap-virtual-text
+use {
+  'theHamsta/nvim-dap-virtual-text',
+  config = function()
+    require("nvim-dap-virtual-text").setup {
+    enabled = true,                     -- enable this plugin (the default)
+    enabled_commands = true,            -- create commands DapVirtualTextEnable, DapVirtualTextDisable, DapVirtualTextToggle, (DapVirtualTextForceRefresh for refreshing when debug adapter did not notify its termination)
+    highlight_changed_variables = true, -- highlight changed values with NvimDapVirtualTextChanged, else always NvimDapVirtualText
+    highlight_new_as_changed = false,   -- highlight new variables in the same way as changed variables (if highlight_changed_variables)
+    show_stop_reason = true,            -- show stop reason when stopped for exceptions
+    commented = false,                  -- prefix virtual text with comment string
+    -- experimental features:
+    virt_text_pos = 'right_align',              -- position of virtual text, see `:h nvim_buf_set_extmark()`
+    all_frames = false,                 -- show virtual text for all stack frames not only current. Only works for debugpy on my machine.
+    virt_lines = false,                 -- show virtual lines instead of virtual text (will flicker!)
+    virt_text_win_col = nil             -- position the virtual text at a fixed window column (starting from the first text column) ,
+                                        -- e.g. 80 to position at column 80, see `:h nvim_buf_set_extmark()`
+}
+  end
+}
+
+-- Focus: Arranges buffers
+-- https://github.com/beauwilliams/focus.nvim
+use {
+  "beauwilliams/focus.nvim",
+  config = function()
+    require("focus").setup({
+      -- excluded_filetypes = {"toggleterm"}
+      -- excluded_buftypes = {"NvimTree"}
+      -- NOTE: Insert DAP UI here
+      -- enable = true,
+      compatible_filetrees = {
+        "OUTLINE", "DAP Scopes", "sh", "DAP Breakpoints", "DAP Stacks",
+        "DAP Watches", "dap-repl", "Quickfix List", "Quickfix"}
+    })
+  end
+}
+-- WARN: Really janky, messes up a lotta buffers like with DAP
 
 ------------------------
 --- PLUGINS END HERE ---
@@ -597,10 +636,9 @@ end)
 --     require("plugins/windline")
 --   end,
 -- }
--- NOTE: CURRENTLY DOESN'T WORK, BUT KEEP AN EYE OUT
--- It creates an error in its files. Maybe it doesn't work on Windows?
+-- NOTE: It doesn't work, like, at all
 
--- Luapad: Automatically shows lua code 
+-- Luapad: Automatically shows lua code
 -- https://github.com/rafcamlet/nvim-luapad
 -- use {
 --  'rafcamlet/nvim-luapad'
@@ -610,7 +648,7 @@ end)
 -- }
 -- NOTE: NOT USED BECAUSE I DON'T USE LUA... YET
 
--- Nvim-GPS: Fancy treesitter statusline widget 
+-- Nvim-GPS: Fancy treesitter statusline widget
 -- https://github.com/SmiteshP/nvim-gps
 -- use {
 --  'SmiteshP/nvim-gps'
@@ -654,28 +692,6 @@ end)
 -- }
 -- NOTE: DOESN'T WORK, PROBABLY REDUNDANT
 
--- Nvim-DAP-UI: A debugging tool. plus UI 
--- https://github.com/rcarriga/nvim-dap-ui
--- use {
-  -- 'rcarriga/nvim-dap-ui',
-  -- requires = 'mfussenegger/nvim-dap',
-  -- config = function()
-    -- require("plugins/nvim-dap-ui")
-  -- end
--- }
-
--- DAP Install: So I can actually get the debuggers to work
--- https://github.com/Pocco81/DAPInstall.nvim
--- use {
-  -- "Pocco81/DAPInstall.nvim",
-  -- requires = 'mfussenegger/nvim-dap',
-  -- config = function()
-    -- require("plugins/nvim-dap-install")
-  -- end
--- }
--- NOTE: THE ABOVE TWO DAP PLUGINS DO NOT WORK RIGHT ON WINDOWS
--- KEEP AN EYE OUT FOR WINDOWS SUPPORT IN THE FUTURE
-
 
 -- Zen Mode: Highlights certain portions of code
 -- Must toggle with ':Twilight' first
@@ -706,3 +722,79 @@ end)
 --   end
 -- }
 -- NOTE: Not really updated; use limelight and goyo instead
+
+
+-- Kanagawa: New highly customizable theme based on Tokyodark
+-- https://github.com/rebelot/kanagawa.nvim
+-- use {
+--   "rebelot/kanagawa.nvim",
+--   config = function()
+--     require('kanagawa').setup({
+--       undercurl = true,           -- enable undercurls
+--       commentStyle = "italic",
+--       functionStyle = "NONE",
+--       keywordStyle = "italic",
+--       statementStyle = "bold",
+--       typeStyle = "NONE",
+--       variablebuiltinStyle = "italic",
+--       specialReturn = true,       -- special highlight for the return keyword
+--       specialException = true,    -- special highlight for exception handling keywords
+--       transparent = false,        -- do not set background color
+--       colors = {},
+--       overrides = {},
+--     })
+--   end
+-- }
+-- WARN: Cool, but I prefer my own theme
+
+-- Telescope Command Palette
+-- Use this to replace Quick UI
+-- https://github.com/LinArcX/telescope-command-palette.nvim
+-- use { "LinArcX/telescope-command-palette.nvim" }
+-- WARN: Menu items don't work
+
+-- Goyo: Distraction free writing
+-- https://github.com/junegunn/goyo.vim
+--use {
+--  'junegunn/goyo.vim',
+--}
+
+-- Limelight: Highlights only active text
+-- https://github.com/junegunn/limelight.vim
+--use {
+--  'junegunn/limelight.vim',
+--}
+-- WARN: Never really found a good use for these
+
+-- Telescope File Browser
+-- https://github.com/nvim-telescope/telescope-file-browser.nvim
+-- Requires setup in plugins/telescope.lua
+-- use { "nvim-telescope/telescope-file-browser.nvim" }
+
+-- Transparent
+-- Easymode transparent cause I'm too lazy
+-- to make it for my actual colorscheme
+-- https://github.com/xiyaowong/nvim-transparent
+-- use {
+--   "xiyaowong/nvim-transparent",
+--   config = function()
+--     require("transparent").setup({
+--       enable = false, -- boolean: enable transparent
+--       extra_groups = { -- table/string: additional groups that should be clear
+--         -- In particular, when you set it to 'all', that means all avaliable groups
+--
+--         -- example of akinsho/nvim-bufferline.lua
+--         "BufferLineTabClose",
+--         "BufferlineBufferSelected",
+--         "BufferLineFill",
+--         "BufferLineBackground",
+--         "BufferLineSeparator",
+--         "BufferLineIndicatorSelected",
+--       },
+--       exclude = {}, -- table: groups you don't want to clear
+--     })
+--   end
+-- }
+-- WARN: Does not work the way I want it to;
+--       must actually set the bg in colorscheme + kitty
+--       to make it transparent

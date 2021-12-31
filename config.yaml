@@ -1,0 +1,110 @@
+config:
+  backup: true
+  banner: true
+  create: true
+  dotpath: dotfiles
+  keepdot: false
+  link_dotfile_default: nolink
+  link_on_import: nolink
+  longkey: false
+  workdir: ~/.config/dotdrop
+  default_actions:
+  - loginstall "/tmp/dotdrop-installation.log"
+actions:
+  loginstall: echo {{@@ _dotfile_abs_src @@}} installed to {{@@ _dotfile_abs_dst @@}}
+    >> {0}
+dotfiles:
+  d_nvim:
+    src: config/nvim
+    dst: ~/.config/nvim
+  f_zshrc:
+    src: zshrc
+    dst: ~/.zshrc
+    chmod: '644'
+  d_kitty:
+    src: config/kitty
+    dst: ~/.config/kitty
+  f_lattedockrc:
+    src: config/lattedockrc
+    dst: ~/.config/lattedockrc
+    chmod: '600'
+  f_nate-custom.layout.latte:
+    src: config/latte/nate-custom.layout.latte
+    dst: ~/.config/latte/nate-custom.layout.latte
+    chmod: '644'
+  f_kwinrc:
+    src: config/kwinrc
+    dst: ~/.config/kwinrc
+    chmod: '600'
+  f_breezerc:
+    src: config/breezerc
+    dst: ~/.config/breezerc
+    chmod: '600'
+  f_kglobalshortcutsrc:
+    src: config/kglobalshortcutsrc
+    dst: ~/.config/kglobalshortcutsrc
+    chmod: '600'
+  f_dolphinrc:
+    src: config/dolphinrc
+    dst: ~/.config/dolphinrc
+    chmod: '600'
+  f_kdeglobals:
+    src: config/kdeglobals
+    dst: ~/.config/kdeglobals
+    chmod: '600'
+  d_gtk-3.0:
+    src: config/gtk-3.0
+    dst: ~/.config/gtk-3.0
+  f_gtkrc:
+    src: config/gtkrc
+    dst: ~/.config/gtkrc
+  f_gtkrc-2.0:
+    src: config/gtkrc-2.0
+    dst: ~/.config/gtkrc-2.0
+  f_ksplashrc:
+    src: config/ksplashrc
+    dst: ~/.config/ksplashrc
+    chmod: '600'
+  f_plasmarc:
+    src: config/plasmarc
+    dst: ~/.config/plasmarc
+    chmod: '600'
+  f_trolltech.conf:
+    src: config/Trolltech.conf
+    dst: ~/.config/Trolltech.conf
+  f_yakuakerc:
+    src: config/yakuakerc
+    dst: ~/.config/yakuakerc
+    chmod: '600'
+  f_kcminputrc:
+    src: config/kcminputrc
+    dst: ~/.config/kcminputrc
+    chmod: '600'
+  f_kxkbrc:
+    src: config/kxkbrc
+    dst: ~/.config/kxkbrc
+    chmod: '600'
+profiles:
+  coding:
+    dotfiles:
+    - d_nvim
+    - f_zshrc
+    - d_kitty
+  kde:
+    dotfiles:
+    - f_lattedockrc
+    - f_nate-custom.layout.latte
+    - f_kwinrc
+    - f_breezerc
+    - f_kglobalshortcutsrc
+    - f_dolphinrc
+    - f_kdeglobals
+    - d_gtk-3.0
+    - f_gtkrc
+    - f_gtkrc-2.0
+    - f_ksplashrc
+    - f_plasmarc
+    - f_trolltech.conf
+    - f_yakuakerc
+    - f_kcminputrc
+    - f_kxkbrc

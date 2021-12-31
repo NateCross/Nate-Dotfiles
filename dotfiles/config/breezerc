@@ -1,0 +1,18 @@
+[Common]
+ShadowColor=255,3,62
+ShadowSize=ShadowNone
+
+[Style]
+MenuOpacity=41
+TabBarDrawCenteredTabs=true
+
+[Windeco]
+DrawTitleBarSeparator=false
+
+[Windeco Exception 0]
+BorderSize=3
+Enabled=true
+ExceptionPattern=.*
+ExceptionType=0
+HideTitleBar=true
+Mask=0

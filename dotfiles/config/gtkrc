@@ -1,0 +1,55 @@
+# created by KDE Plasma, Fri Dec 31 07:20:19 2021
+#
+include "/usr/share//themes/Breeze/gtk-2.0/gtkrc"
+
+gtk-theme-name="Breeze"
+
+style "default"
+{
+  bg[NORMAL] = { 0.392, 0.063, 0.196 }
+  bg[SELECTED] = { 0.914, 0.239, 0.353 }
+  bg[INSENSITIVE] = { 0.392, 0.063, 0.196 }
+  bg[ACTIVE] = { 0.345, 0.055, 0.173 }
+  bg[PRELIGHT] = { 0.392, 0.063, 0.196 }
+
+  base[NORMAL] = { 0.373, 0.055, 0.188 }
+  base[SELECTED] = { 0.914, 0.239, 0.353 }
+  base[INSENSITIVE] = { 0.392, 0.063, 0.196 }
+  base[ACTIVE] = { 0.914, 0.239, 0.353 }
+  base[PRELIGHT] = { 0.914, 0.239, 0.353 }
+
+  text[NORMAL] = { 0.937, 0.941, 0.945 }
+  text[SELECTED] = { 0.937, 0.941, 0.945 }
+  text[INSENSITIVE] = { 0.345, 0.055, 0.173 }
+  text[ACTIVE] = { 0.937, 0.941, 0.945 }
+  text[PRELIGHT] = { 0.937, 0.941, 0.945 }
+
+  fg[NORMAL] = { 0.937, 0.941, 0.945 }
+  fg[SELECTED] = { 0.937, 0.941, 0.945 }
+  fg[INSENSITIVE] = { 0.345, 0.055, 0.173 }
+  fg[ACTIVE] = { 0.937, 0.941, 0.945 }
+  fg[PRELIGHT] = { 0.937, 0.941, 0.945 }
+}
+
+class "*" style "default"
+
+style "ToolTip"
+{
+  bg[NORMAL] = { 0.471, 0.071, 0.243 }
+  base[NORMAL] = { 0.471, 0.071, 0.243 }
+  text[NORMAL] = { 0.937, 0.941, 0.945 }
+  fg[NORMAL] = { 0.937, 0.941, 0.945 }
+}
+
+widget "gtk-tooltip" style "ToolTip"
+widget "gtk-tooltips" style "ToolTip"
+widget "gtk-tooltip*" style "ToolTip"
+
+style "MenuItem"
+{
+  bg[PRELIGHT] = { 0.914, 0.239, 0.353 }
+  fg[PRELIGHT] = { 0.937, 0.941, 0.945 }
+}
+
+class "*MenuItem" style "MenuItem"
+

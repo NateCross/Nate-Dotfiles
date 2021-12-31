@@ -1,0 +1,19 @@
+[Appearance]
+Skin=one-dark
+SkinInstalledWithKns=true
+
+[Desktop Entry]
+DefaultProfile=Profile 3.profile
+
+[Dialogs]
+FirstRun=false
+
+[DownloadDialog Settings]
+Height 1080=432
+Width 1920=700
+
+[Favorite Profiles]
+Favorites=
+
+[KFileDialog Settings]
+detailViewIconSize=0
