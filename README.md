@@ -1,3 +1,5 @@
+![Rice](rice.png)
+
 # Nate-Dotfiles
 
 Syncing my personal configs.
@@ -23,11 +25,16 @@ Run the following command once cloned.
 ./dotdrop.sh compare -p kde
 ./dotdrop.sh install -p kde
 ```
+- Edit the fm6000 command in .zshrc to point to wherever the rose.txt file is.
+- Or delete that and the taskwarrior commands if not needed
 
 ## Prerequisites
 
 - [Kitty Terminal](https://sw.kovidgoyal.net/kitty/binary/)
   - NOTE: Linux only
+- [zsh](https://gist.github.com/derhuerst/12a1558a4b408b3b2b6e)
+  - [Taskwarrior](https://github.com/GothenburgBitFactory/taskwarrior)
+  - [Fetch-master 6000](https://github.com/anhsirk0/fetch-master-6000) for ricing
 - [Neovim >= 0.6](https://github.com/neovim/neovim)
   - Node.js
     - Choco if on Windows, I guess?
