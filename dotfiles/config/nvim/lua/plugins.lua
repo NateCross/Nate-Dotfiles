@@ -487,7 +487,7 @@ use {
       use_local_scrolloff = false, -- Use the local scope of scrolloff instead of the global scope
       respect_scrolloff = false,   -- Stop scrolling when the cursor reaches the scrolloff margin of the file
       cursor_scrolls_alone = true, -- The cursor will keep on scrolling even if the window cannot scroll further
-      easing_function = sine,        -- Default easing function
+      easing_function = 'sine',        -- Default easing function
       pre_hook = nil,              -- Function to run before the scrolling animation starts
       post_hook = nil,              -- Function to run after the scrolling animation ends
     })
@@ -605,11 +605,50 @@ use {
       -- enable = true,
       compatible_filetrees = {
         "OUTLINE", "DAP Scopes", "sh", "DAP Breakpoints", "DAP Stacks",
-        "DAP Watches", "dap-repl", "Quickfix List", "Quickfix"}
+        "DAP Watches", "dap-repl", "Quickfix List", "quickfix"}
     })
   end
 }
 -- WARN: Really janky, messes up a lotta buffers like with DAP
+
+-- Floaterm: Spawns a floating terminal
+-- https://github.com/voldikss/vim-floaterm
+use {
+  'voldikss/vim-floaterm',
+  config = function()
+    -- vim.g['floaterm_wintype'] = 'float'
+    -- vim.g['floaterm_position'] = 'botright'
+  end
+}
+
+-- fzf-lua: Improved fzf in vim functionality
+-- Prefer fzf over Telescope if possible
+use {
+  'ibhagwan/fzf-lua',
+  -- optional for icon support
+  requires = { 'kyazdani42/nvim-web-devicons' },
+  config = function()
+    require("plugins/fzf-lua")
+  end
+}
+
+-- Luapad: Automatically evaluate lua statements in one command
+-- https://github.com/rafcamlet/nvim-luapad
+use {
+  'rafcamlet/nvim-luapad',
+  config = function()
+  end
+}
+
+-- Sniprun: Runs code snippets with :SnipRun
+-- https://github.com/michaelb/sniprun
+use {
+  'michaelb/sniprun',
+  run = 'bash ./install.sh',
+  config = function()
+    require("plugins/snip-run")
+  end
+}
 
 ------------------------
 --- PLUGINS END HERE ---
@@ -637,16 +676,6 @@ end)
 --   end,
 -- }
 -- NOTE: It doesn't work, like, at all
-
--- Luapad: Automatically shows lua code
--- https://github.com/rafcamlet/nvim-luapad
--- use {
---  'rafcamlet/nvim-luapad'
---   config = function()
---     require("plugins/luapad")
---   end,
--- }
--- NOTE: NOT USED BECAUSE I DON'T USE LUA... YET
 
 -- Nvim-GPS: Fancy treesitter statusline widget
 -- https://github.com/SmiteshP/nvim-gps
@@ -678,9 +707,9 @@ end)
 --     require("plugins/cokeline")
 --   end
 -- }
--- NOTE: NOT USED BECAUSE... PEOPLE DON'T REALLY USE IT 
+-- NOTE: NOT USED BECAUSE... PEOPLE DON'T REALLY USE IT
 
--- Renamer: Better renamer than what's already in the LSP 
+-- Renamer: Better renamer than what's already in the LSP
 -- https://github.com/filipdutescu/renamer.nvim
 -- use {
   -- 'filipdutescu/renamer.nvim',
@@ -798,3 +827,12 @@ end)
 -- WARN: Does not work the way I want it to;
 --       must actually set the bg in colorscheme + kitty
 --       to make it transparent
+
+-- -- Firenvim: Runs Neovim in browser
+-- -- https://github.com/glacambre/firenvim
+-- use {
+--   'glacambre/firenvim',
+--   run = function() vim.fn['firenvim#install'](0) end
+-- }
+-- WARN: Too lazy to config
+

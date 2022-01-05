@@ -140,6 +140,7 @@ DirSelectDialog Size=827,586
 History Items[$e]=file:$HOME/HDD/Downloads/monochrome-kvantum/MonochromeBlur,file:$HOME/HDD/Downloads/monochrome-kvantum/MonochromeSolid,file:$HOME/HDD/Downloads/Sweet-Mars,file:$HOME/HDD,file:$HOME/HDD,file:$HOME/Public/HDD,file:$HOME/HDD,file:///mnt
 
 [General]
+BrowserApplication=vivaldi-stable.desktop
 ColorScheme=StrawberryQuartzHeader
 Name=Strawberry Quartz Header
 TerminalApplication=kitty

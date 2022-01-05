@@ -114,6 +114,10 @@ exec([[
   augroup end
 ]], false)
 
+-- Automatically switches off Focus
+-- Turn it back on with ";ft"
+cmd [[au VimEnter * FocusToggle]]
+
 -- Automatically open all folds on entering a buffer
 -- cmd [[au BufEnter * normal zR]]
 
@@ -133,10 +137,9 @@ exec([[
 -- nnoremap <leader>cd :lcd %:h<CR>
 
 -- Async Tasks options
-vim.g['asyncrun_open'] = 6
-vim.g['asynctasks_term_pos'] = 'external'
 vim.g.asyncrun_open = 6
-vim.g.asynctasks_term_pos = 'external'
+vim.g.asynctasks_term_pos = 'floaterm'
+-- vim.g.asynctasks_term_pos = 'external'
 
 -- Neovide GUI
 -- https://github.com/neovide/neovide/wiki/Configuration
@@ -198,3 +201,5 @@ vim.g.symbols_outline = {
     }
 }
 
+-- Floaterm
+vim.g.floaterm_position = "bottomright"

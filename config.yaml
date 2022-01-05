@@ -4,8 +4,8 @@ config:
   create: true
   dotpath: dotfiles
   keepdot: false
-  link_dotfile_default: nolink
-  link_on_import: nolink
+  link_dotfile_default: link
+  link_on_import: link
   longkey: false
   workdir: ~/.config/dotdrop
   default_actions:
@@ -84,12 +84,19 @@ dotfiles:
     src: config/kxkbrc
     dst: ~/.config/kxkbrc
     chmod: '600'
+  f_p10k.zsh:
+    src: p10k.zsh
+    dst: ~/.p10k.zsh
+  d_config_nvim:
+    src: config/nvim
+    dst: ~/.config/nvim
 profiles:
   coding:
     dotfiles:
     - d_nvim
     - f_zshrc
     - d_kitty
+    - f_p10k.zsh
   kde:
     dotfiles:
     - f_lattedockrc
@@ -108,3 +115,6 @@ profiles:
     - f_yakuakerc
     - f_kcminputrc
     - f_kxkbrc
+  nate-H81M-DS2:
+    dotfiles:
+    - d_config_nvim

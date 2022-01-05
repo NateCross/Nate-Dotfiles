@@ -74,6 +74,9 @@ nnoremap("<leader><CR>", "i<CR><ESC>")
 -- Hit Esc twice to clear search
 nnoremap("<Esc><Esc>", ":let @/=\"\"<CR>")
 
+nnoremap("gb", ":bnext<CR>")
+nnoremap("gB", ":bprev<CR>")
+
 -- I like using space so have some
 -- SPACE COMMANDS
 
@@ -83,9 +86,14 @@ nnoremap("<space>j", "<C-w>j")
 nnoremap("<space>k", "<C-w>k")
 nnoremap("<space>l", "<C-w>l")
 
--- Space + f to quick find and replace
-nnoremap("<space>f", ":%sm/")
-xnoremap("<space>f", ":sm/")
+-- Space + J/K for buffer movement
+-- NOTE: No, this is dumb, use gb/gB
+-- nnoremap("<space>J", ":bprev<CR>")
+-- nnoremap("<space>K", ":bnext<CR>")
+
+-- Space + F to quick find and replace
+nnoremap("<space>F", ":%sm/")
+xnoremap("<space>F", ":sm/")
 
 -- Space + p to quick select a block of code
 nnoremap("<space>p", "vip")
@@ -121,10 +129,16 @@ nnoremap("<leader>fd", "<cmd>lua require('telescope.builtin').live_grep()<cr>")
 nnoremap("<leader>fb", "<cmd>lua require 'telescope'.extensions.file_browser.file_browser()<CR>")
 -- nnoremap("<leader><space>", ":Telescope command_palette<CR>")
 
+-- fzf-lua
+-- Prefer these functions over Telescope if possible
+-- https://github.com/ibhagwan/fzf-lua
+nnoremap("<space>ff", ":FzfLua files<CR>")
+nnoremap("<space>fd", ":FzfLua grep<CR>")
+
 -- Bufferline
 -- https://github.com/akinsho/bufferline.nvim
-nnoremap("gb", ":BufferLineCycleNext<CR>")
-nnoremap("gB", ":BufferLineCyclePrev<CR>")
+-- nnoremap("gb", ":BufferLineCycleNext<CR>")
+-- nnoremap("gB", ":BufferLineCyclePrev<CR>")
 
 -- Quick UI
 -- https://github.com/skywind3000/vim-quickui
@@ -191,3 +205,13 @@ nnoremap("<leader>dq", ":lua require'dap'.step_over()<CR>")
 nnoremap("<leader>dw", ":lua require'dap'.step_into()<CR>")
 nnoremap("<leader>de", ":lua require'dap'.step_out()<CR>")
 nnoremap("<leader>da", ":lua require'dapui'.toggle()<CR>")
+
+-- Floaterm
+nnoremap("<F1>", ":FloatermNew<CR>")
+tnoremap("<F1>", "<C-\\><C-n>:FloatermNew<CR>")
+nnoremap("<F2>", ":FloatermPrev<CR>")
+tnoremap("<F2>", "<C-\\><C-n>:FloatermPrev<CR>")
+nnoremap("<F3>", ":FloatermNext<CR>")
+tnoremap("<F3>", "<C-\\><C-n>:FloatermNext<CR>")
+nnoremap("<F4>", ":FloatermToggle<CR>")
+tnoremap("<F4>", "<C-\\><C-n>:FloatermToggle<CR>")

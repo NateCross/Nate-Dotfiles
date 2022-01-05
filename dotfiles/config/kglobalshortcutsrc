@@ -7,6 +7,12 @@ Switch keyboard layout to English (US)=none,none,Switch keyboard layout to Engli
 Switch to Next Keyboard Layout=Ctrl+Alt+K,none,Switch to Next Keyboard Layout
 _k_friendly_name=KDE Daemon
 
+[firefox.desktop]
+_k_friendly_name=Launch Firefox Web Browser
+_launch=Ctrl+Alt+Space,none,Launch Firefox Web Browser
+new-private-window=,none,Open a New Private Window
+new-window=none,none,Open a New Window
+
 [kaccess]
 Toggle Screen Reader On and Off=Meta+Alt+S,Meta+Alt+S,Toggle Screen Reader On and Off
 _k_friendly_name=Accessibility
@@ -355,6 +361,17 @@ stop current activity=Meta+S,Meta+S,Stop Current Activity
 switch to next activity=none,none,Switch to Next Activity
 switch to previous activity=none,none,Switch to Previous Activity
 toggle do not disturb=none,none,Toggle do not disturb
+
+[plasmawindowed]
+_k_friendly_name=plasmawindowed
+clear-history=none,none,Clear Clipboard History
+clipboard_action=,Ctrl+Alt+X,Enable Clipboard Actions
+cycleNextAction=none,none,Next History Item
+cyclePrevAction=none,none,Previous History Item
+edit_clipboard=none,none,Edit Contents...
+repeat_action=,Ctrl+Alt+R,Manually Invoke Action on Current Clipboard
+show-barcode=none,none,Show Barcode...
+show-on-mouse-pos=none,none,Open Klipper at Mouse Position
 
 [wacomtablet]
 Map to fullscreen=Meta+Ctrl+F,Meta+Ctrl+F,Map to fullscreen

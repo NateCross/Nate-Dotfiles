@@ -9,7 +9,7 @@ DefaultProfile=Profile 3.profile
 FirstRun=false
 
 [DownloadDialog Settings]
-Height 1080=432
+Height 1080=494
 Width 1920=700
 
 [Favorite Profiles]
@@ -17,3 +17,6 @@ Favorites=
 
 [KFileDialog Settings]
 detailViewIconSize=0
+
+[Window]
+Width=85
