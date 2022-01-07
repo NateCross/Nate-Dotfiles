@@ -287,8 +287,9 @@ export NVM_DIR="$HOME/.nvm"
 # https://github.com/olets/zsh-abbr
 # zinit light olets/zsh-abbr
 
-### FZF Tab: Allows FZF tab completion
+### FZF Tab: Allows FZF tab completion anywhere
 ### WARN: Must always be first in plugin order
+# NOTE: FIX FZF TAB WITH ZOXIDE
 # https://github.com/Aloxaf/fzf-tab
 zinit light Aloxaf/fzf-tab
 
@@ -329,10 +330,10 @@ zinit light ael-code/zsh-colored-man-pages
 zinit ice --depth'1' atinit'source fm.zsh' atclone'./fm__compile' atpull'%atclone'
 zinit light ddnexus/fm
 
-### FZF Tab: Allows for FZF tab completion anywhere
-# NOTE: FIX FZF TAB WITH ZOXIDE
-# Installation from the github page as follows below;
-# Do not touch
+### zsh expand: Expands aliases and abbreviations like fish
+# https://github.com/MenkeTechnologies/zsh-expand
+zinit ice lucid nocompile
+zinit load MenkeTechnologies/zsh-expand
 
 ###################
 ### PLUGINS END ###
