@@ -211,7 +211,7 @@ use {
 }
 
 
--- Nvim-autopairs: Automatically adds parentheses and stuff 
+-- Nvim-autopairs: Automatically adds parentheses and stuff
 -- https://github.com/windwp/nvim-autopairs
 use {
   'windwp/nvim-autopairs',

@@ -1,23 +1,41 @@
+#####################
+### NATE'S .ZSHRC ###
+#####################
+
+#  INFO:
+#   - This is Nate's custom .zshrc.
+#   - It uses zinit as a plugin manager.
+#   - Most of the stuff here has been yoinked from the internet.
+#   - Never forget to leave notes and sources for stuff.
+
+#  TODO:
+#  - Seriously reorganize file
+
+###########################
+### ZINIT, DO NOT TOUCH ###
+###########################
+
+### Added by Zinit's installer
+if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
+    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
+    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
+        print -P "%F{33} %F{34}Installation successful.%f%b" || \
+        print -P "%F{160} The clone has failed.%f%b"
+fi
+
+source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+### End of Zinit's installer chunk
+
 ###########
-### Env ###
+### ENV ###
 ###########
 
 # Using neovim as preferred editor
 export EDITOR="nvim"
 export VISUAL="nvim"
-
-#######
-# FZF #
-#######
-export FZF_DEFAULT_OPTS="--preview '([[ -f {} ]] && (batcat --style=numbers --color=always {} || cat {})) || ([[ -d {} ]] && (tree -C {} | less)) || echo {} 2> /dev/null | head -200'"
-
-# FZF colorscheme
-export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' --color=fg:#e64a9b,bg:#120307,hl:#2dba1a --color=fg+:#ff05a3,bg+:#120307,hl+:#00eaff --color=info:#eb6f6f,prompt:#ff006f,pointer:#8a1563 --color=marker:#87ff00,spinner:#af5fff,header:#d10404'
-
-export FZF_DEFAULT_COMMAND="rg -L --files --no-ignore-vcs"
-
-# Using highlight (http://www.andre-simon.de/doku/highlight/en/highlight.html)
-export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
 
 export DISABLE_MAGIC_FUNCTIONS=true
 export SERVER_IP="hostname -I"
@@ -29,14 +47,36 @@ export PATH="$PATH:/usr/local/go/bin"
 export EDITOR="nvim"
 export SETUPTOOLS_USE_DISTUTILS=stdlib
 
+###########
+### FZF ###
+###########
+
+export FZF_DEFAULT_OPTS="--preview '([[ -f {} ]] && (batcat --style=numbers --color=always {} || cat {})) || ([[ -d {} ]] && (tree -C {} | less)) || echo {} 2> /dev/null | head -200'"
+
+# FZF colorscheme
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' --color=fg:#e64a9b,bg:#120307,hl:#2dba1a --color=fg+:#ff05a3,bg+:#120307,hl+:#00eaff --color=info:#eb6f6f,prompt:#ff006f,pointer:#8a1563 --color=marker:#87ff00,spinner:#af5fff,header:#d10404'
+
+export FZF_DEFAULT_COMMAND="rg -L --files --no-ignore-vcs"
+
+# Using highlight (http://www.andre-simon.de/doku/highlight/en/highlight.html)
+export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
+
 # Options to fzf command
 export FZF_COMPLETION_OPTS='--border --info=inline'
 
 ###############
 ### ALIASES ###
 ###############
+
+# Ubuntu
 alias add="sudo apt install"
 
+# Utilities
+alias ls="exa"
+alias ra=". ranger" # Ranger, but if you quit it CDs to dir
+alias pdf="termpdf.py"
+
+# Git
 alias ga="git add"
 alias gp="git push"
 alias gpo="git push origin"
@@ -47,35 +87,107 @@ alias gb="git branch"
 alias gc="git commit"
 alias gd="git diff"
 alias gco="git checkout"
+alias gclo="git clone"
+alias gst="git status"
 
+# Neovim
 alias neovim="nvim.appimage "
 alias nvim="nvim.appimage "
 alias nv="nvim.appimage "
 
+# Stuff from Mac I guess?
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
 
-alias ls="exa"
-
+# Taskwarrior
 alias ta="task add"
 alias tl="task list"
 alias td="task done"
 
+# FZF
 alias fzfh="rg --files --hidden -g "!.git" | fzf"
-
-alias ra=". ranger"
-
+alias vf='nvim.appimage $(fzf) '
 alias -g Z='| fzf'
 
-alias vf='nvim.appimage $(fzf) '
+# Web development
 
-# Taken from https://dev.to/fidelve/using-vim-as-your-main-editor-for-web-development-5a73
+# Starts a server to host and test a website at localhost
+# others in network can also connect through IP
+# Make sure to start in the server directory!
+# https://dev.to/fidelve/using-vim-as-your-main-editor-for-web-development-5a73
 alias serve="browser-sync start --server --files . --no-notify --host $SERVER_IP"
 
 # nnn file manager stuff
 alias n="nnn -e -x"
 
-alias pdf="termpdf.py"
+### QUICK CONFIG EDITS
+alias cfgnvim="$EDITOR ~/.config/nvim/init.lua"
+alias cfgzsh="$EDITOR ~/.zshrc"
+
+############
+### OPTS ###
+############
+
+# Auto-correction of commands
+setopt correctall
+
+# cd without having to type cd
+setopt auto_cd
+
+### The stuff below seems common in a lot of zsh configs.
+### Maybe it's standard?
+### Keep it as is
+
+# Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
+HISTSIZE=1000
+SAVEHIST=1000
+HISTFILE=~/.zsh_history
+
+# Use modern completion system
+autoload -Uz compinit
+compinit
+
+# Case insensitive cd
+setopt nocaseglob
+zstyle ':completion:*' '' matcher-list 'm:{a-z}={A-Z}'
+
+##############
+### ZSTYLE ###
+##############
+
+# Improve appearance of default completion style
+# https://wiki.gentoo.org/wiki/Zsh/Guide
+# zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
+# zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b' 
+
+# Default stuff; don't touch
+zstyle ':completion:*' auto-description 'specify: %d'
+zstyle ':completion:*' completer _expand _complete _correct _approximate
+
+zstyle ':completion:*' format 'Completing %d'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' menu select=2
+eval "$(dircolors -b)"
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' list-colors ''
+zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
+zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
+zstyle ':completion:*' menu select=long
+zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
+zstyle ':completion:*' use-compctl false
+zstyle ':completion:*' verbose true
+
+# FZF-Tab default config
+# disable sort when completing `git checkout`
+zstyle ':completion:*:git-checkout:*' sort false
+# set descriptions format to enable group support
+zstyle ':completion:*:descriptions' format '[%d]'
+# set list-colors to enable filename colorizing
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+# preview directory's content with exa when completing cd
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
+# switch group using `,` and `.`
+zstyle ':fzf-tab:*' switch-group ',' '.'
 
 #################
 ### FUNCTIONS ###
@@ -96,119 +208,7 @@ fd() {
   cd "$dir"
 }
 
-#######################
-### STARUP COMMANDS ###
-#######################
-if [ $COLUMNS -gt 65 ]
-then
-    fm6000 -c red -f ~/HDD/Github/Nate-Dotfiles/rose.txt
-fi
-
-task list
-
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
-# Set up the prompt
-
-autoload -Uz promptinit
-promptinit
-prompt adam1
-
-setopt histignorealldups sharehistory
-
-# Use emacs keybindings even if our EDITOR is set to vi
-bindkey -e
-
-# Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
-HISTSIZE=1000
-SAVEHIST=1000
-HISTFILE=~/.zsh_history
-
-# Use modern completion system
-autoload -Uz compinit
-compinit
-
-zstyle ':completion:*' auto-description 'specify: %d'
-zstyle ':completion:*' completer _expand _complete _correct _approximate
-
-zstyle ':completion:*' format 'Completing %d'
-zstyle ':completion:*' group-name ''
-zstyle ':completion:*' menu select=2
-eval "$(dircolors -b)"
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*' list-colors ''
-zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
-zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
-zstyle ':completion:*' menu select=long
-zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
-zstyle ':completion:*' use-compctl false
-zstyle ':completion:*' verbose true
-
-zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
-zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
-
-### Added by Zinit's installer
-if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
-    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
-    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
-    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
-        print -P "%F{33} %F{34}Installation successful.%f%b" || \
-        print -P "%F{160} The clone has failed.%f%b"
-fi
-
-source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
-### End of Zinit's installer chunk
-
-# Plugins
-
-zinit light jeffreytse/zsh-vi-mode
-
-# For postponing loading `fzf`
-zinit ice lucid wait
-zinit snippet OMZP::fzf
-
-zinit light Aloxaf/fzf-tab
-
-zinit ice depth=1; zinit light romkatv/powerlevel10k
-
-zinit light zsh-users/zsh-autosuggestions
-
-zinit light zdharma-continuum/fast-syntax-highlighting
-
-zinit light redxtech/zsh-kitty
-
-zinit light chrissicool/zsh-256color
-
-zinit light ael-code/zsh-colored-man-pages
-
-zinit light zsh-users/zsh-completions
-
-zinit ice --depth'1' atinit'source fm.zsh' atclone'./fm__compile' atpull'%atclone'
-zinit light ddnexus/fm
-
-# zinit light desyncr/auto-ls
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# Generated for envman. Do not edit.
-[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
-
-eval "$(zoxide init zsh)"
-
-__kitty_complete
-
-# Enable fzf for zsh
-# source /usr/share/doc/fzf/examples/key-bindings.zsh
-# source /usr/share/doc/fzf/examples/completion.zsh
-
+# Find hidden files with fzf
 vfh() {
   local files
 
@@ -221,13 +221,9 @@ vfh() {
   fi
 }
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-setopt auto_cd
+#################
+### UTILITIES ###
+#################
 
 # Do exa after every cd
 function list_all() {
@@ -238,21 +234,123 @@ if [[ ${chpwd_functions[(r)list_all]} != "list_all" ]];then
   chpwd_functions=(${chpwd_functions[@]} "list_all")
 fi
 
-# Case insensitive cd
-setopt nocaseglob
-zstyle ':completion:*' '' matcher-list 'm:{a-z}={A-Z}'
 
-# Config fzf-tab
-# disable sort when completing `git checkout`
-zstyle ':completion:*:git-checkout:*' sort false
-# set descriptions format to enable group support
-zstyle ':completion:*:descriptions' format '[%d]'
-# set list-colors to enable filename colorizing
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-# preview directory's content with exa when completing cd
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
-# switch group using `,` and `.`
-zstyle ':fzf-tab:*' switch-group ',' '.'
+########################
+### STARTUP COMMANDS ###
+########################
 
-# Use navi with zsh
-# eval "$(navi widget zsh)"
+# Fetch command for fancy display
+if [ $COLUMNS -gt 73 ]
+then
+    fm6000 -c red -f ~/HDD/Github/Nate-Dotfiles/rose.txt
+fi
+
+# Show list of tasks in Taskwarrior
+task list
+
+# Start zoxide
+eval "$(zoxide init zsh)"
+
+################################
+### OTHER INIT; DO NOT TOUCH ###
+################################
+
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
+zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Generated for envman. Do not edit.
+[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+###############
+### PLUGINS ###
+###############
+
+### Fish abbreviations for zsh
+### WARN: Doesn't work
+# https://github.com/olets/zsh-abbr
+# zinit light olets/zsh-abbr
+
+### FZF Tab: Allows FZF tab completion
+### WARN: Must always be first in plugin order
+# https://github.com/Aloxaf/fzf-tab
+zinit light Aloxaf/fzf-tab
+
+### Powerlevel10k: Custom prompt
+# https://github.com/romkatv/powerlevel10k
+zinit ice depth=1; zinit light romkatv/powerlevel10k
+
+### Vim mode: Better than the built-in one
+# https://github.com/jeffreytse/zsh-vi-mode
+zinit ice depth=1
+zinit light jeffreytse/zsh-vi-mode
+
+### Turbo loads fast syntax highlighting
+### Also loads zsh-completions and zsh-autosuggestions
+# https://github.com/zdharma-continuum/fast-syntax-highlighting
+zinit wait lucid for \
+ atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+    zdharma-continuum/fast-syntax-highlighting \
+ blockf \
+    zsh-users/zsh-completions \
+ atload"!_zsh_autosuggest_start" \
+    zsh-users/zsh-autosuggestions
+
+#  NOTE: Probably not needed? I don't use it...
+# https://github.com/redxtech/zsh-kitty
+zinit light redxtech/zsh-kitty
+
+#  NOTE: Probably not needed?
+# https://github.com/chrissicool/zsh-256color
+zinit light chrissicool/zsh-256color
+
+# Colored man pages
+# https://github.com/ael-code/zsh-colored-man-pages
+zinit light ael-code/zsh-colored-man-pages
+
+# FM: A file manager for any shell
+# https://github.com/ddnexus/fm
+zinit ice --depth'1' atinit'source fm.zsh' atclone'./fm__compile' atpull'%atclone'
+zinit light ddnexus/fm
+
+### FZF Tab: Allows for FZF tab completion anywhere
+# NOTE: FIX FZF TAB WITH ZOXIDE
+# Installation from the github page as follows below;
+# Do not touch
+
+###################
+### PLUGINS END ###
+###################
+
+#####################
+### ABBREVIATIONS ###
+#####################
+# NOTE: Placeholder for now
+# Make sure to read and convert some of the aliases from here
+# https://github.com/olets/zsh-abbr
+
+# abbr cfgnvim='$EDITOR ~/.config/nvim/init.lua'
+
+##############################
+### MISC. STUFF AT THE END ###
+##############################
+
+# Something to do with kitty autocomplete.
+# Probably shouldn't touch, and should load this last.
+__kitty_complete

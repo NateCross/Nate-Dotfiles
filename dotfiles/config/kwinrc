@@ -4,9 +4,9 @@ update_info=kwin.upd:replace-scalein-with-scale,kwin.upd:port-minimizeanimation-
 [Compositing]
 Backend=OpenGL
 Enabled=true
-GLCore=false
+GLCore=true
 GLPreferBufferSwap=a
-GLTextureFilter=2
+GLTextureFilter=1
 HiddenPreviews=5
 OpenGLIsUnsafe=false
 WindowsBlockCompositing=true
@@ -21,8 +21,7 @@ Number=2
 Rows=1
 
 [Effect-Blur]
-BlurStrength=15
-NoiseStrength=0
+BlurStrength=13
 
 [Effect-CoverSwitch]
 TabBox=false
@@ -62,9 +61,10 @@ diminactiveEnabled=true
 forceblurEnabled=true
 highlightwindowEnabled=true
 krohnkiteEnabled=true
+kwin4_effect_helloshadersEnabled=false
 kwin4_effect_lightlyshadersEnabled=false
-kwin4_effect_shapecornersEnabled=true
-lattewindowcolorsEnabled=true
+kwin4_effect_shapecornersEnabled=false
+lattewindowcolorsEnabled=false
 minimizeallEnabled=false
 sheetEnabled=true
 slidebackEnabled=true
@@ -141,4 +141,5 @@ TitlebarDoubleClickCommand=Maximize
 WindowSnapZone=10
 
 [org.kde.kdecoration2]
+BorderSizeAuto=false
 library=org.kde.breeze

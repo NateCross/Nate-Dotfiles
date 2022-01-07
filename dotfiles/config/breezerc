@@ -1,6 +1,5 @@
 [Common]
-ShadowColor=255,3,62
-ShadowSize=ShadowNone
+ShadowSize=ShadowMedium
 
 [Style]
 MenuOpacity=41
@@ -10,7 +9,7 @@ TabBarDrawCenteredTabs=true
 DrawTitleBarSeparator=false
 
 [Windeco Exception 0]
-BorderSize=3
+BorderSize=0
 Enabled=true
 ExceptionPattern=.*
 ExceptionType=0

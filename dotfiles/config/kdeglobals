@@ -136,8 +136,8 @@ ForegroundPositive=39,174,96
 ForegroundVisited=127,140,141
 
 [DirSelect Dialog]
-DirSelectDialog Size=827,586
-History Items[$e]=file:$HOME/HDD/Downloads/monochrome-kvantum/MonochromeBlur,file:$HOME/HDD/Downloads/monochrome-kvantum/MonochromeSolid,file:$HOME/HDD/Downloads/Sweet-Mars,file:$HOME/HDD,file:$HOME/HDD,file:$HOME/Public/HDD,file:$HOME/HDD,file:///mnt
+DirSelectDialog Size=853,598
+History Items[$e]=file:$HOME/.local/share/Steam,file:$HOME/.local/share/,file:$HOME/.local/share,file:$HOME/.local,file:$HOME/HDD/Downloads/monochrome-kvantum/MonochromeBlur,file:$HOME/HDD/Downloads/monochrome-kvantum/MonochromeSolid,file:$HOME/HDD/Downloads/Sweet-Mars,file:$HOME/HDD,file:$HOME/HDD,file:$HOME/Public/HDD,file:$HOME/HDD,file:///mnt
 
 [General]
 BrowserApplication=vivaldi-stable.desktop
@@ -192,4 +192,4 @@ frame=203,8,83
 inactiveBackground=100,16,50
 inactiveBlend=75,71,67
 inactiveForeground=230,176,202
-inactiveFrame=203,8,83
+inactiveFrame=119,7,55
