@@ -10,6 +10,7 @@
 
 #  TODO:
 #  - Seriously reorganize file
+#  - Add marks for Vim
 
 ###########################
 ### ZINIT, DO NOT TOUCH ###
@@ -84,7 +85,7 @@ alias gpom="git push origin main"
 alias gpl="git pull"
 alias gplo="git pull origin"
 alias gb="git branch"
-alias gc="git commit"
+alias gc="git commit -m"
 alias gd="git diff"
 alias gco="git checkout"
 alias gclo="git clone"
@@ -189,6 +190,21 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
 # switch group using `,` and `.`
 zstyle ':fzf-tab:*' switch-group ',' '.'
 
+### Autocomplete
+# https://github.com/marlonrichert/zsh-autocomplete/blob/main/.zshrc
+
+zstyle ':autocomplete:*' widget-style menu-complete
+# complete-word: (Shift-)Tab inserts the top (bottom) completion.
+# menu-complete: Press again to cycle to next (previous) completion.
+# menu-select:   Same as `menu-complete`, but updates selection in menu.
+# ⚠️ NOTE: This setting can NOT be changed at runtime.
+
+zstyle ':autocomplete:*' fzf-completion yes
+# no:  Tab uses Zsh's completion system only.
+# yes: Tab first tries Fzf's completion, then falls back to Zsh's.
+# ⚠️ NOTE: This setting can NOT be changed at runtime and requires that you
+# have installed Fzf's shell extensions.
+
 #################
 ### FUNCTIONS ###
 #################
@@ -226,13 +242,14 @@ vfh() {
 #################
 
 # Do exa after every cd
-function list_all() {
-  emulate -L zsh
-  exa
-}
-if [[ ${chpwd_functions[(r)list_all]} != "list_all" ]];then
-  chpwd_functions=(${chpwd_functions[@]} "list_all")
-fi
+# NOTE: Not needed anymore because of autocomplete plugin
+# function list_all() {
+#   emulate -L zsh
+#   exa
+# }
+# if [[ ${chpwd_functions[(r)list_all]} != "list_all" ]];then
+#   chpwd_functions=(${chpwd_functions[@]} "list_all")
+# fi
 
 
 ########################
@@ -282,16 +299,12 @@ export NVM_DIR="$HOME/.nvm"
 ### PLUGINS ###
 ###############
 
-### Fish abbreviations for zsh
-### WARN: Doesn't work
-# https://github.com/olets/zsh-abbr
-# zinit light olets/zsh-abbr
-
 ### FZF Tab: Allows FZF tab completion anywhere
 ### WARN: Must always be first in plugin order
+### WARN: Very buggy, prefer to not use
 # NOTE: FIX FZF TAB WITH ZOXIDE
 # https://github.com/Aloxaf/fzf-tab
-zinit light Aloxaf/fzf-tab
+# zinit light Aloxaf/fzf-tab
 
 ### Powerlevel10k: Custom prompt
 # https://github.com/romkatv/powerlevel10k
@@ -302,24 +315,25 @@ zinit ice depth=1; zinit light romkatv/powerlevel10k
 zinit ice depth=1
 zinit light jeffreytse/zsh-vi-mode
 
-### Turbo loads fast syntax highlighting
-### Also loads zsh-completions and zsh-autosuggestions
-# https://github.com/zdharma-continuum/fast-syntax-highlighting
-zinit wait lucid for \
- atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
-    zdharma-continuum/fast-syntax-highlighting \
- blockf \
-    zsh-users/zsh-completions \
- atload"!_zsh_autosuggest_start" \
-    zsh-users/zsh-autosuggestions
+### Zsh Autocomplete: Realtime autocompletion
+### Better than Fzf tab for completion
+# https://github.com/marlonrichert/zsh-autocomplete
+zinit light marlonrichert/zsh-autocomplete
 
-#  NOTE: Probably not needed? I don't use it...
+# Fast syntax highlighting: Shows syntax highlighting in commands
+# https://github.com/zdharma-continuum/fast-syntax-highlighting
+zinit light zdharma-continuum/fast-syntax-highlighting
+
+zinit light zsh-users/zsh-completions
+
+
+# NOTE: Probably not needed? I don't use it...
 # https://github.com/redxtech/zsh-kitty
-zinit light redxtech/zsh-kitty
+# zinit light redxtech/zsh-kitty
 
 #  NOTE: Probably not needed?
 # https://github.com/chrissicool/zsh-256color
-zinit light chrissicool/zsh-256color
+# zinit light chrissicool/zsh-256color
 
 # Colored man pages
 # https://github.com/ael-code/zsh-colored-man-pages
@@ -339,19 +353,10 @@ zinit load MenkeTechnologies/zsh-expand
 ### PLUGINS END ###
 ###################
 
-#####################
-### ABBREVIATIONS ###
-#####################
-# NOTE: Placeholder for now
-# Make sure to read and convert some of the aliases from here
-# https://github.com/olets/zsh-abbr
-
-# abbr cfgnvim='$EDITOR ~/.config/nvim/init.lua'
-
 ##############################
 ### MISC. STUFF AT THE END ###
 ##############################
 
 # Something to do with kitty autocomplete.
 # Probably shouldn't touch, and should load this last.
-__kitty_complete
+# __kitty_complete
