@@ -18,11 +18,9 @@ This repository now uses [dotdrop](https://github.com/deadc0de6/dotdrop) to mana
 Run the following command once cloned.
 ```
 # For coding, includes nvim, zsh, kitty
-./dotdrop.sh compare -p coding # We compare to double-check
 ./dotdrop.sh install -p coding
 
 # For KDE
-./dotdrop.sh compare -p kde
 ./dotdrop.sh install -p kde
 ```
 - Edit the fm6000 command in .zshrc to point to wherever the rose.txt file is.
