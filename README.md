@@ -12,7 +12,7 @@ VSCode because it is now written in lua.
 As of 12/31/2021, this repo also includes the configs for my Linux setup.
 This includes KDE Plasma 5, Kitty Terminal, and zsh.
 
-## When Transferring Setup
+## Setup
 This repository now uses [dotdrop](https://github.com/deadc0de6/dotdrop) to manage files.
 
 Run the following command once cloned.
@@ -56,14 +56,19 @@ Run the following command once cloned.
   - Well, there's already python, but yeah you need it
   - pyright
   - Lua in case ya wanna work with that
-- Lints
-  - CppCheck
-  - Pylint
+- ~~Lints~~
+  - ~~CppCheck~~
+  - ~~Pylint~~~
 
 ## TODO
 
 - Cleanup, refactor .zshrc and kitty.conf
-  - A lot of stuff in .zshrc is misplaced. Needs reorganization
+  - ~~A lot of stuff in .zshrc is misplaced. Needs reorganization~~
+  - Things are much better in the .zshrc now. Now for the kitty.conf
+- Add Vim folds to the configs
+- Add linters; learn to use them
+- Figure out the LS_COLORS thing to make the autocomplete directories prettier
+- Properly credit whoever made the ASCII art of the rose. I'm really sorry!
 - Customize quick menu; add compile commands
   - Add the 'GithubFiles' fzf
   - Add project compile commands; see init.vim
