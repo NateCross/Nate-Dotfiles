@@ -2,6 +2,9 @@
 ### NATE'S .ZSHRC ###
 #####################
 
+# Profile startup time
+zmodload zsh/zprof
+
 #  INFO:
 #   - This is Nate's custom .zshrc.
 #   - It uses zinit as a plugin manager.
@@ -73,9 +76,11 @@ export FZF_COMPLETION_OPTS='--border --info=inline'
 alias add="sudo apt install"
 
 # Utilities
-alias ls="exa"
+alias ls="exa --icons --grid"
 alias ra=". ranger" # Ranger, but if you quit it CDs to dir
 alias pdf="termpdf.py"
+alias open="xdg-open"
+alias bat="batcat"
 
 # Git
 alias ga="git add"
@@ -124,13 +129,15 @@ alias n="nnn -e -x"
 ### QUICK CONFIG EDITS
 alias cfgnvim="$EDITOR ~/.config/nvim/init.lua"
 alias cfgzsh="$EDITOR ~/.zshrc"
+alias cfgkitty="$EDITOR ~/.config/kitty/kitty.conf"
 
 ############
 ### OPTS ###
 ############
 
 # Auto-correction of commands
-setopt correctall
+# WARN: Very janky, not always right
+# setopt correctall
 
 # cd without having to type cd
 setopt auto_cd
@@ -145,12 +152,18 @@ SAVEHIST=1000
 HISTFILE=~/.zsh_history
 
 # Use modern completion system
-autoload -Uz compinit
-compinit
+# NOTE: Not needed because of autocomplete
+# autoload -Uz compinit
+# compinit
 
 # Case insensitive cd
 setopt nocaseglob
-zstyle ':completion:*' '' matcher-list 'm:{a-z}={A-Z}'
+
+# https://github.com/nicknisi/dotfiles/blob/main/zsh/zshrc.symlink
+setopt EXTENDED_HISTORY          # write the history file in the ":start:elapsed;command" format.
+setopt HIST_REDUCE_BLANKS        # remove superfluous blanks before recording entry.
+setopt SHARE_HISTORY             # share history between all sessions.
+setopt HIST_IGNORE_ALL_DUPS      # delete old recorded entry if new entry is a duplicate.
 
 ##############
 ### ZSTYLE ###
@@ -193,7 +206,7 @@ zstyle ':fzf-tab:*' switch-group ',' '.'
 ### Autocomplete
 # https://github.com/marlonrichert/zsh-autocomplete/blob/main/.zshrc
 
-zstyle ':autocomplete:*' widget-style menu-complete
+zstyle ':autocomplete:*' widget-style menu-select
 # complete-word: (Shift-)Tab inserts the top (bottom) completion.
 # menu-complete: Press again to cycle to next (previous) completion.
 # menu-select:   Same as `menu-complete`, but updates selection in menu.
@@ -242,19 +255,23 @@ vfh() {
 #################
 
 # Do exa after every cd
-# NOTE: Not needed anymore because of autocomplete plugin
-# function list_all() {
-#   emulate -L zsh
-#   exa
-# }
-# if [[ ${chpwd_functions[(r)list_all]} != "list_all" ]];then
-#   chpwd_functions=(${chpwd_functions[@]} "list_all")
-# fi
+# NOTE: Not necessarily needed anymore because of autocomplete plugin
+function list_all() {
+  emulate -L zsh
+  ls
+}
+if [[ ${chpwd_functions[(r)list_all]} != "list_all" ]];then
+  chpwd_functions=(${chpwd_functions[@]} "list_all")
+fi
 
 
 ########################
 ### STARTUP COMMANDS ###
 ########################
+
+# NOTE: Must be placed before prompt
+# Allows the prompt to always stay at the bottom
+# print ${(pl:$LINES-16::\n:):-}
 
 # Fetch command for fancy display
 if [ $COLUMNS -gt 73 ]
@@ -293,8 +310,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 ###############
 ### PLUGINS ###
 ###############
@@ -305,6 +320,9 @@ export NVM_DIR="$HOME/.nvm"
 # NOTE: FIX FZF TAB WITH ZOXIDE
 # https://github.com/Aloxaf/fzf-tab
 # zinit light Aloxaf/fzf-tab
+
+### FZF-ZSH
+# zinit light unixorn/fzf-zsh-plugin
 
 ### Powerlevel10k: Custom prompt
 # https://github.com/romkatv/powerlevel10k
@@ -360,3 +378,8 @@ zinit load MenkeTechnologies/zsh-expand
 # Something to do with kitty autocomplete.
 # Probably shouldn't touch, and should load this last.
 # __kitty_complete
+
+# The plugin will auto execute this zvm_after_init function
+function zvm_after_init() {
+  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+}

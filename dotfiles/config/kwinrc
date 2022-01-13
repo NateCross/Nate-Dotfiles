@@ -79,6 +79,8 @@ wobblywindowsEnabled=true
 patterns=yakuake\nurxvt\nkeepassxc\nkitty
 
 [Script-krohnkite]
+directionalKeyDwm=false
+directionalKeyFocus=true
 enableFloatingLayout=true
 enableQuarterLayout=true
 ignoreClass=krunner,yakuake,spectacle,kded5,steam,lutris,xterm

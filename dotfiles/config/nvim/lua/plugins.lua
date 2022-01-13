@@ -650,6 +650,23 @@ use {
   end
 }
 
+-- Null-LS: Lints and code actions
+-- (https://github.com/jose-elias-alvarez/null-ls.nvim)
+use {
+  'jose-elias-alvarez/null-ls.nvim',
+  requires = "nvim-lua/plenary.nvim",
+  config = function()
+    require("null-ls").setup({
+      sources = {
+        -- NOTE: clang format is not needed because it is native with clangd
+        -- require("null-ls").builtins.formatting.clang_format,
+        -- require("null-ls").builtins.diagnostics.cppcheck,
+
+      },
+    })
+  end
+}
+
 ------------------------
 --- PLUGINS END HERE ---
 ------------------------

@@ -4,6 +4,7 @@ vim.opt.list = true
 -- vim.g.indent_blankline_context_char_list = {'║'}
 vim.g.indent_blankline_use_treesitter = true
 vim.g.indent_blankline_filetype_exclude = {'help', 'alpha', 'NvimTree'}
+vim.g.indent_blankline_context_patterns = {'class', 'function', 'method', 'loop', '^if', '^while', '^else', '^else if', '^for', '^switch'}
 -- vim.cmd [[
 --   let g:indent_blankline_filetype_exclude = ['help', 'alpha', 'NvimTree']
 -- ]]
