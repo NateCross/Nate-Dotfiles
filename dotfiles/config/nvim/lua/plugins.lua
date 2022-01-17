@@ -1,9 +1,12 @@
+-- vim:fileencoding=utf-8:foldmethod=marker
+-- The above line sets vim to have foldmarkers
+
 ------------
 --- TODO ---
 ------------
--- * Tweak uwu.vim theme to use custom highlights
---    Use the Obsidian.md theme as inspiration
---    It's grey-ish with a rose/maroon/dark-red accent
+-- {{{ Todo
+
+-- }}}
 
 -------------
 --- SETUP ---
@@ -19,9 +22,13 @@
 --   Use this format:
 
 --  config = function()
---		require("plugins/file-name-here")
---	end
+--    require("plugins/file-name-here")
+--  end
 
+--------------------
+--- PACKER SETUP ---
+--------------------
+-- {{{ Packer Setup
 local fn = vim.fn
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
@@ -29,15 +36,19 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 return require('packer').startup(function(use)
+-- }}}
 
 ---------------
 --- PLUGINS ---
 ---------------
+-- {{{ Plugins
 
--- Packer can manage itself
+-- {{{ Packer can manage itself
 use 'wbthomason/packer.nvim'
+-- }}}
 
--- File tree viewer
+-- {{{ Nvim-tree: File tree viewer
+-- https://github.com/kyazdani42/nvim-tree.lua
 use {
   'kyazdani42/nvim-tree.lua',
   requires = 'kyazdani42/nvim-web-devicons',
@@ -46,8 +57,9 @@ use {
       require("plugins/nvim-tree")
   end
 }
+-- }}}
 
--- Native LSP
+-- Native LSP {{{
 -- https://github.com/neovim/nvim-lspconfig
 use {
   'neovim/nvim-lspconfig',
@@ -63,8 +75,9 @@ use {
     require("plugins/lsp-installer")
   end,
 }
+-- }}}
 
--- Telescope fuzzy finder
+-- Telescope fuzzy finder {{{
 -- Seems to work better than fzf for me
 -- Plus, more plugin integration
 -- https://github.com/nvim-telescope/telescope.nvim
@@ -75,13 +88,15 @@ use {
     require("plugins/telescope")
   end,
 }
+-- }}}
 
--- Tim Pope's fugitive, for git integration
+-- Tim Pope's fugitive, for git integration {{{
 use { 'tpope/vim-fugitive' }
 -- Makes the :GBrowse command work
 use { 'tpope/vim-rhubarb' }
+-- }}}
 
--- Git diff and stuff in nvim
+-- Git signs: Git diff and stuff in nvim {{{
 -- https://github.com/lewis6991/gitsigns.nvim
 use {
   'lewis6991/gitsigns.nvim',
@@ -93,9 +108,9 @@ use {
   end,
   -- tag = 'release' -- To use the latest release
 }
+-- }}}
 
--- nvim-cmp
--- Autocompleter for LSP
+-- nvim-cmp: Autocompleter for LSP {{{
 -- https://github.com/hrsh7th/nvim-cmp
 use {
   'hrsh7th/nvim-cmp',
@@ -111,22 +126,23 @@ use {
     require("plugins/nvim-cmp")
   end,
 }
+-- }}}
 
--- Fancy icons for LSP using nvim-cmp
+-- Fancy icons for LSP using nvim-cmp {{{
 -- https://github.com/onsails/lspkind-nvim
 use 'onsails/lspkind-nvim'
+-- }}}
 
--- Tabnine source for autocompletion
+-- Tabnine source for autocompletion {{{
 -- https://github.com/tzachar/cmp-tabnine
--- ON HOLD UNTIL WINDOWS VERSION WORKS
-
 use {
   'tzachar/cmp-tabnine',
   run = './install.sh',
   requires = 'hrsh7th/nvim-cmp'
 }
+-- }}}
 
--- Vsnip
+-- Vsnip {{{
 -- Needed for nvim-cmp
 -- https://github.com/hrsh7th/vim-vsnip
 use {
@@ -136,13 +152,15 @@ use {
     'hrsh7th/cmp-vsnip',
   }
 }
+-- }}}
 
--- Friendly snippets
+-- Friendly snippets {{{
 -- Needed for vsnip
 -- https://github.com/rafamadriz/friendly-snippets
 use "rafamadriz/friendly-snippets"
+-- }}}
 
--- Treesitter for syntax highlighting
+-- Treesitter for syntax highlighting {{{
 -- https://github.com/nvim-treesitter/nvim-treesitter
 -- Must install the needed languages, too!
 use {
@@ -152,6 +170,7 @@ use {
     require("plugins/nvim-treesitter")
   end,
 }
+-- }}}
 
 -- Lualine, an actually working statusline
 -- https://github.com/nvim-lualine/lualine.nvim
@@ -345,7 +364,7 @@ use {
   end
 }
 
--- Easy Align: Use "ga" plus text object to align stuff 
+-- Easy Align: Use "ga" plus text object to align stuff
 -- https://github.com/junegunn/vim-easy-align
 -- Probably outdated; keep a look out for a maintained version
 -- Also see bindings in keybinds.lua
@@ -501,10 +520,6 @@ use {
   'NateCross/nate-uwu',
 }
 
--- Symbols outline: Vista alternative
--- NOTE: Config is in prefs.lua
--- https://github.com/simrat39/symbols-outline.nvim
-use { 'simrat39/symbols-outline.nvim' }
 
 -- Shade: Dims inactive regions
 -- https://github.com/sunjon/Shade.nvim
@@ -667,6 +682,27 @@ use {
   end
 }
 
+-- Aerial: Better code outline using LSP/Treesitter {{{
+-- https://github.com/stevearc/aerial.nvim
+-- use {
+--   'stevearc/aerial.nvim',
+--   config = function()
+--     require("plugins/aerial")
+--   end
+-- }
+-- }}}
+
+-- Sidebar: Shows a status bar of sorts on the side with plenty of info {{{
+-- https://github.com/sidebar-nvim/sidebar.nvim
+use {
+  'sidebar-nvim/sidebar.nvim',
+  config = function()
+    require("plugins/sidebar")
+  end
+}
+-- }}}
+
+-- }}}
 ------------------------
 --- PLUGINS END HERE ---
 ------------------------
@@ -681,6 +717,7 @@ end)
 ------------------------
 --- PLUGIN BOOKMARKS ---
 ------------------------
+-- {{{ Plugin Bookmarks
 
 -- This section is for notable plugins to use in the future
 
@@ -853,3 +890,10 @@ end)
 -- }
 -- WARN: Too lazy to config
 
+-- Symbols outline: Vista alternative
+-- NOTE: Config is in prefs.lua
+-- WARN: Janky, can break files
+-- https://github.com/simrat39/symbols-outline.nvim
+-- use { 'simrat39/symbols-outline.nvim' }
+
+-- }}}

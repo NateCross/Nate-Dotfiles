@@ -73,7 +73,7 @@ export FZF_COMPLETION_OPTS='--border --info=inline'
 ###############
 
 # Ubuntu
-alias add="sudo apt install"
+alias add="sudo apt install -y"
 
 # Utilities
 alias ls="exa --icons --grid"
@@ -81,6 +81,11 @@ alias ra=". ranger" # Ranger, but if you quit it CDs to dir
 alias pdf="termpdf.py"
 alias open="xdg-open"
 alias bat="batcat"
+
+alias trash="trash-put"
+alias trashl="trash-list"
+alias trashr="trash-restore"
+alias trashe="trash-empty"
 
 # Git
 alias ga="git add"
@@ -171,14 +176,15 @@ setopt HIST_IGNORE_ALL_DUPS      # delete old recorded entry if new entry is a d
 
 # Improve appearance of default completion style
 # https://wiki.gentoo.org/wiki/Zsh/Guide
-# zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
-# zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b' 
+zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
+zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'
 
 # Default stuff; don't touch
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
 
-zstyle ':completion:*' format 'Completing %d'
+# zstyle ':completion:*' format '%F{magenta}Completing:%f %d'
+zstyle ':completion:*' format '%UCompleting %d%u'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' menu select=2
 eval "$(dircolors -b)"
@@ -229,8 +235,8 @@ mkcdir() {
       cd -P -- "$1"
 }
 
-# fd - cd to selected directory
-fd() {
+# fzfd - cd to selected directory
+fzfd() {
   local dir
   dir=$(find ${1:-.} -path '*/\.*' -prune \
                   -o -type d -print 2> /dev/null | fzf +m) &&
@@ -362,10 +368,16 @@ zinit light ael-code/zsh-colored-man-pages
 zinit ice --depth'1' atinit'source fm.zsh' atclone'./fm__compile' atpull'%atclone'
 zinit light ddnexus/fm
 
+### Cd-reporoot
+# https://github.com/P4Cu/cd-reporoot
+zinit light P4Cu/cd-reporoot
+
 ### zsh expand: Expands aliases and abbreviations like fish
 # https://github.com/MenkeTechnologies/zsh-expand
 zinit ice lucid nocompile
 zinit load MenkeTechnologies/zsh-expand
+
+
 
 ###################
 ### PLUGINS END ###

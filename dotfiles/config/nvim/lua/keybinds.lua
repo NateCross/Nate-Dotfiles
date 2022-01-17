@@ -37,9 +37,11 @@ inoremap("kj", "<Esc>")
 vnoremap("ii", "<Esc>")
 
 -- Move lines up and down by alt+j/k
+nnoremap("<A-j>", ":m .+1<CR>==")
+nnoremap("<A-k>", ":m .-2<CR>==")
 inoremap("<A-j>", "<Esc>:m .+1<CR>==gi")
 inoremap("<A-k>", "<Esc>:m .-2<CR>==gi")
-vnoremap("<A-j>", ":m '>+1<CR>gv=gv")
+vnoremap("<A-j>", ":m '>+1<cr>gv=gv")
 vnoremap("<A-k>", ":m '<-2<CR>gv=gv")
 
 -- ";cd" to change working directory in current buffer to edited file
@@ -51,7 +53,29 @@ exprnnoremap("k", "v:count == 0 ? 'gk' : 'k'")
 exprnnoremap("j", "v:count == 0 ? 'gj' : 'j'")
 
 -- Yank to end of line
+-- NOTE: Now standard in Nvim
 nnoremap("Y", "y$")
+
+-- Go to next and prev buffer
+nnoremap("<space>b", ":bn<CR>")
+nnoremap("<space>B", ":bp<CR>")
+
+-- Lets you keep yanked text when replacing
+-- in visual mode
+-- (https://github.com/ThePrimeagen/.dotfiles/blob/master/nvim/.config/nvim/init.vim)
+xnoremap("<leader>p", "\"_dP")
+
+-- Undo break points
+-- Sets an undo point when you type these
+-- (https://www.youtube.com/watch?v=hSHATqh8svM)
+inoremap(",", ",<c-g>u")
+inoremap(".", ".<c-g>u")
+inoremap("!", "!<c-g>u")
+inoremap("?", "?<c-g>u")
+
+-- Testing these bottom two
+inoremap("(", "(<c-g>u")
+inoremap("{", "{<c-g>u")
 
 -- Better Visual Mode Indent
 vnoremap("<", "<gv")
@@ -135,11 +159,6 @@ nnoremap("<leader>fb", "<cmd>lua require 'telescope'.extensions.file_browser.fil
 nnoremap("<space>ff", ":FzfLua files<CR>")
 nnoremap("<space>fd", ":FzfLua grep<CR>")
 
--- Bufferline
--- https://github.com/akinsho/bufferline.nvim
--- nnoremap("gb", ":BufferLineCycleNext<CR>")
--- nnoremap("gB", ":BufferLineCyclePrev<CR>")
-
 -- Quick UI
 -- https://github.com/skywind3000/vim-quickui
 nnoremap("<space><space>", ":call quickui#menu#open()<cr>")
@@ -164,7 +183,7 @@ vim.api.nvim_set_keymap('n', 'cR', '<cmd>lua require("renamer").rename()<cr>', {
 vim.api.nvim_set_keymap('v', 'cR', '<cmd>lua require("renamer").rename()<cr>', { noremap = true, silent = true })
 
 -- Symbols Outline
-nnoremap("<leader>b", ":SymbolsOutline<CR>")
+-- nnoremap("<leader>b", ":SymbolsOutline<CR>")
 
 -- LSP
 nnoremap("gs", "<cmd>lua vim.lsp.buf.declaration()<CR>")
@@ -215,3 +234,9 @@ nnoremap("<F3>", ":FloatermNext<CR>")
 tnoremap("<F3>", "<C-\\><C-n>:FloatermNext<CR>")
 nnoremap("<F4>", ":FloatermToggle<CR>")
 tnoremap("<F4>", "<C-\\><C-n>:FloatermToggle<CR>")
+
+-- ColorToggle
+nnoremap("<leader>ct", ":ColorToggle<CR>")
+
+-- Sidebar-nvim
+nnoremap("<leader>b", ":SidebarNvimToggle<CR>")
