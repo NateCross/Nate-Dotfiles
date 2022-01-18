@@ -7,7 +7,7 @@ local opts = {
     end
   },
   initial_width = 30,
-  open = true,
+  open = false,
   side = "right",
   sections = { "todos", "symbols", "git", "diagnostics", "files" },
   todos = {

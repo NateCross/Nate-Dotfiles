@@ -90,17 +90,24 @@ dotfiles:
   d_config_nvim:
     src: config/nvim
     dst: ~/.config/nvim
+  f_hn-tui.toml:
+    src: config/hn-tui.toml
+    dst: ~/.config/hn-tui.toml
+  f_nate-custom-v3.layout.latte:
+    src: config/latte/nate-custom-v3.layout.latte
+    dst: ~/.config/latte/nate-custom-v3.layout.latte
+    chmod: '644'
 profiles:
   coding:
     dotfiles:
     - d_nvim
     - f_zshrc
-    - d_kitty
     - f_p10k.zsh
+  kitty:
+    dotfiles:
+    - d_kitty
   kde:
     dotfiles:
-    - f_lattedockrc
-    - f_nate-custom.layout.latte
     - f_kwinrc
     - f_breezerc
     - f_kglobalshortcutsrc
@@ -118,3 +125,11 @@ profiles:
   nate-H81M-DS2:
     dotfiles:
     - d_config_nvim
+  hackernews-tui:
+    dotfiles:
+    - f_hn-tui.toml
+  latte-dock:
+    dotfiles:
+    - f_lattedockrc
+    - f_nate-custom.layout.latte
+    - f_nate-custom-v3.layout.latte
