@@ -17,32 +17,48 @@ This repository now uses [dotdrop](https://github.com/deadc0de6/dotdrop) to mana
 
 Run the following command once cloned.
 ```
-# For coding, includes nvim, zsh, kitty
+# Neovim: https://github.com/neovim/neovim
+# Zsh: https://gist.github.com/derhuerst/12a1558a4b408b3b2b6e
 ./dotdrop.sh install -p coding
 
-# For KDE
+# Kitty Terminal
+# https://sw.kovidgoyal.net/kitty/binary/
+./dotdrop.sh install -p kitty
+
+# KDE
 ./dotdrop.sh install -p kde
+
+# Latte Dock
+# https://github.com/KDE/latte-dock
+./dotdrop.sh install -p latte-dock
+
+# Hackernews-tui
+# https://github.com/aome510/hackernews-TUI
+./dotdrop.sh install -p hackernews-tui
+
+# For future reference, to import files, run this
+./dotdrop.sh "path/to/dir-or-file" import -p "name-of-profile"
 ```
 - Edit the fm6000 command in .zshrc to point to wherever the rose.txt file is.
 - Or delete that and the taskwarrior commands if not needed
 
 ## Prerequisites
 
+- [Neovim >= 0.6](https://github.com/neovim/neovim)
+  - Node.js
+    - Choco if on Windows, I guess?
+  - Python 3.10 (and pip)
+    - [fzf](https://github.com/junegunn/fzf)
+    - [bat](https://github.com/sharkdp/bat)
+    - [Ag](https://github.com/ggreer/the_silver_searcher)
+    - [ripgrep](https://github.com/BurntSushi/ripgrep)
+    - A Nerd Font
+      - I prefer [CaskaydiaCove Nerd Font Mono](https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/CascadiaCode.zip)
 - [Kitty Terminal](https://sw.kovidgoyal.net/kitty/binary/)
   - NOTE: Linux only
 - [zsh](https://gist.github.com/derhuerst/12a1558a4b408b3b2b6e)
   - [Taskwarrior](https://github.com/GothenburgBitFactory/taskwarrior)
   - [Fetch-master 6000](https://github.com/anhsirk0/fetch-master-6000) for ricing
-- [Neovim >= 0.6](https://github.com/neovim/neovim)
-  - Node.js
-    - Choco if on Windows, I guess?
-  - Python 3.10 (and pip)
-  - [fzf](https://github.com/junegunn/fzf)
-    - [bat](https://github.com/sharkdp/bat)
-    - [Ag](https://github.com/ggreer/the_silver_searcher) as well
-    - And [ripgrep](https://github.com/BurntSushi/ripgrep)
-  - A Nerd Font
-    - I prefer [CaskaydiaCove Nerd Font Mono](https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/CascadiaCode.zip)
 - KDE Plasma
   - [Krohnkite](https://github.com/esjeon/krohnkite)
     - Maybe upgrade to Bismuth on a later version of KDE Plasma

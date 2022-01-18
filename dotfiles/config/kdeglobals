@@ -144,6 +144,7 @@ BrowserApplication=vivaldi-stable.desktop
 ColorScheme=StrawberryQuartzHeader
 Name=Strawberry Quartz Header
 TerminalApplication=kitty
+UseSystemBell=true
 dbfile=/home/nate/.mozilla/firefox/flzqa1dr.default/places.sqlite
 font=Noto Sans,12,-1,5,50,0,0,0,0,0
 shadeSortColumn=true

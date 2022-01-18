@@ -15,9 +15,12 @@ XRenderSmoothScale=false
 [Desktops]
 Id_1=1ab14cc9-e6c6-47da-ae27-e86a7d731338
 Id_2=9317adbd-2702-4d75-9076-4721384ebe20
+Id_3=65c6e26a-af25-491e-ab51-fee85ca62e30
+Id_4=b3f95e27-41f8-4df4-af54-6f4019ec9268
+Id_5=5059ff2e-d830-4653-806d-8e23971ae320
 Name_1=Tiling
 Name_2=GUI
-Number=2
+Number=5
 Rows=1
 
 [Effect-Blur]
@@ -122,7 +125,7 @@ ActiveMouseScreen=false
 AutoRaise=false
 AutoRaiseInterval=750
 BorderSnapZone=10
-BorderlessMaximizedWindows=false
+BorderlessMaximizedWindows=true
 CenterSnapZone=0
 ClickRaise=true
 DelayFocusInterval=100
