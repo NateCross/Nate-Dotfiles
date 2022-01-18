@@ -16,7 +16,7 @@ This includes KDE Plasma 5, Kitty Terminal, and zsh.
 This repository now uses [dotdrop](https://github.com/deadc0de6/dotdrop) to manage files.
 
 Run the following command once cloned.
-```
+```bash
 # Neovim: https://github.com/neovim/neovim
 # Zsh: https://gist.github.com/derhuerst/12a1558a4b408b3b2b6e
 ./dotdrop.sh install -p coding
