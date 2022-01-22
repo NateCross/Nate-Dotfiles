@@ -685,12 +685,12 @@ use {
 
 -- Mkdx: Enhanced markdown {{{
 -- https://github.com/SidOfc/mkdx
-use {
-  'SidOfc/mkdx',
-  config = function()
-    require("plugins/mkdx")
-  end
-}
+-- use {
+--   'SidOfc/mkdx',
+--   config = function()
+--     require("plugins/mkdx")
+--   end
+-- }
 
 -- }}}
 

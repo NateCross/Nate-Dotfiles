@@ -38,8 +38,8 @@ autoload -Uz _zinit
 ###########
 
 # Using neovim as preferred editor
-export EDITOR="nvim"
-export VISUAL="nvim"
+export EDITOR="nvim.appimage"
+export VISUAL="nvim.appimage"
 
 export DISABLE_MAGIC_FUNCTIONS=true
 export SERVER_IP="hostname -I"
