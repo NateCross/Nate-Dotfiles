@@ -97,10 +97,23 @@ dotfiles:
     src: config/latte/nate-custom-v3.layout.latte
     dst: ~/.config/latte/nate-custom-v3.layout.latte
     chmod: '644'
+  f_config.yml:
+    src: config/wtf/config.yml
+    dst: ~/.config/wtf/config.yml
+    chmod: '600'
+  f_copy-path.desktop:
+    src: local/share/kservices5/copy-path.desktop
+    dst: ~/.local/share/kservices5/copy-path.desktop
+    chmod: '644'
+  d_doom.d:
+    src: doom.d
+    dst: ~/.doom.d
 profiles:
-  coding:
+  neovim:
     dotfiles:
     - d_nvim
+  zsh:
+    dotfiles:
     - f_zshrc
     - f_p10k.zsh
   kitty:
@@ -122,6 +135,7 @@ profiles:
     - f_yakuakerc
     - f_kcminputrc
     - f_kxkbrc
+    - f_copy-path.desktop
   nate-H81M-DS2:
     dotfiles:
     - d_config_nvim
@@ -133,3 +147,9 @@ profiles:
     - f_lattedockrc
     - f_nate-custom.layout.latte
     - f_nate-custom-v3.layout.latte
+  wtfutil:
+    dotfiles:
+    - f_config.yml
+  doom-emacs:
+    dotfiles:
+    - d_doom.d

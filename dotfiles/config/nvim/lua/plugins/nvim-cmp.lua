@@ -23,6 +23,7 @@
   cmp.setup({
 	sources = {
 	 	{ name = 'cmp_tabnine' },
+        { name = 'orgmode' },
 	},
      completion = {
         completeopt = 'menu,menuone,noinsert',

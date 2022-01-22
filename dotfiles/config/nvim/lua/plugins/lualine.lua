@@ -160,7 +160,10 @@ require('lualine').setup {
         'diagnostics',
         source = { 'nvim' },
         sections = { 'warn', 'error' },
-        diagnostics_color = { warn = { bg = colors.neon_red, fg = colors.white } },
+        diagnostics_color = {
+          warn = { bg = colors.neon_red, fg = colors.white },
+          error = { bg = colors.neon_red, fg = colors.orange },
+        },
       },
       -- NOTE: filename not needed anymore because bufline
       -- { 'filename', file_status = false, path = 0, shorting_target = 10 },

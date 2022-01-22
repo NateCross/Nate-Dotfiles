@@ -76,7 +76,10 @@ export FZF_COMPLETION_OPTS='--border --info=inline'
 alias add="sudo apt install -y"
 
 # Utilities
-alias ls="exa --icons --grid"
+alias ls="exa --icons --grid --header --git"
+alias lsl="exa --icons --grid --header --git -l"
+alias lsm="exa --icons --grid --header --git --sort=modified -l"
+
 alias ra=". ranger" # Ranger, but if you quit it CDs to dir
 alias pdf="termpdf.py"
 alias open="xdg-open"
@@ -95,7 +98,7 @@ alias gpom="git push origin main"
 alias gpl="git pull"
 alias gplo="git pull origin"
 alias gb="git branch"
-alias gc="git commit -m"
+# alias gc="git commit -m"
 alias gd="git diff"
 alias gco="git checkout"
 alias gclo="git clone"
@@ -114,6 +117,7 @@ alias pbpaste='xclip -selection clipboard -o'
 alias ta="task add"
 alias tl="task list"
 alias td="task done"
+alias tm="task modify"
 
 # FZF
 alias fzfh="rg --files --hidden -g "!.git" | fzf"
@@ -131,10 +135,15 @@ alias serve="browser-sync start --server --files . --no-notify --host $SERVER_IP
 # nnn file manager stuff
 alias n="nnn -e -x"
 
+alias doom="~/.emacs.d/bin/doom"
+
 ### QUICK CONFIG EDITS
 alias cfgnvim="$EDITOR ~/.config/nvim/init.lua"
 alias cfgzsh="$EDITOR ~/.zshrc"
 alias cfgkitty="$EDITOR ~/.config/kitty/kitty.conf"
+alias cfgdoomconfig="$EDITOR ~/.doom.d/config.el"
+alias cfgdoominit="$EDITOR ~/.doom.d/init.el"
+alias cfgdoompackages="$EDITOR ~/.doom.d/packages.el"
 
 ############
 ### OPTS ###
@@ -227,6 +236,12 @@ zstyle ':autocomplete:*' fzf-completion yes
 #################
 ### FUNCTIONS ###
 #################
+
+# gc - quick git commit with message
+# (https://stackoverflow.com/questions/8006190/how-can-i-make-this-git-command-alias)
+function gc () {
+    git commit -m "$*"
+}
 
 # mkcdir - combines mkdir and cd
 # Taken from https://unix.stackexchange.com/questions/125385/combined-mkdir-and-cd

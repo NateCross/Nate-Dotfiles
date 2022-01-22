@@ -137,7 +137,7 @@ ForegroundVisited=127,140,141
 
 [DirSelect Dialog]
 DirSelectDialog Size=853,598
-History Items[$e]=file:$HOME/HDD/Downloads,file:$HOME/.local/share/Steam,file:$HOME/.local/share/,file:$HOME/.local/share,file:$HOME/.local,file:$HOME/HDD/Downloads/monochrome-kvantum/MonochromeBlur,file:$HOME/HDD/Downloads/monochrome-kvantum/MonochromeSolid,file:$HOME/HDD/Downloads/Sweet-Mars,file:$HOME/HDD,file:$HOME/HDD,file:$HOME/Public/HDD,file:$HOME/HDD,file:///mnt
+History Items[$e]=file:$HOME/Downloads/_Torrents,file:$HOME/Downloads/_Torrents,file:$HOME/HDD/Downloads,file:$HOME/.local/share/Steam,file:$HOME/.local/share/,file:$HOME/.local/share,file:$HOME/.local,file:$HOME/HDD/Downloads/monochrome-kvantum/MonochromeBlur,file:$HOME/HDD/Downloads/monochrome-kvantum/MonochromeSolid,file:$HOME/HDD/Downloads/Sweet-Mars,file:$HOME/HDD,file:$HOME/HDD,file:$HOME/Public/HDD,file:$HOME/HDD,file:///mnt
 
 [General]
 BrowserApplication=vivaldi-stable.desktop

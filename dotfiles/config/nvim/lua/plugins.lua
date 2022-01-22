@@ -135,6 +135,7 @@ use 'onsails/lspkind-nvim'
 
 -- Tabnine source for autocompletion {{{
 -- https://github.com/tzachar/cmp-tabnine
+-- WARN: Temporarily broken for me
 use {
   'tzachar/cmp-tabnine',
   run = './install.sh',
@@ -248,17 +249,6 @@ use {
   end
 }
 
--- Bufferline: A good, well-maintained bufferline plugin
--- https://github.com/akinsho/bufferline.nvim
--- TODO: FINISH CONFIG
--- use {
-  -- 'akinsho/bufferline.nvim',
-  -- requires = 'kyazdani42/nvim-web-devicons',
-  -- config = function()
-    -- require("plugins/bufferline")
-  -- end
--- }
-
 -- Vista: Shows tags for easy movement
 -- https://github.com/liuchengxu/vista.vim
 -- Not actually a lua plugin, but I'll manage it the same way
@@ -272,12 +262,12 @@ use {
 -- Treesitter Textobjects
 -- https://github.com/nvim-treesitter/nvim-treesitter-textobjects
 -- Must configure the binds to get it working!
-use {
-  'nvim-treesitter/nvim-treesitter-textobjects',
-  config = function()
-    require("plugins/treesitter-textobjects")
-  end
-}
+-- use {
+--   'nvim-treesitter/nvim-treesitter-textobjects',
+--   config = function()
+--     require("plugins/treesitter-textobjects")
+--   end
+-- }
 
 -- Async Tasks: For running and building programs
 -- https://github.com/skywind3000/asynctasks.vim
@@ -612,6 +602,7 @@ use {
 -- https://github.com/beauwilliams/focus.nvim
 use {
   "beauwilliams/focus.nvim",
+  cmd = { "FocusToggle" },
   config = function()
     require("focus").setup({
       -- excluded_filetypes = {"toggleterm"}
@@ -682,16 +673,6 @@ use {
   end
 }
 
--- Aerial: Better code outline using LSP/Treesitter {{{
--- https://github.com/stevearc/aerial.nvim
--- use {
---   'stevearc/aerial.nvim',
---   config = function()
---     require("plugins/aerial")
---   end
--- }
--- }}}
-
 -- Sidebar: Shows a status bar of sorts on the side with plenty of info {{{
 -- https://github.com/sidebar-nvim/sidebar.nvim
 use {
@@ -701,6 +682,55 @@ use {
   end
 }
 -- }}}
+
+-- Mkdx: Enhanced markdown {{{
+-- https://github.com/SidOfc/mkdx
+use {
+  'SidOfc/mkdx',
+  config = function()
+    require("plugins/mkdx")
+  end
+}
+
+-- }}}
+
+-- Orgmode-nvim: Managing agendas and notes {{{
+-- https://github.com/nvim-orgmode/orgmode
+use {
+  'nvim-orgmode/orgmode',
+  config = function()
+    require("plugins/orgmode")
+  end
+}
+-- }}}
+
+-- Org-bullets: Make org files look prettier {{{
+-- https://github.com/akinsho/org-bullets.nvim
+use {
+  'akinsho/org-bullets.nvim',
+  config = function()
+    require("org-bullets").setup {
+      symbols = { "◉", "○", "✸", "✿" },
+      -- or a function that receives the defaults and returns a list
+      symbols = function(default_list)
+        table.insert(default_list, "♥")
+        return default_list
+      end
+    }
+  end
+}
+-- }}}
+
+-- Headlines: Background highlighting for headlines
+-- https://github.com/lukas-reineke/headlines.nvim
+-- use {
+--   'lukas-reineke/headlines.nvim',
+--   config = function()
+--     require('headlines').setup{
+--
+--     }
+--   end,
+-- }
 
 -- }}}
 ------------------------
@@ -895,5 +925,18 @@ end)
 -- WARN: Janky, can break files
 -- https://github.com/simrat39/symbols-outline.nvim
 -- use { 'simrat39/symbols-outline.nvim' }
+
+
+-- Bufferline: A good, well-maintained bufferline plugin
+-- https://github.com/akinsho/bufferline.nvim
+-- TODO: FINISH CONFIG
+-- use {
+  -- 'akinsho/bufferline.nvim',
+  -- requires = 'kyazdani42/nvim-web-devicons',
+  -- config = function()
+    -- require("plugins/bufferline")
+  -- end
+-- }
+
 
 -- }}}

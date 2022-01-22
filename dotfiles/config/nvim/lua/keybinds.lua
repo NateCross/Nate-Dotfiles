@@ -22,9 +22,9 @@ local nmap = Utils.tnoremap
 --- CONFIG ---
 --------------
 
--- Leader as ; so it's easier to reach
-vim.g.mapleader = ';'
-vim.g.maplocalleader = ';'
+-- Leader as spacebar so it's the same as Doom Emacs
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 
 -- Reload lua config
 -- nnoremap("<f1>", ":luafile $MYVIMRC")
@@ -57,8 +57,8 @@ exprnnoremap("j", "v:count == 0 ? 'gj' : 'j'")
 nnoremap("Y", "y$")
 
 -- Go to next and prev buffer
-nnoremap("<space>b", ":bn<CR>")
-nnoremap("<space>B", ":bp<CR>")
+nnoremap("<leader>bj", ":bn<CR>")
+nnoremap("<leader>bk", ":bp<CR>")
 
 -- Lets you keep yanked text when replacing
 -- in visual mode
@@ -101,30 +101,22 @@ nnoremap("<Esc><Esc>", ":let @/=\"\"<CR>")
 nnoremap("gb", ":bnext<CR>")
 nnoremap("gB", ":bprev<CR>")
 
--- I like using space so have some
--- SPACE COMMANDS
-
--- Space + hjkl for window movement
-nnoremap("<space>h", "<C-w>h")
-nnoremap("<space>j", "<C-w>j")
-nnoremap("<space>k", "<C-w>k")
-nnoremap("<space>l", "<C-w>l")
-
--- Space + J/K for buffer movement
--- NOTE: No, this is dumb, use gb/gB
--- nnoremap("<space>J", ":bprev<CR>")
--- nnoremap("<space>K", ":bnext<CR>")
+-- Space + w + hjkl for window movement
+nnoremap("<leader>wh", "<C-w>h")
+nnoremap("<leader>wj", "<C-w>j")
+nnoremap("<leader>wk", "<C-w>k")
+nnoremap("<leader>wl", "<C-w>l")
 
 -- Space + F to quick find and replace
-nnoremap("<space>F", ":%sm/")
-xnoremap("<space>F", ":sm/")
+nnoremap("<leader>F", ":%sm/")
+xnoremap("<leader>F", ":sm/")
 
 -- Space + p to quick select a block of code
-nnoremap("<space>p", "vip")
+nnoremap("<leader>p", "vip")
 
 -- 'cd' towards the directory in which the current file is edited
 -- but only change the path for the current window
-nnoremap("<leader>cd", ":lcd %:h<CR>") 
+nnoremap("<leader>cd", ":lcd %:h<CR>")
 
 -- Caps lock to go next line
 inoremap("<f13>", "<CR>")
@@ -135,9 +127,9 @@ inoremap("<f13>", "<CR>")
 
 -- Nvim-tree
 -- https://github.com/kyazdani42/nvim-tree.lua
-nnoremap("<leader>v", ":NvimTreeToggle<CR>") 
+nnoremap("<leader>.", ":NvimTreeToggle<CR>")
 -- Custom bind to quickly go to symlinked Github dir
-nnoremap("<leader>V", ":cd ~/Github<cr>:NvimTreeToggle<CR>")
+nnoremap("<leader>>", ":cd ~/HDD/Github | :NvimTreeToggle<CR>")
 
 -- LSP Config
 -- see plugins/lsp-config.lua
@@ -156,12 +148,12 @@ nnoremap("<leader>fb", "<cmd>lua require 'telescope'.extensions.file_browser.fil
 -- fzf-lua
 -- Prefer these functions over Telescope if possible
 -- https://github.com/ibhagwan/fzf-lua
-nnoremap("<space>ff", ":FzfLua files<CR>")
-nnoremap("<space>fd", ":FzfLua grep<CR>")
+nnoremap("<space>lf", ":FzfLua files<CR>")
+nnoremap("<space>ld", ":FzfLua grep<CR>")
 
 -- Quick UI
 -- https://github.com/skywind3000/vim-quickui
-nnoremap("<space><space>", ":call quickui#menu#open()<cr>")
+nnoremap("<leader><leader>", ":call quickui#menu#open()<cr>")
 nnoremap("K", ":call quickui#tools#clever_context('k', g:context_menu_k, {})<cr>")
 
 -- Async Tasks
@@ -239,4 +231,4 @@ tnoremap("<F4>", "<C-\\><C-n>:FloatermToggle<CR>")
 nnoremap("<leader>ct", ":ColorToggle<CR>")
 
 -- Sidebar-nvim
-nnoremap("<leader>b", ":SidebarNvimToggle<CR>")
+nnoremap("<leader>bb", ":SidebarNvimToggle<CR>")

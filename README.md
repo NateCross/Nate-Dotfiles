@@ -18,8 +18,13 @@ This repository now uses [dotdrop](https://github.com/deadc0de6/dotdrop) to mana
 Run the following command once cloned.
 ```
 # Neovim: https://github.com/neovim/neovim
+./dotdrop.sh install -p neovim
+
 # Zsh: https://gist.github.com/derhuerst/12a1558a4b408b3b2b6e
-./dotdrop.sh install -p coding
+./dotdrop.sh install -p zsh
+
+# Doom Emacs
+./dotdrop.sh install -p doom-emacs
 
 # Kitty Terminal
 # https://sw.kovidgoyal.net/kitty/binary/
@@ -36,8 +41,12 @@ Run the following command once cloned.
 # https://github.com/aome510/hackernews-TUI
 ./dotdrop.sh install -p hackernews-tui
 
+# Wtfutil
+# https://wtfutil.com/quick_start/
+./dotdrop.sh install -p wtfutil
+
 # For future reference, to import files, run this
-./dotdrop.sh "path/to/dir-or-file" import -p "name-of-profile"
+./dotdrop.sh import "path/to/dir-or-file" -p "name-of-profile"
 ```
 - Edit the fm6000 command in .zshrc to point to wherever the rose.txt file is.
 - Or delete that and the taskwarrior commands if not needed

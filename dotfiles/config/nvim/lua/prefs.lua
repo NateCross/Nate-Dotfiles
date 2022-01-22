@@ -34,17 +34,18 @@ vim.o.showmode        = false	-- Don't Show MODES
 vim.o.cmdheight       = 1	    -- Better Error Messages
 vim.wo.signcolumn     = 'yes'	-- Adds sign column for plugins
 
-opt.showmatch   = true          -- highlight matching parenthesis
-opt.foldmethod  = 'manual'      -- enable folding
-opt.colorcolumn = '80'          -- line lenght marker at 80 columns
-opt.splitright  = true          -- vertical split to the right
-opt.splitbelow  = true          -- orizontal split to the bottom
-opt.ignorecase  = true          -- ignore case letters when search
-opt.smartcase   = true          -- ignore lowercase for the whole pattern
-opt.linebreak   = true          -- wrap on word boundary
-opt.wrap        = true          -- allows text to wrap around
-opt.title       = true          -- Sets title to titlestring
-opt.cursorline  = true
+opt.showmatch    = true          -- highlight matching parenthesis
+opt.foldmethod   = 'manual'      -- enable folding
+opt.colorcolumn  = '80'          -- line lenght marker at 80 columns
+opt.splitright   = true          -- vertical split to the right
+opt.splitbelow   = true          -- orizontal split to the bottom
+opt.ignorecase   = true          -- ignore case letters when search
+opt.smartcase    = true          -- ignore lowercase for the whole pattern
+opt.linebreak    = true          -- wrap on word boundary
+opt.wrap         = true          -- allows text to wrap around
+opt.title        = true          -- Sets title to titlestring
+opt.cursorline   = true
+opt.conceallevel = 3
 
 -------------------
 --- Colorscheme ---
