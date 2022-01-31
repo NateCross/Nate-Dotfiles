@@ -664,6 +664,12 @@ use {
   config = function()
     require("null-ls").setup({
       sources = {
+        require("null-ls").builtins.formatting.black,
+
+        require("null-ls").builtins.formatting.eslint_d,
+        require("null-ls").builtins.code_actions.eslint_d,
+        require("null-ls").builtins.diagnostics.eslint_d,
+
         -- NOTE: clang format is not needed because it is native with clangd
         -- require("null-ls").builtins.formatting.clang_format,
         -- require("null-ls").builtins.diagnostics.cppcheck,
@@ -675,12 +681,12 @@ use {
 
 -- Sidebar: Shows a status bar of sorts on the side with plenty of info {{{
 -- https://github.com/sidebar-nvim/sidebar.nvim
-use {
-  'sidebar-nvim/sidebar.nvim',
-  config = function()
-    require("plugins/sidebar")
-  end
-}
+-- use {
+--   'sidebar-nvim/sidebar.nvim',
+--   config = function()
+--     require("plugins/sidebar")
+--   end
+-- }
 -- }}}
 
 -- Mkdx: Enhanced markdown {{{
@@ -721,16 +727,9 @@ use {
 }
 -- }}}
 
--- Headlines: Background highlighting for headlines
--- https://github.com/lukas-reineke/headlines.nvim
--- use {
---   'lukas-reineke/headlines.nvim',
---   config = function()
---     require('headlines').setup{
---
---     }
---   end,
--- }
+-- Wakatime: To flex on people
+-- (https://wakatime.com/vim)
+use { 'wakatime/vim-wakatime' }
 
 -- }}}
 ------------------------

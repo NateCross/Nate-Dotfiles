@@ -187,7 +187,7 @@ nnoremap("<leader>gd", "<cmd>lua vim.lsp.buf.type_definition()<CR>")
 nnoremap("gr", "<cmd>lua require'telescope.builtin'.lsp_references{}<CR>")
 nnoremap("g0", "<cmd>lua vim.lsp.buf.document_symbol()<CR>")
 nnoremap("gW", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>")
-nnoremap("<leader>e", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>")
+nnoremap("<leader>e", "<cmd>lua vim.diagnostic.open_float()<CR>")
 nnoremap("<leader>a", "<cmd>lua require'telescope.builtin'.lsp_code_actions{}<CR>")
 vnoremap("<leader>a", "<cmd>lua require'telescope.builtin'.lsp_range_code_actions{}<CR>")
 
@@ -232,3 +232,9 @@ nnoremap("<leader>ct", ":ColorToggle<CR>")
 
 -- Sidebar-nvim
 nnoremap("<leader>bb", ":SidebarNvimToggle<CR>")
+
+-- Null-ls
+-- (https://github.com/jose-elias-alvarez/null-ls.nvim)
+nnoremap("<leader>nf", ":lua vim.lsp.buf.formatting()<CR>")
+nnoremap("<leader>nd", ":lua vim.diagnostic.setqflist()")
+vnoremap("<leader>nf", ":lua vim.lsp.buf.range_formatting()<CR>")

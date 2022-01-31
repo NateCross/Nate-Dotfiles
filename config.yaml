@@ -108,6 +108,9 @@ dotfiles:
   d_doom.d:
     src: doom.d
     dst: ~/.doom.d
+  f_eslintrc.json:
+    src: eslintrc.json
+    dst: ~/.eslintrc.json
 profiles:
   neovim:
     dotfiles:
@@ -153,3 +156,6 @@ profiles:
   doom-emacs:
     dotfiles:
     - d_doom.d
+  eslint:
+    dotfiles:
+    - f_eslintrc.json

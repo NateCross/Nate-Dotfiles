@@ -4,6 +4,8 @@ switch-to-activity-11ae33be-0203-469d-b06a-6da7e08547f2=none,none,Switch to acti
 
 [KDE Keyboard Layout Switcher]
 Switch keyboard layout to English (US)=none,none,Switch keyboard layout to English (US)
+Switch keyboard layout to Korean=none,none,Switch keyboard layout to Korean
+Switch keyboard layout to Korean (101/104 key compatible)=none,none,Switch keyboard layout to Korean (101/104 key compatible)
 Switch to Next Keyboard Layout=Ctrl+Alt+K,none,Switch to Next Keyboard Layout
 _k_friendly_name=KDE Daemon
 
@@ -235,7 +237,7 @@ Window to Screen 5=none,none,Window to Screen 5
 Window to Screen 6=none,none,Window to Screen 6
 Window to Screen 7=none,none,Window to Screen 7
 WindowGeometry=Ctrl+Shift+F11,Ctrl+Shift+F11,Toggle window geometry display (effect only)
-_k_friendly_name=Latte Dock
+_k_friendly_name=KWin
 addDesktop=none,none,Virtual Desktop Bar - Add Desktop
 moveCurrentDesktopToLeft=none,none,Virtual Desktop Bar - Move Current Desktop to Left
 moveCurrentDesktopToRight=none,none,Virtual Desktop Bar - Move Current Desktop to Right
@@ -258,7 +260,7 @@ activate entry 14=,Meta+V,Activate Entry 14
 activate entry 15=,Meta+B,Activate Entry 15
 activate entry 16=Meta+N,Meta+N,Activate Entry 16
 activate entry 17=,Meta+M,Activate Entry 17
-activate entry 18=Meta+\\,,Meta+\\,,Activate Entry 18
+activate entry 18=,Meta+\\,,Activate Entry 18
 activate entry 19=,Meta+.,Activate Entry 19
 activate entry 2=,Meta+2,Activate Entry 2
 activate entry 3=,Meta+3,Activate Entry 3

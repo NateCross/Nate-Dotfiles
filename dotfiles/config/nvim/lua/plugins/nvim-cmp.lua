@@ -38,6 +38,7 @@
 			nvim_lua = "[Lua]",
 			cmp_tabnine = "[TN]",
 			latex_symbols = "[Latex]",
+            orgmode = "[Org]",
 		   })
 		}),
 	},
@@ -79,8 +80,8 @@
       ['<C-g>'] = cmp.mapping.complete(),
       ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
 	  ['<CR>'] = cmp.mapping.confirm({
-		behavior = cmp.ConfirmBehavior.Replace,
-		select = true,
+		-- behavior = cmp.ConfirmBehavior.Replace,
+		-- select = false,
 	  }),
       ['<C-e>'] = cmp.mapping({
         i = cmp.mapping.abort(),
@@ -115,5 +116,8 @@
     capabilities = capabilities
   }
   require('lspconfig')["pyright"].setup {
+    capabilities = capabilities
+  }
+  require('lspconfig')["tsserver"].setup {
     capabilities = capabilities
   }

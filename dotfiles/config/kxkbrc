@@ -1,9 +1,9 @@
 [Layout]
-DisplayNames=
-LayoutList=us
+DisplayNames=,
+LayoutList=us,kr(kr104)
 LayoutLoopCount=-1
 Model=pc101
-Options=compose:ralt,caps:escape_shifted_capslock,altwin:meta_win,numpad:microsoft
+Options=compose:ralt,caps:escape_shifted_capslock,altwin:meta_win,numpad:microsoft,grp:rshift_toggle
 ResetOldOptions=true
 ShowFlag=false
 ShowLabel=true

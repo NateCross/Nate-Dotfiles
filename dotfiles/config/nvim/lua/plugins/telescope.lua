@@ -16,7 +16,7 @@ end
 
 require('telescope').setup{
   defaults = {
-    file_ignore_patterns = {"C:/Windows/"},
+    file_ignore_patterns = {"C:/Windows/", "node_modules"},
     buffer_previewer_maker = new_maker,
 
     -- Default configuration for telescope goes here:

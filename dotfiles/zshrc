@@ -48,8 +48,17 @@ export PATH="$PATH:$HOME/.local/bin:$HOME/bin"
 # Used for go lang
 export PATH="$PATH:/usr/local/go/bin"
 
-export EDITOR="nvim"
 export SETUPTOOLS_USE_DISTUTILS=stdlib
+
+typeset -A configs
+configs=(
+    'Neovim' "$HOME/.config/nvim/init.lua"
+    'Zsh' "$HOME/.zshrc"
+    'Kitty' "$HOME/.config/kitty/kitty.conf"
+    'Doom Emacs' "$HOME/.doom.d/config.el"
+    'Doom Init' "$HOME/.doom.d/init.el"
+    'Doom Packages' "$HOME/.doom.d/packages.el"
+)
 
 ###########
 ### FZF ###
@@ -76,7 +85,7 @@ export FZF_COMPLETION_OPTS='--border --info=inline'
 alias add="sudo apt install -y"
 
 # Utilities
-alias ls="exa --icons --grid --header --git"
+alias ls="exa --icons --grid --header --git --group-directories-first"
 alias lsl="exa --icons --grid --header --git -l"
 alias lsm="exa --icons --grid --header --git --sort=modified -l"
 
@@ -140,10 +149,7 @@ alias doom="~/.emacs.d/bin/doom"
 ### QUICK CONFIG EDITS
 alias cfgnvim="$EDITOR ~/.config/nvim/init.lua"
 alias cfgzsh="$EDITOR ~/.zshrc"
-alias cfgkitty="$EDITOR ~/.config/kitty/kitty.conf"
-alias cfgdoomconfig="$EDITOR ~/.doom.d/config.el"
-alias cfgdoominit="$EDITOR ~/.doom.d/init.el"
-alias cfgdoompackages="$EDITOR ~/.doom.d/packages.el"
+
 
 ############
 ### OPTS ###
@@ -271,6 +277,33 @@ vfh() {
   fi
 }
 
+# fg-bg toggle via c-z
+function fg-bg {
+    if [[ $#BUFFER -eq 0 ]]; then
+        BUFFER=fg
+        zle accept-line
+    else
+        zle push-input
+    fi
+}
+zle -N fg-bg
+# bindkey '^z' fg-bg
+
+# cfg - very simple custom script
+# Takes an array list of configs to select in fzf
+# then opens selected config in editor
+# NOTE: Must have an associative array called "configs"
+function cfg() {
+    local selected=$(printf "%s\n" "${(@k)configs}" | fzf)
+
+    if [ ! -n "${selected}" ]; then
+        echo "Exiting..."
+        return
+    fi
+
+    "$EDITOR" "${configs[$selected]}"
+}
+
 #################
 ### UTILITIES ###
 #################
@@ -392,11 +425,45 @@ zinit light P4Cu/cd-reporoot
 zinit ice lucid nocompile
 zinit load MenkeTechnologies/zsh-expand
 
+### fzf marks: Bookmark dirs and jump to them
+# (https://github.com/urbainvaes/fzf-marks)
+zinit load urbainvaes/fzf-marks
 
+### Zsh edit: Better binds and line-editing tools
+# (https://github.com/marlonrichert/zsh-edit)
+zinit load marlonrichert/zsh-edit
 
 ###################
 ### PLUGINS END ###
 ###################
+
+###############
+### WIDGETS ###
+###############
+
+function _run_fzm() {
+    fzm
+}
+
+#############
+### BINDS ###
+#############
+# NOTE: Requires zsh vim plugin
+# NOTE: Define widgets first above,
+#       then bind those widgets to a command
+
+function zvm_after_lazy_keybindings() {
+
+  # Here we define the custom widget
+  zvm_define_widget _run_fzm
+  zvm_define_widget cfg
+
+  # In normal mode, press Ctrl-E to invoke this widget
+  zvm_bindkey vicmd '^E' _run_fzm
+  zvm_bindkey viins '^G' _run_fzm
+  zvm_bindkey vicmd '^C' cfg
+}
+
 
 ##############################
 ### MISC. STUFF AT THE END ###
