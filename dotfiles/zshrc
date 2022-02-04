@@ -54,6 +54,7 @@ typeset -A configs
 configs=(
     'Neovim' "$HOME/.config/nvim/init.lua"
     'Zsh' "$HOME/.zshrc"
+    'Fish' "$HOME/.config/fish/config.fish"
     'Kitty' "$HOME/.config/kitty/kitty.conf"
     'Doom Emacs' "$HOME/.doom.d/config.el"
     'Doom Init' "$HOME/.doom.d/init.el"
@@ -86,8 +87,8 @@ alias add="sudo apt install -y"
 
 # Utilities
 alias ls="exa --icons --grid --header --git --group-directories-first"
-alias lsl="exa --icons --grid --header --git -l"
-alias lsm="exa --icons --grid --header --git --sort=modified -l"
+alias lsl="exa --icons --grid --header --git --group-directories-first -l"
+alias lsm="exa --icons --grid --header --git --group-directories-first --sort=modified -l"
 
 alias ra=". ranger" # Ranger, but if you quit it CDs to dir
 alias pdf="termpdf.py"

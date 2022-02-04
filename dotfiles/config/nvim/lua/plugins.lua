@@ -259,16 +259,6 @@ use {
   end
 }
 
--- Treesitter Textobjects
--- https://github.com/nvim-treesitter/nvim-treesitter-textobjects
--- Must configure the binds to get it working!
--- use {
---   'nvim-treesitter/nvim-treesitter-textobjects',
---   config = function()
---     require("plugins/treesitter-textobjects")
---   end
--- }
-
 -- Async Tasks: For running and building programs
 -- https://github.com/skywind3000/asynctasks.vim
 -- Make sure to bind run, compile, and build
@@ -730,6 +720,10 @@ use {
 -- Wakatime: To flex on people
 -- (https://wakatime.com/vim)
 use { 'wakatime/vim-wakatime' }
+
+use {
+  'windwp/nvim-ts-autotag',
+}
 
 -- }}}
 ------------------------

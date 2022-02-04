@@ -13,8 +13,8 @@ require'nvim-treesitter.configs'.setup {
 	-- Instead of true it can also be a list of languages
 	additional_vim_regex_highlighting = false,
   },
-  
-  -- Requires 
+
+  -- Requires
   -- https://github.com/p00f/nvim-ts-rainbow
   rainbow = {
     enable = true,
@@ -23,5 +23,10 @@ require'nvim-treesitter.configs'.setup {
     max_file_lines = nil, -- Do not enable for files with more than n lines, int
     -- colors = {}, -- table of hex strings
     -- termcolors = {} -- table of colour name strings
+  },
+
+  autotag = {
+    enable = true,
   }
+
 }
