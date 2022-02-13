@@ -111,6 +111,10 @@ dotfiles:
   f_eslintrc.json:
     src: eslintrc.json
     dst: ~/.eslintrc.json
+  d_fish:
+    src: config/fish
+    dst: ~/.config/fish
+    chmod: '700'
 profiles:
   neovim:
     dotfiles:
@@ -159,3 +163,6 @@ profiles:
   eslint:
     dotfiles:
     - f_eslintrc.json
+  fish:
+    dotfiles:
+    - d_fish

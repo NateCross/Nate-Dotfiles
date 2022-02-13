@@ -132,6 +132,7 @@ alias tm="task modify"
 alias fzfh="rg --files --hidden -g "!.git" | fzf"
 alias vf='nvim.appimage $(fzf) '
 alias -g Z='| fzf'
+alias fzopen='xdg-open "$(fzf)"'
 
 # Web development
 

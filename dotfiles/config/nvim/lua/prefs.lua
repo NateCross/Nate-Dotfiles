@@ -97,9 +97,12 @@ opt.completeopt = "menu,menuone,noselect" -- For nvim=cmp
 --- Misc. Options ---
 ---------------------
 
--- Tweak markdown and lua to use two spaces when tabbing
+-- SPACES TWEAK --
 cmd [[autocmd FileType markdown setlocal shiftwidth=2 softtabstop=2 expandtab]]
 cmd [[autocmd FileType lua setlocal shiftwidth=2 softtabstop=2 expandtab]]
+cmd [[autocmd FileType html setlocal shiftwidth=2 softtabstop=2 expandtab]]
+cmd [[autocmd FileType js setlocal shiftwidth=2 softtabstop=2 expandtab]]
+cmd [[autocmd FileType javascript setlocal shiftwidth=2 softtabstop=2 expandtab]]
 
 -- Make .h files be recognized as c, not cpp
 cmd [[let g:c_syntax_for_h = 1]]

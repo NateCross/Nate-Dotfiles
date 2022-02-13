@@ -173,7 +173,7 @@ use {
 }
 -- }}}
 
--- Lualine, an actually working statusline
+-- Lualine, an actually working statusline {{{
 -- https://github.com/nvim-lualine/lualine.nvim
 use {
   'nvim-lualine/lualine.nvim',
@@ -182,12 +182,14 @@ use {
     require("plugins/lualine")
   end,
 }
+-- }}}
 
--- Colored bracket highlighter for Treesitter
+-- Colored bracket highlighter for Treesitter {{{
 -- https://github.com/p00f/nvim-ts-rainbow
 use 'p00f/nvim-ts-rainbow'
+-- }}}
 
--- Treesitter Context: Show which function you're currently in at top
+-- Treesitter Context: Show which function you're currently in at top {{{
 use {
   'romgrk/nvim-treesitter-context',
   config = function()
@@ -219,8 +221,9 @@ use {
   }
   end
 }
+-- }}}
 
--- Wilder: a better, customizable wildmenu
+-- Wilder: a better, customizable wildmenu {{{
 -- https://github.com/gelguy/wilder.nvim
 use {
   'gelguy/wilder.nvim',
@@ -229,9 +232,10 @@ use {
     require("plugins/wilder")
   end,
 }
+-- }}}
 
 
--- Nvim-autopairs: Automatically adds parentheses and stuff
+-- Nvim-autopairs: Automatically adds parentheses and stuff {{{
 -- https://github.com/windwp/nvim-autopairs
 use {
   'windwp/nvim-autopairs',
@@ -248,8 +252,9 @@ use {
     )
   end
 }
+-- }}}
 
--- Vista: Shows tags for easy movement
+-- Vista: Shows tags for easy movement {{{
 -- https://github.com/liuchengxu/vista.vim
 -- Not actually a lua plugin, but I'll manage it the same way
 use {
@@ -258,8 +263,9 @@ use {
     require("plugins/vista")
   end
 }
+-- }}}
 
--- Treesitter Textobjects
+-- Treesitter Textobjects {{{
 -- https://github.com/nvim-treesitter/nvim-treesitter-textobjects
 -- Must configure the binds to get it working!
 -- use {
@@ -268,8 +274,9 @@ use {
 --     require("plugins/treesitter-textobjects")
 --   end
 -- }
+-- }}}
 
--- Async Tasks: For running and building programs
+-- Async Tasks: For running and building programs {{{
 -- https://github.com/skywind3000/asynctasks.vim
 -- Make sure to bind run, compile, and build
 use {
@@ -285,8 +292,9 @@ use {
     ]]
   end
 }
+-- }}}
 
--- Alpha: Dashboard on startup
+-- Alpha: Dashboard on startup {{{
 -- https://github.com/goolord/alpha-nvim
 use {
   'goolord/alpha-nvim',
@@ -294,8 +302,9 @@ use {
     require("plugins/alpha")
   end
 }
+-- }}}
 
--- Quick-UI: Double tap space for a menu and reference
+-- Quick-UI: Double tap space for a menu and reference {{{
 -- https://github.com/skywind3000/vim-quickui
 use {
   'skywind3000/vim-quickui',
@@ -303,8 +312,9 @@ use {
     require("plugins/quickui")
   end
 }
+-- }}}
 
--- Which-Key: A keybinding reference when you press stuff
+-- Which-Key: A keybinding reference when you press stuff {{{
 -- https://github.com/folke/which-key.nvim
 use {
   'folke/which-key.nvim',
@@ -313,8 +323,9 @@ use {
     -- require("plugins/which-key")
   end
 }
+-- }}}
 
--- Tabout: press tab to escape brackets
+-- Tabout: press tab to escape brackets {{{
 -- https://github.com/abecodes/tabout.nvim
 -- It has already neatly provided a config, so might as well
 use {
@@ -342,8 +353,9 @@ use {
 	wants = {'nvim-treesitter'}, -- or require if not used so far
 	after = {'nvim-cmp'} -- if a completion plugin is using tabs load it before
 }
+-- }}}
 
--- Lightspeed: For quick movement using "s" alongside f and t keys
+-- Lightspeed: For quick movement using "s" alongside f and t keys {{{
 -- https://github.com/ggandor/lightspeed.nvim
 -- Trigger with s/S
 use {
@@ -353,20 +365,23 @@ use {
     require("plugins/lightspeed")
   end
 }
+-- }}}
 
--- Easy Align: Use "ga" plus text object to align stuff
+-- Easy Align: Use "ga" plus text object to align stuff {{{
 -- https://github.com/junegunn/vim-easy-align
 -- Probably outdated; keep a look out for a maintained version
 -- Also see bindings in keybinds.lua
 use 'junegunn/vim-easy-align'
+-- }}}
 
--- Vim-surround: Easily surround text in brackets or whatever
+-- Vim-surround: Easily surround text in brackets or whatever {{{
 -- https://github.com/tpope/vim-surround
 -- action (d, c, etc.) + 's' + whatever delimiter
 -- To wrap around text, use 'ys' then whatever text object
 use 'tpope/vim-surround'
+-- }}}
 
--- Auto-save: No need to think; it just saves
+-- Auto-save: No need to think; it just saves {{{
 -- https://github.com/Pocco81/AutoSave.nvim
 use {
   'Pocco81/AutoSave.nvim',
@@ -390,8 +405,9 @@ use {
     })
   end
 }
+-- }}}
 
--- LSP Signature: Shows a guide when filling in functions
+-- LSP Signature: Shows a guide when filling in functions {{{
 -- https://github.com/ray-x/lsp_signature.nvim
 use {
   'ray-x/lsp_signature.nvim',
@@ -399,8 +415,9 @@ use {
     require("plugins/lsp-signature")
   end
 }
+-- }}}
 
--- Trouble: Better diagnostic and quickfix menu
+-- Trouble: Better diagnostic and quickfix menu {{{
 -- https://github.com/folke/trouble.nvim
 use {
   "folke/trouble.nvim",
@@ -409,17 +426,14 @@ use {
     require("plugins/trouble")
   end
 }
-
--- Tokyodark: Sweet new theme
--- https://github.com/tiagovla/tokyodark.nvim
-use 'tiagovla/tokyodark.nvim'
+-- }}}
 
 -- Mini: A collection of mini lua modules
 -- https://github.com/echasnovski/mini.nvim
 -- TODO: Setup proper config that disables the correct things
 -- use 'echasnovski/mini.nvim'
 
--- Todo-comments: A highlighter for todos
+-- Todo-comments: A highlighter for todos {{{
 -- https://github.com/folke/todo-comments.nvim
 use {
   "folke/todo-comments.nvim",
@@ -432,8 +446,9 @@ use {
     }
   end
 }
+-- }}}
 
--- Comment: Lua commenting plugin with gcc, LSP and TS support
+-- Comment: Lua commenting plugin with gcc, LSP and TS support {{{
 -- https://github.com/numToStr/Comment.nvim
 use {
     'numToStr/Comment.nvim',
@@ -441,20 +456,23 @@ use {
         require('Comment').setup()
     end
 }
+-- }}}
 
--- Fzf: Fast fuzzy finder for locating files
+-- Fzf: Fast fuzzy finder for locating files {{{
 -- https://github.com/junegunn/fzf.vim
 use {
     'junegunn/fzf.vim',
     requires = 'junegunn/fzf',
     run = ':fzf#install()'
 }
+-- }}}
 
--- Telescope-fzf support
+-- Telescope-fzf support {{{
 -- https://github.com/nvim-telescope/telescope-fzf-native.nvim
 use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+-- }}}
 
--- Tabline: A tab and bufferline
+-- Tabline: A tab and bufferline {{{
 -- https://github.com/kdheepak/tabline.nvim
 use {
   'kdheepak/tabline.nvim',
@@ -481,8 +499,9 @@ use {
   end,
   requires = { { 'hoob3rt/lualine.nvim', opt=true }, {'kyazdani42/nvim-web-devicons', opt = true} }
 }
+-- }}}
 
--- Neoscroll: Make scrolling fancier
+-- Neoscroll: Make scrolling fancier {{{
 -- https://github.com/karb94/neoscroll.nvim
 use {
   'karb94/neoscroll.nvim',
@@ -502,16 +521,17 @@ use {
     })
   end
 }
+-- }}}
 
--- Nate UwU Custom
+-- Nate UwU Custom {{{
 -- Custom colorscheme, needs modification
 -- https://github.com/NateCross/uwu.vim
 use {
   'NateCross/nate-uwu',
 }
+-- }}}
 
-
--- Shade: Dims inactive regions
+-- Shade: Dims inactive regions {{{
 -- https://github.com/sunjon/Shade.nvim
 use {
   'sunjon/shade.nvim',
@@ -527,8 +547,9 @@ use {
     })
   end
 }
+-- }}}
 
--- Colorizer: Highlights hex code colors
+-- Colorizer: Highlights hex code colors {{{
 -- https://github.com/chrisbra/Colorizer
 use 'chrisbra/Colorizer'
 
@@ -540,8 +561,9 @@ use {
     require('plugins/indent-blankline')
   end
 }
+-- }}}
 
--- Treesitter Refactor: Highlights same word in scope, among others
+-- Treesitter Refactor: Highlights same word in scope, among others {{{
 -- https://github.com/nvim-treesitter/nvim-treesitter-refactor
 use {
   'nvim-treesitter/nvim-treesitter-refactor',
@@ -553,8 +575,9 @@ use {
     }
   end
 }
+-- }}}
 
--- Nvim-DAP-UI: A debugging tool. plus UI
+-- Nvim-DAP-UI: A debugging tool. plus UI {{{
 -- https://github.com/rcarriga/nvim-dap-ui
 use {
   'rcarriga/nvim-dap-ui',
@@ -563,8 +586,9 @@ use {
     require("plugins/nvim-dap-ui")
   end
 }
+-- }}}
 
--- DAP Install: So I can actually get the debuggers to work
+-- DAP Install: So I can actually get the debuggers to work {{{
 -- https://github.com/Pocco81/DAPInstall.nvim
 use {
   "Pocco81/DAPInstall.nvim",
@@ -575,8 +599,9 @@ use {
 }
 -- NOTE: THE ABOVE TWO DAP PLUGINS DO NOT WORK RIGHT ON WINDOWS
 -- KEEP AN EYE OUT FOR WINDOWS SUPPORT IN THE FUTURE
+-- }}}
 
--- DAP Virtual Text: Shows variable values as virtual text
+-- DAP Virtual Text: Shows variable values as virtual text {{{
 -- https://github.com/theHamsta/nvim-dap-virtual-text
 use {
   'theHamsta/nvim-dap-virtual-text',
@@ -594,11 +619,12 @@ use {
     virt_lines = false,                 -- show virtual lines instead of virtual text (will flicker!)
     virt_text_win_col = nil             -- position the virtual text at a fixed window column (starting from the first text column) ,
                                         -- e.g. 80 to position at column 80, see `:h nvim_buf_set_extmark()`
-}
+  }
   end
 }
+-- }}}
 
--- Focus: Arranges buffers
+-- Focus: Arranges buffers {{{
 -- https://github.com/beauwilliams/focus.nvim
 use {
   "beauwilliams/focus.nvim",
@@ -616,8 +642,9 @@ use {
   end
 }
 -- WARN: Really janky, messes up a lotta buffers like with DAP
+-- }}}
 
--- Floaterm: Spawns a floating terminal
+-- Floaterm: Spawns a floating terminal {{{
 -- https://github.com/voldikss/vim-floaterm
 use {
   'voldikss/vim-floaterm',
@@ -626,8 +653,9 @@ use {
     -- vim.g['floaterm_position'] = 'botright'
   end
 }
+-- }}}
 
--- fzf-lua: Improved fzf in vim functionality
+-- fzf-lua: Improved fzf in vim functionality {{{
 -- Prefer fzf over Telescope if possible
 use {
   'ibhagwan/fzf-lua',
@@ -637,16 +665,18 @@ use {
     require("plugins/fzf-lua")
   end
 }
+-- }}}
 
--- Luapad: Automatically evaluate lua statements in one command
+-- Luapad: Automatically evaluate lua statements in one command {{{
 -- https://github.com/rafcamlet/nvim-luapad
 use {
   'rafcamlet/nvim-luapad',
   config = function()
   end
 }
+-- }}}
 
--- Sniprun: Runs code snippets with :SnipRun
+-- Sniprun: Runs code snippets with :SnipRun {{{
 -- https://github.com/michaelb/sniprun
 use {
   'michaelb/sniprun',
@@ -655,8 +685,9 @@ use {
     require("plugins/snip-run")
   end
 }
+-- }}}
 
--- Null-LS: Lints and code actions
+-- Null-LS: Lints and code actions {{{
 -- (https://github.com/jose-elias-alvarez/null-ls.nvim)
 use {
   'jose-elias-alvarez/null-ls.nvim',
@@ -678,15 +709,6 @@ use {
     })
   end
 }
-
--- Sidebar: Shows a status bar of sorts on the side with plenty of info {{{
--- https://github.com/sidebar-nvim/sidebar.nvim
--- use {
---   'sidebar-nvim/sidebar.nvim',
---   config = function()
---     require("plugins/sidebar")
---   end
--- }
 -- }}}
 
 -- Mkdx: Enhanced markdown {{{
@@ -727,9 +749,20 @@ use {
 }
 -- }}}
 
--- Wakatime: To flex on people
+-- Wakatime: To flex on people {{{
 -- (https://wakatime.com/vim)
 use { 'wakatime/vim-wakatime' }
+-- }}}
+
+-- VimTeX: Enhance LaTeX experience {{{
+-- (https://github.com/lervag/vimtex)
+use {
+  'lervag/vimtex',
+  config = function()
+    require("plugins/vimtex")
+  end
+}
+-- }}}
 
 -- }}}
 ------------------------
@@ -936,6 +969,17 @@ end)
     -- require("plugins/bufferline")
   -- end
 -- }
+
+-- Sidebar: Shows a status bar of sorts on the side with plenty of info {{{
+-- https://github.com/sidebar-nvim/sidebar.nvim
+-- use {
+--   'sidebar-nvim/sidebar.nvim',
+--   config = function()
+--     require("plugins/sidebar")
+--   end
+-- }
+-- }}}
+-- NOTE: Not used because bloat
 
 
 -- }}}
