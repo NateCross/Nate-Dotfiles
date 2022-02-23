@@ -468,9 +468,9 @@ use {
 -- }}}
 
 -- Telescope-fzf support {{{
--- https://github.com/nvim-telescope/telescope-fzf-native.nvim
-use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
--- }}}
+  -- https://github.com/nvim-telescope/telescope-fzf-native.nvim
+  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+  -- }}}
 
 -- Tabline: A tab and bufferline {{{
 -- https://github.com/kdheepak/tabline.nvim
@@ -724,12 +724,12 @@ use {
 
 -- Orgmode-nvim: Managing agendas and notes {{{
 -- https://github.com/nvim-orgmode/orgmode
-use {
-  'nvim-orgmode/orgmode',
-  config = function()
-    require("plugins/orgmode")
-  end
-}
+-- use {
+--   'nvim-orgmode/orgmode',
+--   config = function()
+--     require("plugins/orgmode")
+--   end
+-- }
 -- }}}
 
 -- Org-bullets: Make org files look prettier {{{
@@ -760,6 +760,16 @@ use {
   'lervag/vimtex',
   config = function()
     require("plugins/vimtex")
+  end
+}
+-- }}}
+
+-- Spellsitter: Check spelling with Treesitter {{{
+-- https://github.com/lewis6991/spellsitter.nvim
+use {
+  'lewis6991/spellsitter.nvim',
+  config = function()
+    require('spellsitter').setup()
   end
 }
 -- }}}

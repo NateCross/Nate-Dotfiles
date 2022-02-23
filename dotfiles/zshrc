@@ -45,6 +45,7 @@ export DISABLE_MAGIC_FUNCTIONS=true
 export SERVER_IP="hostname -I"
 
 export PATH="$PATH:$HOME/.local/bin:$HOME/bin"
+export PATH="$PATH:$HOME/Applications"
 # Used for go lang
 export PATH="$PATH:/usr/local/go/bin"
 
@@ -64,12 +65,12 @@ configs=(
 ### FZF ###
 ###########
 
-export FZF_DEFAULT_OPTS="--preview '([[ -f {} ]] && (batcat --style=numbers --color=always {} || cat {})) || ([[ -d {} ]] && (tree -C {} | less)) || echo {} 2> /dev/null | head -200'"
+export FZF_DEFAULT_OPTS="--preview '([[ -f {} ]] && (bat --style=numbers --color=always {} || cat {})) || ([[ -d {} ]] && (tree -C {} | less)) || echo {} 2> /dev/null | head -200'"
 
 # FZF colorscheme
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' --color=fg:#e64a9b,bg:#120307,hl:#2dba1a --color=fg+:#ff05a3,bg+:#120307,hl+:#00eaff --color=info:#eb6f6f,prompt:#ff006f,pointer:#8a1563 --color=marker:#87ff00,spinner:#af5fff,header:#d10404'
 
-export FZF_DEFAULT_COMMAND="rg -L --files --no-ignore-vcs"
+export FZF_DEFAULT_COMMAND="rg -L --files --no-ignore-vcs "
 
 # Using highlight (http://www.andre-simon.de/doku/highlight/en/highlight.html)
 export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
@@ -81,8 +82,19 @@ export FZF_COMPLETION_OPTS='--border --info=inline'
 ### ALIASES ###
 ###############
 
-# Ubuntu
-alias add="sudo apt install -y"
+### Test for OS
+if [ -f /etc/os-release ]; then
+    . /etc/os-release
+    OS=$ID_LIKE
+fi
+
+# Package Manager
+if [[ ${OS} == "arch" ]]; then
+    alias add="sudo pacman -S" # Pipes the yes answer to pacman
+    alias update="sudo pacman -Syu"
+else
+    alias add="sudo apt install -y"
+fi
 
 # Utilities
 alias ls="exa --icons --grid --header --git --group-directories-first"
@@ -92,7 +104,7 @@ alias lsm="exa --icons --grid --header --git --sort=modified -l"
 alias ra=". ranger" # Ranger, but if you quit it CDs to dir
 alias pdf="termpdf.py"
 alias open="xdg-open"
-alias bat="batcat"
+# alias bat="batcat" # Needed if installed as an Ubuntu package
 
 alias trash="trash-put"
 alias trashl="trash-list"
@@ -329,10 +341,10 @@ fi
 # print ${(pl:$LINES-16::\n:):-}
 
 # Fetch command for fancy display
-if [ $COLUMNS -gt 73 ]
-then
-    fm6000 -c red -f ~/HDD/Github/Nate-Dotfiles/rose.txt
-fi
+# if [ $COLUMNS -gt 73 ]
+# then
+#    fm6000 -c red -f ~/HDD/Github/Nate-Dotfiles/rose.txt
+# fi
 
 # Show list of tasks in Taskwarrior
 task list

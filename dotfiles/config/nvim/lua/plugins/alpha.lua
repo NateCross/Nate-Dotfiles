@@ -23,7 +23,8 @@ dashboard.section.buttons.val = {
     dashboard.button( "v", "侮 > Open Nvim-tree", ":NvimTreeToggle<CR>"),
     dashboard.button( "f", "  > Find file", ":Telescope find_files find_command=rg,--ignore,--hidden,--files<CR>"),
     -- Change the following setting to wherever Github files are
-    dashboard.button( "g", "  > Find in Github directory", ":cd ~/HDD/Github | :Telescope find_files find_command=rg,--ignore,--hidden,--files<CR>"),
+    -- dashboard.button( "g", "  > Find in Github directory", ":cd ~/HDD/Github | :Telescope find_files find_command=rg,--ignore,--hidden,--files<CR>"),
+    dashboard.button( "g", "  > Find Github files", ":Telescope git_files<CR>"),
     dashboard.button( "o", "  > Find in Important Files", ":cd ~/HDD/Important-Files | :Telescope find_files<CR>"),
     dashboard.button( "r", "  > Recent"   , ":Telescope oldfiles<CR>"),
     dashboard.button( "s", "  > Settings" , ":e $MYVIMRC<CR>"),

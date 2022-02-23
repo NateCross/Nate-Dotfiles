@@ -139,8 +139,9 @@ nnoremap("cr", "<cmd>lua vim.lsp.buf.rename()<CR>")
 -- See https://github.com/nvim-telescope/telescope.nvim/issues/394
 -- fg does a fancy find files that shows hidden and through symlinks, but is slower
 nnoremap("<leader>ff", "<cmd>lua require('telescope.builtin').find_files()<cr>")
+nnoremap("<leader>fg", "<cmd>lua require('telescope.builtin').git_files()<cr>")
 nnoremap("<leader>fs", "<cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>")
-nnoremap("<leader>fg", ":Telescope find_files find_command=rg,--ignore,--hidden,--files<CR>")
+nnoremap("<leader>fe", ":Telescope find_files find_command=rg,--ignore,--hidden,--files<CR>")
 nnoremap("<leader>fd", "<cmd>lua require('telescope.builtin').live_grep()<cr>")
 nnoremap("<leader>fb", "<cmd>lua require 'telescope'.extensions.file_browser.file_browser()<CR>")
 -- nnoremap("<leader><space>", ":Telescope command_palette<CR>")

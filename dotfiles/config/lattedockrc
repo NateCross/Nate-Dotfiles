@@ -1,7 +1,8 @@
 [KFileDialog Settings]
-Recent Files[$e]=nate-custom.layout.latte,file:$HOME/.config/latte/nate-custom.layout.latte,file:$HOME/HDD/Github/Nate-Dotfiles/dotfiles/config/latte/nate-custom.layout.latte
-Recent URLs[$e]=file:$HOME/.config/latte/
+Recent Files[$e]=nate-custom.layout.latte,file:$HOME/.config/latte/nate-custom-v3.layout.latte,file:$HOME/.config/latte/nate-custom.layout.latte,file:$HOME/HDD/Github/Nate-Dotfiles/dotfiles/config/latte/nate-custom.layout.latte
+Recent URLs[$e]=file:$HOME/.config/latte/,file:$HOME/.config/
 detailViewIconSize=0
+listViewIconSize=64
 
 [LatteSettingsDialog]
 downloadWindowSize=980,600
@@ -31,6 +32,7 @@ outlineWidth=1
 [ScreenConnectors]
 10=HDMI-0:::0,0 1920x1080
 11=VGA-1-1:::1920,0 1366x768
+12=VGA1:::1920,0 1366x768
 
 [UniversalSettings]
 badges3DStyle=true
