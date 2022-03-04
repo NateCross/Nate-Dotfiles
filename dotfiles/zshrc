@@ -125,6 +125,10 @@ alias gco="git checkout"
 alias gclo="git clone"
 alias gst="git status"
 
+# Python
+alias py="python"
+alias pyinst="python -m pip install"
+
 # Neovim
 alias neovim="nvim.appimage "
 alias nvim="nvim.appimage "
