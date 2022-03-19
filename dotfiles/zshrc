@@ -163,6 +163,10 @@ alias n="nnn -e -x"
 
 alias doom="~/.emacs.d/bin/doom"
 
+# Misc stuff
+alias pdfgrepquick="pdfgrep -n --ignore-case"
+alias please='sudo $(fc -ln -1)'
+
 ### QUICK CONFIG EDITS
 alias cfgnvim="$EDITOR ~/.config/nvim/init.lua"
 alias cfgzsh="$EDITOR ~/.zshrc"

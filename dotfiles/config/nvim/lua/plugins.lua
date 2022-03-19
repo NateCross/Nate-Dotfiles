@@ -428,11 +428,6 @@ use {
 }
 -- }}}
 
--- Mini: A collection of mini lua modules
--- https://github.com/echasnovski/mini.nvim
--- TODO: Setup proper config that disables the correct things
--- use 'echasnovski/mini.nvim'
-
 -- Todo-comments: A highlighter for todos {{{
 -- https://github.com/folke/todo-comments.nvim
 use {
@@ -590,13 +585,13 @@ use {
 
 -- DAP Install: So I can actually get the debuggers to work {{{
 -- https://github.com/Pocco81/DAPInstall.nvim
-use {
-  "Pocco81/DAPInstall.nvim",
-  requires = 'mfussenegger/nvim-dap',
-  config = function()
-    require("plugins/nvim-dap-install")
-  end
-}
+-- use {
+--   "Pocco81/DAPInstall.nvim",
+--   requires = 'mfussenegger/nvim-dap',
+--   config = function()
+--     require("plugins/nvim-dap-install")
+--   end
+-- }
 -- NOTE: THE ABOVE TWO DAP PLUGINS DO NOT WORK RIGHT ON WINDOWS
 -- KEEP AN EYE OUT FOR WINDOWS SUPPORT IN THE FUTURE
 -- }}}
@@ -722,16 +717,6 @@ use {
 
 -- }}}
 
--- Orgmode-nvim: Managing agendas and notes {{{
--- https://github.com/nvim-orgmode/orgmode
--- use {
---   'nvim-orgmode/orgmode',
---   config = function()
---     require("plugins/orgmode")
---   end
--- }
--- }}}
-
 -- Org-bullets: Make org files look prettier {{{
 -- https://github.com/akinsho/org-bullets.nvim
 use {
@@ -772,6 +757,15 @@ use {
     require('spellsitter').setup()
   end
 }
+-- }}}
+
+-- Bracey: Live server for vim {{{
+-- (https://github.com/turbio/bracey.vim)
+use {
+  'turbio/bracey.vim',
+  run = 'npm install --prefix server',
+}
+
 -- }}}
 
 -- }}}

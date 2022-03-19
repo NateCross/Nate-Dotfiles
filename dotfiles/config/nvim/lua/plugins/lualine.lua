@@ -132,6 +132,7 @@ require('lualine').setup {
     theme = theme,
     component_separators = '',
     section_separators = { left = '', right = '' },
+    globalstatus = true,
   },
   sections = process_sections {
     lualine_a = { 'mode' },
