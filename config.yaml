@@ -13,6 +13,7 @@ config:
 actions:
   loginstall: echo {{@@ _dotfile_abs_src @@}} installed to {{@@ _dotfile_abs_dst @@}}
     >> {0}
+  install_fisher: curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
 dotfiles:
   d_nvim:
     src: config/nvim
@@ -166,3 +167,5 @@ profiles:
   fish:
     dotfiles:
     - d_fish
+    actions:
+    - install_fisher
