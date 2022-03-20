@@ -89,6 +89,11 @@ set -x SETUPTOOLS_USE_DISTUTILS stdlib
 ### FUNCTIONS ###
 #################
 
+# The 'abbreviation' for git commit
+function gc
+    git commit -m "$argv"
+end
+
 
 #########################
 ### INTERACTIVE SHELL ###
