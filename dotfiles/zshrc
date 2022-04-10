@@ -46,8 +46,8 @@ export SERVER_IP="hostname -I"
 
 export PATH="$PATH:$HOME/.local/bin:$HOME/bin"
 export PATH="$PATH:$HOME/Applications"
-# Used for go lang
-export PATH="$PATH:/usr/local/go/bin"
+export PATH="$PATH:/usr/local/go/bin"             # Go lang
+export PATH="$PATH:$HOME/.cargo/bin"              # Rust
 
 export SETUPTOOLS_USE_DISTUTILS=stdlib
 
@@ -124,6 +124,7 @@ alias gd="git diff"
 alias gco="git checkout"
 alias gclo="git clone"
 alias gst="git status"
+alias lg="lazygit"
 
 # Python
 alias py="python"
@@ -355,7 +356,7 @@ fi
 # fi
 
 # Show list of tasks in Taskwarrior
-task list
+# task list
 
 # Start zoxide
 eval "$(zoxide init zsh)"

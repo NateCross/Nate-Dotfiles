@@ -94,6 +94,12 @@ function gc
     git commit -m "$argv"
 end
 
+# mkcdir - combines mkdir and cd
+# Taken from https://unix.stackexchange.com/questions/125385/combined-mkdir-and-cd
+function mkcdir
+    mkdir -p -- "$argv[1]" && cd -- "$argv[1]"
+end
+
 
 #########################
 ### INTERACTIVE SHELL ###

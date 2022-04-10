@@ -48,6 +48,10 @@ Run the following command once cloned.
 # https://wtfutil.com/quick_start/
 ./dotdrop.sh install -p wtfutil
 
+# Lazygit
+# https://github.com/jesseduffield/lazygit
+./dotdrop.sh install -p lazygit
+
 # For future reference, to import files, run this
 ./dotdrop.sh import "path/to/dir-or-file" -p "name-of-profile"
 ```
@@ -56,7 +60,7 @@ Run the following command once cloned.
 
 ## Prerequisites
 
-- [Neovim >= 0.6](https://github.com/neovim/neovim)
+- [Neovim >= 0.7](https://github.com/neovim/neovim)
   - Node.js
     - Choco if on Windows, I guess?
   - Python 3.10 (and pip)
@@ -79,6 +83,8 @@ Run the following command once cloned.
       - Scroll down to the bottom, click "Download the Qt Online Installer"
   - A forced blur script from KWin Scripts to make Kitty gorgeous
 - Git
+  - Lazygit
+  - Delta (git-delta on Arch)
 - Language Tools
   - gcc, g++, gdb
   - Well, there's already python, but yeah you need it

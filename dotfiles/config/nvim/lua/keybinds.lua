@@ -118,6 +118,10 @@ nnoremap("<leader>p", "vip")
 -- but only change the path for the current window
 nnoremap("<leader>cd", ":lcd %:h<CR>")
 
+-- Open a file, used well for HTML
+-- We do <CR> twice because it opens another pop-up
+nnoremap("<leader>o", ":!xdg-open %<CR><CR>")
+
 -- Caps lock to go next line
 inoremap("<f13>", "<CR>")
 
@@ -227,6 +231,9 @@ nnoremap("<F3>", ":FloatermNext<CR>")
 tnoremap("<F3>", "<C-\\><C-n>:FloatermNext<CR>")
 nnoremap("<F4>", ":FloatermToggle<CR>")
 tnoremap("<F4>", "<C-\\><C-n>:FloatermToggle<CR>")
+-- Open lazygit in floaterm
+  -- Requires lazygit
+nnoremap("gq", ":FloatermNew --position=center --autoclose=2 --height=0.9 --width=0.9 lazygit<CR>")
 
 -- ColorToggle
 nnoremap("<leader>ct", ":ColorToggle<CR>")

@@ -116,6 +116,9 @@ dotfiles:
     src: config/fish
     dst: ~/.config/fish
     chmod: '700'
+  f_lazygit_config.yml:
+    src: config/lazygit/config.yml
+    dst: ~/.config/lazygit/config.yml
 profiles:
   neovim:
     dotfiles:
@@ -169,3 +172,6 @@ profiles:
     - d_fish
     actions:
     - install_fisher
+  lazygit:
+    dotfiles:
+    - f_lazygit_config.yml
