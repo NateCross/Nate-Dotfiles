@@ -145,12 +145,6 @@ alias nv="nvim.appimage "
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
 
-# Taskwarrior
-alias ta="task add"
-alias tl="task list"
-alias td="task done"
-alias tm="task modify"
-
 # FZF
 alias fzfh="rg --files --hidden -g "!.git" | fzf"
 alias vf='nvim.appimage $(fzf) '

@@ -127,6 +127,12 @@ dotfiles:
   f_tmux-modal.conf:
     src: tmux-modal.conf
     dst: ~/.tmux-modal.conf
+  f_tmux-powerlinerc:
+    src: tmux-powerlinerc
+    dst: ~/.tmux-powerlinerc
+  f_custom.sh:
+    src: tmux/plugins/tmux-powerline/themes/custom.sh
+    dst: ~/.tmux/plugins/tmux-powerline/themes/custom.sh
 profiles:
   neovim:
     dotfiles:
@@ -187,5 +193,7 @@ profiles:
     dotfiles:
     - f_tmux.conf
     - f_tmux-modal.conf
+    - f_tmux-powerlinerc
+    - f_custom.sh
     actions:
     - install_tpm

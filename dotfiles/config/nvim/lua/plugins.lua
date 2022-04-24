@@ -56,18 +56,6 @@ use {
 }
 -- }}}
 
--- {{{ Nvim-tree: File tree viewer
--- https://github.com/kyazdani42/nvim-tree.lua
-use {
-  'kyazdani42/nvim-tree.lua',
-  requires = 'kyazdani42/nvim-web-devicons',
-  -- config = function() require'nvim-tree'.setup {} end
-  config = function()
-    require("plugins/nvim-tree")
-  end
-}
--- }}}
-
 -- Native LSP {{{
 -- https://github.com/neovim/nvim-lspconfig
 use {
@@ -709,6 +697,11 @@ use {
 
 -- }}}
 
+-- Startup time {{{
+use 'dstein64/vim-startuptime'
+
+-- }}}
+
 -- }}}
 ------------------------
 --- PLUGINS END HERE ---
@@ -727,6 +720,18 @@ end)
 -- {{{ Plugin Bookmarks
 
 -- This section is for notable plugins to use in the future
+
+-- {{{ Nvim-tree: File tree viewer UNUSED
+-- https://github.com/kyazdani42/nvim-tree.lua
+-- use {
+--   'kyazdani42/nvim-tree.lua',
+--   requires = 'kyazdani42/nvim-web-devicons',
+--   -- config = function() require'nvim-tree'.setup {} end
+--   config = function()
+--     require("plugins/nvim-tree")
+--   end
+-- }
+-- }}}
 
 -- Windline: an animated status line
 -- https://github.com/windwp/windline.nvim
