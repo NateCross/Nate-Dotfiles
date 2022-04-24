@@ -159,8 +159,8 @@ nnoremap("<space>ld", ":FzfLua grep<CR>")
 
 -- Quick UI
 -- https://github.com/skywind3000/vim-quickui
-nnoremap("<leader><leader>", ":call quickui#menu#open()<cr>")
-nnoremap("K", ":call quickui#tools#clever_context('k', g:context_menu_k, {})<cr>")
+-- nnoremap("<leader><leader>", ":call quickui#menu#open()<cr>")
+-- nnoremap("K", ":call quickui#tools#clever_context('k', g:context_menu_k, {})<cr>")
 
 -- Async Tasks
 -- https://github.com/skywind3000/asynctasks.vim
@@ -236,7 +236,7 @@ tnoremap("<F4>", "<C-\\><C-n>:FloatermToggle<CR>")
 
 -- Open lazygit in floaterm
   -- Requires lazygit
-nnoremap("gq", ":FloatermNew --position=center --autoclose=2 --height=0.9 --width=0.9 lazygit<CR>")
+nnoremap("<leader><leader>", ":FloatermNew --position=center --autoclose=2 --height=0.9 --width=0.9 lazygit<CR>")
 
 -- ColorToggle
 nnoremap("<leader>ct", ":ColorToggle<CR>")
