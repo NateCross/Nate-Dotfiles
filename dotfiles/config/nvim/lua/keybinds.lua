@@ -37,12 +37,13 @@ inoremap("kj", "<Esc>")
 vnoremap("ii", "<Esc>")
 
 -- Move lines up and down by alt+j/k
-nnoremap("<A-j>", ":m .+1<CR>==")
-nnoremap("<A-k>", ":m .-2<CR>==")
-inoremap("<A-j>", "<Esc>:m .+1<CR>==gi")
-inoremap("<A-k>", "<Esc>:m .-2<CR>==gi")
-vnoremap("<A-j>", ":m '>+1<cr>gv=gv")
-vnoremap("<A-k>", ":m '<-2<CR>gv=gv")
+-- NOTE: Not preferred because we use meta/alt in Tmux
+-- nnoremap("<A-j>", ":m .+1<CR>==")
+-- nnoremap("<A-k>", ":m .-2<CR>==")
+-- inoremap("<A-j>", "<Esc>:m .+1<CR>==gi")
+-- inoremap("<A-k>", "<Esc>:m .-2<CR>==gi")
+-- vnoremap("<A-j>", ":m '>+1<cr>gv=gv")
+-- vnoremap("<A-k>", ":m '<-2<CR>gv=gv")
 
 -- ";cd" to change working directory in current buffer to edited file
 -- Taken from https://vimways.org/2019/vim-and-the-working-directory/
@@ -220,6 +221,7 @@ nnoremap("<leader>dr", ":lua require'dap'.run_last()<CR>")
 nnoremap("<leader>dq", ":lua require'dap'.step_over()<CR>")
 nnoremap("<leader>dw", ":lua require'dap'.step_into()<CR>")
 nnoremap("<leader>de", ":lua require'dap'.step_out()<CR>")
+nnoremap("<leader>dt", ":lua require'dap'.terminate()<CR>")
 nnoremap("<leader>da", ":lua require'dapui'.toggle()<CR>")
 
 -- Floaterm
@@ -231,6 +233,7 @@ nnoremap("<F3>", ":FloatermNext<CR>")
 tnoremap("<F3>", "<C-\\><C-n>:FloatermNext<CR>")
 nnoremap("<F4>", ":FloatermToggle<CR>")
 tnoremap("<F4>", "<C-\\><C-n>:FloatermToggle<CR>")
+
 -- Open lazygit in floaterm
   -- Requires lazygit
 nnoremap("gq", ":FloatermNew --position=center --autoclose=2 --height=0.9 --width=0.9 lazygit<CR>")

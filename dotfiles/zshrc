@@ -2,6 +2,14 @@
 ### NATE'S .ZSHRC ###
 #####################
 
+# if tmux is executable, X is running, and not inside a tmux session, then try to attach.
+# if attachment fails, start a new session
+# https://wiki.archlinux.org/title/tmux#Start_tmux_on_every_shell_login
+if [ -x "$(command -v tmux)" ] && [ -n "${DISPLAY}" ]; then
+  [ -z "${TMUX}" ] && { tmux attach || tmux; } >/dev/null 2>&1
+fi
+
+
 # Profile startup time
 zmodload zsh/zprof
 
@@ -56,9 +64,7 @@ configs=(
     'Neovim' "$HOME/.config/nvim/init.lua"
     'Zsh' "$HOME/.zshrc"
     'Kitty' "$HOME/.config/kitty/kitty.conf"
-    'Doom Emacs' "$HOME/.doom.d/config.el"
-    'Doom Init' "$HOME/.doom.d/init.el"
-    'Doom Packages' "$HOME/.doom.d/packages.el"
+    'Tmux' "$HOME/.tmux.conf"
 )
 
 ###########
@@ -150,6 +156,10 @@ alias fzfh="rg --files --hidden -g "!.git" | fzf"
 alias vf='nvim.appimage $(fzf) '
 alias -g Z='| fzf'
 alias fzopen='xdg-open "$(fzf)"'
+
+# Tmux
+alias tmki="tmux kill-server"
+alias tmat="tmux attach"
 
 # Web development
 

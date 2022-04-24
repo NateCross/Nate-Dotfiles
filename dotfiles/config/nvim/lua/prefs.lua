@@ -75,6 +75,11 @@ opt.history    = 100          -- remember n lines in history
 opt.lazyredraw = true         -- faster scrolling
 opt.synmaxcol  = 240          -- max column for syntax highlight
 
+-- Disable filetype.vim and use only filetype.lua
+g.do_filetype_lua    = 1
+g.did_load_filetypes = 0
+
+
 -----------------------
 --- Tabs and Indent ---
 -----------------------

@@ -47,6 +47,15 @@ return require('packer').startup(function(use)
 use 'wbthomason/packer.nvim'
 -- }}}
 
+-- Impatient: Improve startup time {{{
+use {
+  'lewis6991/impatient.nvim',
+  config = function()
+    require('impatient')
+  end
+}
+-- }}}
+
 -- {{{ Nvim-tree: File tree viewer
 -- https://github.com/kyazdani42/nvim-tree.lua
 use {
@@ -54,7 +63,7 @@ use {
   requires = 'kyazdani42/nvim-web-devicons',
   -- config = function() require'nvim-tree'.setup {} end
   config = function()
-      require("plugins/nvim-tree")
+    require("plugins/nvim-tree")
   end
 }
 -- }}}
@@ -88,12 +97,6 @@ use {
     require("plugins/telescope")
   end,
 }
--- }}}
-
--- Tim Pope's fugitive, for git integration {{{
-use { 'tpope/vim-fugitive' }
--- Makes the :GBrowse command work
-use { 'tpope/vim-rhubarb' }
 -- }}}
 
 -- Git signs: Git diff and stuff in nvim {{{
@@ -234,7 +237,6 @@ use {
 }
 -- }}}
 
-
 -- Nvim-autopairs: Automatically adds parentheses and stuff {{{
 -- https://github.com/windwp/nvim-autopairs
 use {
@@ -250,17 +252,6 @@ use {
       "confirm_done",
       cmp_autopairs.on_confirm_done({map_char = {tex = ""}})
     )
-  end
-}
--- }}}
-
--- Vista: Shows tags for easy movement {{{
--- https://github.com/liuchengxu/vista.vim
--- Not actually a lua plugin, but I'll manage it the same way
-use {
-  'liuchengxu/vista.vim',
-  config = function()
-    require("plugins/vista")
   end
 }
 -- }}}
@@ -304,16 +295,6 @@ use {
 }
 -- }}}
 
--- Quick-UI: Double tap space for a menu and reference {{{
--- https://github.com/skywind3000/vim-quickui
-use {
-  'skywind3000/vim-quickui',
-  config = function()
-    require("plugins/quickui")
-  end
-}
--- }}}
-
 -- Which-Key: A keybinding reference when you press stuff {{{
 -- https://github.com/folke/which-key.nvim
 use {
@@ -352,18 +333,6 @@ use {
   end,
 	wants = {'nvim-treesitter'}, -- or require if not used so far
 	after = {'nvim-cmp'} -- if a completion plugin is using tabs load it before
-}
--- }}}
-
--- Lightspeed: For quick movement using "s" alongside f and t keys {{{
--- https://github.com/ggandor/lightspeed.nvim
--- Trigger with s/S
-use {
-  'ggandor/lightspeed.nvim',
-  requires = 'tpope/vim-repeat', -- Needed for dot repeat
-  config = function()
-    require("plugins/lightspeed")
-  end
 }
 -- }}}
 
@@ -702,34 +671,6 @@ use {
 
       },
     })
-  end
-}
--- }}}
-
--- Mkdx: Enhanced markdown {{{
--- https://github.com/SidOfc/mkdx
--- use {
---   'SidOfc/mkdx',
---   config = function()
---     require("plugins/mkdx")
---   end
--- }
-
--- }}}
-
--- Org-bullets: Make org files look prettier {{{
--- https://github.com/akinsho/org-bullets.nvim
-use {
-  'akinsho/org-bullets.nvim',
-  config = function()
-    require("org-bullets").setup {
-      symbols = { "◉", "○", "✸", "✿" },
-      -- or a function that receives the defaults and returns a list
-      symbols = function(default_list)
-        table.insert(default_list, "♥")
-        return default_list
-      end
-    }
   end
 }
 -- }}}

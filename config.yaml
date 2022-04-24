@@ -14,6 +14,8 @@ actions:
   loginstall: echo {{@@ _dotfile_abs_src @@}} installed to {{@@ _dotfile_abs_dst @@}}
     >> {0}
   install_fisher: curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
+  install_tpm: git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm &&
+    echo "Installed Tmux Plugin Manager"
 dotfiles:
   d_nvim:
     src: config/nvim
@@ -119,6 +121,12 @@ dotfiles:
   f_lazygit_config.yml:
     src: config/lazygit/config.yml
     dst: ~/.config/lazygit/config.yml
+  f_tmux.conf:
+    src: tmux.conf
+    dst: ~/.tmux.conf
+  f_tmux-modal.conf:
+    src: tmux-modal.conf
+    dst: ~/.tmux-modal.conf
 profiles:
   neovim:
     dotfiles:
@@ -175,3 +183,9 @@ profiles:
   lazygit:
     dotfiles:
     - f_lazygit_config.yml
+  tmux:
+    dotfiles:
+    - f_tmux.conf
+    - f_tmux-modal.conf
+    actions:
+    - install_tpm
