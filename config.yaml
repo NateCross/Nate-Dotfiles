@@ -16,6 +16,7 @@ actions:
   install_fisher: curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
   install_tpm: git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm &&
     echo "Installed Tmux Plugin Manager"
+  install_libtmux: pip install --user libtmux && echo "Installed libtmux"
 dotfiles:
   d_nvim:
     src: config/nvim
@@ -132,7 +133,10 @@ dotfiles:
     dst: ~/.tmux-powerlinerc
   f_custom.sh:
     src: tmux/plugins/tmux-powerline/themes/custom.sh
-    dst: ~/.tmux/plugins/tmux-powerline/themes/custom.sh
+    dst: ~/.tmux/powerline-custom/themes/custom.sh
+  d_powerline-custom:
+    src: tmux/powerline-custom
+    dst: ~/.tmux/powerline-custom
 profiles:
   neovim:
     dotfiles:
@@ -194,6 +198,7 @@ profiles:
     - f_tmux.conf
     - f_tmux-modal.conf
     - f_tmux-powerlinerc
-    - f_custom.sh
+    - d_powerline-custom
     actions:
     - install_tpm
+    - install_libtmux

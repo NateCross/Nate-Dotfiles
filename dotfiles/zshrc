@@ -71,10 +71,10 @@ configs=(
 ### FZF ###
 ###########
 
-export FZF_DEFAULT_OPTS="--preview '([[ -f {} ]] && (bat --style=numbers --color=always {} || cat {})) || ([[ -d {} ]] && (tree -C {} | less)) || echo {} 2> /dev/null | head -200'"
+# export FZF_DEFAULT_OPTS="--preview '([[ -f {} ]] && (bat --style=numbers --color=always {} || cat {})) || ([[ -d {} ]] && (tree -C {} | less)) || echo {} 2> /dev/null | head -200'"
 
 # FZF colorscheme
-export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' --color=fg:#e64a9b,bg:#120307,hl:#2dba1a --color=fg+:#ff05a3,bg+:#120307,hl+:#00eaff --color=info:#eb6f6f,prompt:#ff006f,pointer:#8a1563 --color=marker:#87ff00,spinner:#af5fff,header:#d10404'
+# export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' --color=fg:#e64a9b,bg:#120307,hl:#2dba1a --color=fg+:#ff05a3,bg+:#120307,hl+:#00eaff --color=info:#eb6f6f,prompt:#ff006f,pointer:#8a1563 --color=marker:#87ff00,spinner:#af5fff,header:#d10404'
 
 export FZF_DEFAULT_COMMAND="rg -L --files --no-ignore-vcs "
 
@@ -154,6 +154,7 @@ alias fzopen='xdg-open "$(fzf)"'
 # Tmux
 alias tmki="tmux kill-server"
 alias tmat="tmux attach"
+alias tmde="tmux detach"
 
 # Web development
 
@@ -240,15 +241,15 @@ zstyle ':completion:*' verbose true
 
 # FZF-Tab default config
 # disable sort when completing `git checkout`
-zstyle ':completion:*:git-checkout:*' sort false
+# zstyle ':completion:*:git-checkout:*' sort false
 # set descriptions format to enable group support
-zstyle ':completion:*:descriptions' format '[%d]'
+# zstyle ':completion:*:descriptions' format '[%d]'
 # set list-colors to enable filename colorizing
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+# zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 # preview directory's content with exa when completing cd
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
+# zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
 # switch group using `,` and `.`
-zstyle ':fzf-tab:*' switch-group ',' '.'
+# zstyle ':fzf-tab:*' switch-group ',' '.'
 
 ### Autocomplete
 # https://github.com/marlonrichert/zsh-autocomplete/blob/main/.zshrc
@@ -379,7 +380,6 @@ fi
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
@@ -412,6 +412,7 @@ zinit ice depth=1; zinit light romkatv/powerlevel10k
 # https://github.com/jeffreytse/zsh-vi-mode
 zinit ice depth=1
 zinit light jeffreytse/zsh-vi-mode
+# bindkey -v
 
 ### Zsh Autocomplete: Realtime autocompletion
 ### Better than Fzf tab for completion
@@ -435,16 +436,16 @@ zinit light zsh-users/zsh-completions
 
 # Colored man pages
 # https://github.com/ael-code/zsh-colored-man-pages
-zinit light ael-code/zsh-colored-man-pages
+# zinit light ael-code/zsh-colored-man-pages
 
 # FM: A file manager for any shell
 # https://github.com/ddnexus/fm
-zinit ice --depth'1' atinit'source fm.zsh' atclone'./fm__compile' atpull'%atclone'
-zinit light ddnexus/fm
+# zinit ice --depth'1' atinit'source fm.zsh' atclone'./fm__compile' atpull'%atclone'
+# zinit light ddnexus/fm
 
 ### Cd-reporoot
 # https://github.com/P4Cu/cd-reporoot
-zinit light P4Cu/cd-reporoot
+# zinit light P4Cu/cd-reporoot
 
 ### zsh expand: Expands aliases and abbreviations like fish
 # https://github.com/MenkeTechnologies/zsh-expand
@@ -453,11 +454,11 @@ zinit load MenkeTechnologies/zsh-expand
 
 ### fzf marks: Bookmark dirs and jump to them
 # (https://github.com/urbainvaes/fzf-marks)
-zinit load urbainvaes/fzf-marks
+# zinit load urbainvaes/fzf-marks
 
 ### Zsh edit: Better binds and line-editing tools
 # (https://github.com/marlonrichert/zsh-edit)
-zinit load marlonrichert/zsh-edit
+# zinit load marlonrichert/zsh-edit
 
 ###################
 ### PLUGINS END ###

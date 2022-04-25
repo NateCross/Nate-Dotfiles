@@ -28,6 +28,7 @@ Run the following command once cloned.
 
 # Tmux
 ./dotdrop.sh install -p tmux
+Note: Use the tmux-server-on-startup.sh and tmux-server-on-shutdown.sh
 
 # Doom Emacs
 # https://github.com/hlissner/doom-emacs
