@@ -6,6 +6,8 @@
 local Utils = require("keybind_utils")
 
 local exprnnoremap = Utils.exprnnoremap
+local exprinoremap = Utils.exprinoremap
+-- local exprinoremap = Utils.exprinoremap
 local nnoremap = Utils.nnoremap
 local vnoremap = Utils.vnoremap
 local xnoremap = Utils.xnoremap
@@ -185,16 +187,17 @@ vim.api.nvim_set_keymap('v', 'cR', '<cmd>lua require("renamer").rename()<cr>', {
 
 -- LSP
 nnoremap("gs", "<cmd>lua vim.lsp.buf.declaration()<CR>")
-nnoremap("gd", "<cmd>lua require'telescope.builtin'.lsp_definitions{}<CR>")
+nnoremap("gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
 nnoremap("gh", "<cmd>lua vim.lsp.buf.hover()<CR>")
-nnoremap("gD", "<cmd>lua vim.lsp.buf.implementation()<CR>")
+nnoremap("gi", "<cmd>lua vim.lsp.buf.implementation()<CR>")
 nnoremap("<c-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
-nnoremap("<leader>gd", "<cmd>lua vim.lsp.buf.type_definition()<CR>")
-nnoremap("gr", "<cmd>lua require'telescope.builtin'.lsp_references{}<CR>")
+nnoremap("gD", "<cmd>lua vim.lsp.buf.type_definition()<CR>")
+nnoremap("gr", "<cmd>lua vim.lsp.buf.references()<CR>")
 nnoremap("g0", "<cmd>lua vim.lsp.buf.document_symbol()<CR>")
-nnoremap("gW", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>")
+nnoremap("gw", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>")
+nnoremap("<leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>")
 nnoremap("<leader>e", "<cmd>lua vim.diagnostic.open_float()<CR>")
-nnoremap("<leader>a", "<cmd>lua require'telescope.builtin'.lsp_code_actions{}<CR>")
+nnoremap("<leader>a", "<cmd>lua vim.lsp.buf.code_action()<CR>")
 vnoremap("<leader>a", "<cmd>lua require'telescope.builtin'.lsp_range_code_actions{}<CR>")
 
 -- Neovide
@@ -237,6 +240,7 @@ tnoremap("<F4>", "<C-\\><C-n>:FloatermToggle<CR>")
 -- Open lazygit in floaterm
   -- Requires lazygit
 nnoremap("<leader><leader>", ":FloatermNew --position=center --autoclose=2 --height=0.9 --width=0.9 lazygit<CR>")
+nnoremap("gq", ":FloatermNew --position=center --autoclose=2 --height=0.9 --width=0.9 lazygit<CR>")
 
 -- ColorToggle
 nnoremap("<leader>ct", ":ColorToggle<CR>")
@@ -249,3 +253,11 @@ nnoremap("<leader>bb", ":SidebarNvimToggle<CR>")
 nnoremap("<leader>nf", ":lua vim.lsp.buf.formatting()<CR>")
 nnoremap("<leader>nd", ":lua vim.diagnostic.setqflist()")
 vnoremap("<leader>nf", ":lua vim.lsp.buf.range_formatting()<CR>")
+
+-- Vim Doge
+-- https://github.com/kkoomen/vim-doge
+vim.g.doge_mapping = '<Leader>v'
+
+-- Vsnip
+-- https://github.com/hrsh7th/vim-vsnip
+-- exprinoremap("<Tab>", "vsnip#jumpable(1) ? <Plug>(vsnip-jump-next)")

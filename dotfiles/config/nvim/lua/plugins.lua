@@ -109,9 +109,10 @@ use {
     'neovim/nvim-lspconfig',
     'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-path',
-    'hrsh7th/cmp-nvim-lsp'
-    -- Not using cmdline because of wilder
-    -- Plug 'hrsh7th/cmp-cmdline'
+    'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/cmp-cmdline',
+    'hrsh7th/cmp-nvim-lsp-document-symbol',
+    'ray-x/cmp-treesitter',
   },
   config = function()
     require("plugins/nvim-cmp")
@@ -182,7 +183,7 @@ use 'p00f/nvim-ts-rainbow'
 
 -- Treesitter Context: Show which function you're currently in at top {{{
 use {
-  'romgrk/nvim-treesitter-context',
+  'lewis6991/nvim-treesitter-context',
   config = function()
   require'treesitter-context'.setup{
     enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
@@ -216,13 +217,13 @@ use {
 
 -- Wilder: a better, customizable wildmenu {{{
 -- https://github.com/gelguy/wilder.nvim
-use {
-  'gelguy/wilder.nvim',
-  run = ':UpdateRemotePlugins',
-  config = function()
-    require("plugins/wilder")
-  end,
-}
+-- use {
+--   'gelguy/wilder.nvim',
+--   run = ':UpdateRemotePlugins',
+--   config = function()
+--     require("plugins/wilder")
+--   end,
+-- }
 -- }}}
 
 -- Nvim-autopairs: Automatically adds parentheses and stuff {{{
@@ -247,6 +248,7 @@ use {
 -- Treesitter Textobjects {{{
 -- https://github.com/nvim-treesitter/nvim-treesitter-textobjects
 -- Must configure the binds to get it working!
+-- WARN: DOES NOT SEEM TO WORK
 -- use {
 --   'nvim-treesitter/nvim-treesitter-textobjects',
 --   config = function()
@@ -403,19 +405,19 @@ use {
 -- Comment: Lua commenting plugin with gcc, LSP and TS support {{{
 -- https://github.com/numToStr/Comment.nvim
 use {
-    'numToStr/Comment.nvim',
-    config = function()
-        require('Comment').setup()
-    end
+  'numToStr/Comment.nvim',
+  config = function()
+      require('Comment').setup()
+  end
 }
 -- }}}
 
 -- Fzf: Fast fuzzy finder for locating files {{{
 -- https://github.com/junegunn/fzf.vim
 use {
-    'junegunn/fzf.vim',
-    requires = 'junegunn/fzf',
-    run = ':fzf#install()'
+  'junegunn/fzf.vim',
+  requires = 'junegunn/fzf',
+  run = ':fzf#install()'
 }
 -- }}}
 
@@ -641,26 +643,26 @@ use {
 
 -- Null-LS: Lints and code actions {{{
 -- (https://github.com/jose-elias-alvarez/null-ls.nvim)
-use {
-  'jose-elias-alvarez/null-ls.nvim',
-  requires = "nvim-lua/plenary.nvim",
-  config = function()
-    require("null-ls").setup({
-      sources = {
-        require("null-ls").builtins.formatting.black,
-
-        require("null-ls").builtins.formatting.eslint_d,
-        require("null-ls").builtins.code_actions.eslint_d,
-        require("null-ls").builtins.diagnostics.eslint_d,
-
-        -- NOTE: clang format is not needed because it is native with clangd
-        -- require("null-ls").builtins.formatting.clang_format,
-        -- require("null-ls").builtins.diagnostics.cppcheck,
-
-      },
-    })
-  end
-}
+-- use {
+--   'jose-elias-alvarez/null-ls.nvim',
+--   requires = "nvim-lua/plenary.nvim",
+--   config = function()
+--     require("null-ls").setup({
+--       sources = {
+--         require("null-ls").builtins.formatting.black,
+--
+--         require("null-ls").builtins.formatting.eslint_d,
+--         require("null-ls").builtins.code_actions.eslint_d,
+--         require("null-ls").builtins.diagnostics.eslint_d,
+--
+--         -- NOTE: clang format is not needed because it is native with clangd
+--         -- require("null-ls").builtins.formatting.clang_format,
+--         -- require("null-ls").builtins.diagnostics.cppcheck,
+--
+--       },
+--     })
+--   end
+-- }
 -- }}}
 
 -- Wakatime: To flex on people {{{
@@ -697,8 +699,43 @@ use {
 
 -- }}}
 
+-- Vim-Doge: Documentation generation {{{
+-- https://github.com/kkoomen/vim-doge
+use {
+  'kkoomen/vim-doge',
+  run = ':doge#install()',
+}
+-- }}}
+
 -- Startup time {{{
 use 'dstein64/vim-startuptime'
+
+-- }}}
+
+-- Dim highlights of unused functions {{{
+-- https://github.com/zbirenbaum/neodim
+use {
+  "zbirenbaum/neodim",
+  event = "LspAttach",
+  config = function ()
+    require("neodim").setup({
+      hide = {
+        virtual_text = true,
+        signs = true,
+        underline = true,
+      }
+    })
+  end
+}
+-- }}}
+
+-- Nvim-notify: Change notification handler {{{
+use {
+  "rcarriga/nvim-notify",
+  config = function()
+    vim.notify = require("notify")
+  end
+}
 
 -- }}}
 

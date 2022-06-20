@@ -35,7 +35,8 @@ vim.o.cmdheight       = 1	    -- Better Error Messages
 vim.wo.signcolumn     = 'yes'	-- Adds sign column for plugins
 
 opt.showmatch    = true          -- highlight matching parenthesis
-opt.foldmethod   = 'manual'      -- enable folding
+opt.foldmethod   = 'expr'        -- enable folding
+opt.foldexpr     = 'nvim_treesitter#foldexpr()'
 opt.colorcolumn  = '80'          -- line lenght marker at 80 columns
 opt.splitright   = true          -- vertical split to the right
 opt.splitbelow   = true          -- orizontal split to the bottom
@@ -129,7 +130,9 @@ cmd [[autocmd FileType markdown setlocal spell shiftwidth=2 softtabstop=2 expand
 cmd [[autocmd FileType lua setlocal shiftwidth=2 softtabstop=2 expandtab]]
 cmd [[autocmd FileType html setlocal shiftwidth=2 softtabstop=2 expandtab]]
 cmd [[autocmd FileType js setlocal shiftwidth=2 softtabstop=2 expandtab]]
+cmd [[autocmd FileType css setlocal shiftwidth=2 softtabstop=2 expandtab]]
 cmd [[autocmd FileType javascript setlocal shiftwidth=2 softtabstop=2 expandtab]]
+cmd [[autocmd FileType typescript setlocal shiftwidth=2 softtabstop=2 expandtab]]
 
 -- Make .h files be recognized as c, not cpp
 cmd [[let g:c_syntax_for_h = 1]]
@@ -151,6 +154,8 @@ cmd [[au VimEnter * FocusToggle]]
 
 -- Automatically open all folds on entering a buffer
 -- cmd [[au BufEnter * normal zR]]
+-- The autocmd below fixes the "which-key" plugin
+cmd [[au BufWinEnter * silent! :%foldopen!]]
 
 -- Auto run :PackerCompile when plugins.lua is updated
 vim.cmd([[

@@ -5,9 +5,9 @@
 # if tmux is executable, X is running, and not inside a tmux session, then try to attach.
 # if attachment fails, start a new session
 # https://wiki.archlinux.org/title/tmux#Start_tmux_on_every_shell_login
-if [ -x "$(command -v tmux)" ] && [ -n "${DISPLAY}" ]; then
-  [ -z "${TMUX}" ] && { tmux attach || tmux; } >/dev/null 2>&1
-fi
+# if [ -x "$(command -v tmux)" ] && [ -n "${DISPLAY}" ]; then
+#   [ -z "${TMUX}" ] && { tmux attach || tmux; } >/dev/null 2>&1
+# fi
 
 
 # Profile startup time
@@ -65,6 +65,7 @@ configs=(
     'Zsh' "$HOME/.zshrc"
     'Kitty' "$HOME/.config/kitty/kitty.conf"
     'Tmux' "$HOME/.tmux.conf"
+    'Xplr' "$HOME/.config/xplr/init.lua"
 )
 
 ###########
@@ -117,6 +118,9 @@ alias trashl="trash-list"
 alias trashr="trash-restore"
 alias trashe="trash-empty"
 
+# xplr
+alias xcd='cd "$(xplr --print-pwd-as-result)"'
+
 # Git
 alias ga="git add"
 alias gp="git push"
@@ -163,6 +167,10 @@ alias tmde="tmux detach"
 # Make sure to start in the server directory!
 # https://dev.to/fidelve/using-vim-as-your-main-editor-for-web-development-5a73
 alias serve="browser-sync start --server --files . --no-notify --host $SERVER_IP"
+alias tsn="ts-node"
+
+# youtube-dl
+alias ytmp3="youtube-dl -x --audio-format mp3"
 
 # nnn file manager stuff
 alias n="nnn -e -x"
@@ -227,7 +235,7 @@ zstyle ':completion:*' completer _expand _complete _correct _approximate
 
 # zstyle ':completion:*' format '%F{magenta}Completing:%f %d'
 zstyle ':completion:*' format '%UCompleting %d%u'
-zstyle ':completion:*' group-name ''
+# zstyle ':completion:*' group-name ''
 zstyle ':completion:*' menu select=2
 eval "$(dircolors -b)"
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
@@ -478,6 +486,12 @@ function _run_fzm() {
 # NOTE: Requires zsh vim plugin
 # NOTE: Define widgets first above,
 #       then bind those widgets to a command
+
+function runXplr() {
+    cd "$(xplr --print-pwd-as-result)"
+}
+zle -N runXplr
+bindkey '^x' runXplr
 
 function zvm_after_lazy_keybindings() {
 
