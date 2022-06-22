@@ -16,7 +16,24 @@ end
 
 require('telescope').setup{
   defaults = {
-    file_ignore_patterns = {"C:/Windows/", "node_modules", "obsidian", ".obsidian"},
+    vimgrep_arguments = {
+      "rg",
+      "--color=never",
+      "--no-heading",
+      "--with-filename",
+      "--line-number",
+      "--column",
+      "--smart-case",
+      "--trim",
+      "-g!{package.json,package-lock.json}"
+    },
+
+    preview = {
+      treesitter = false,
+      languages = { "perl", "javascript" },
+    },
+
+    file_ignore_patterns = {"C:/Windows/", "node_modules", "obsidian", ".obsidian", "package-lock.json", ".git"},
     buffer_previewer_maker = new_maker,
 
     -- Default configuration for telescope goes here:

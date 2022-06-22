@@ -245,18 +245,6 @@ use {
 }
 -- }}}
 
--- Treesitter Textobjects {{{
--- https://github.com/nvim-treesitter/nvim-treesitter-textobjects
--- Must configure the binds to get it working!
--- WARN: DOES NOT SEEM TO WORK
--- use {
---   'nvim-treesitter/nvim-treesitter-textobjects',
---   config = function()
---     require("plugins/treesitter-textobjects")
---   end
--- }
--- }}}
-
 -- Async Tasks: For running and building programs {{{
 -- https://github.com/skywind3000/asynctasks.vim
 -- Make sure to bind run, compile, and build
@@ -756,7 +744,121 @@ use {
     }
   end
 }
+-- }}}
 
+-- Rooter {{{
+use {
+  'notjedi/nvim-rooter.lua',
+  config = function()
+    require('nvim-rooter').setup {
+      rooter_patterns = { '.git', '.hg', '.svn' },
+      trigger_patterns = { '*' },
+      manual = false,
+    }
+  end
+}
+
+-- }}}
+
+-- Neo-tree {{{
+-- https://github.com/nvim-neo-tree/neo-tree.nvim
+
+-- Unless you are still migrating, remove the deprecated commands from v1.x
+vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
+
+use {
+  "nvim-neo-tree/neo-tree.nvim",
+  branch = "v2.x",
+  requires = {
+    "nvim-lua/plenary.nvim",
+    "kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
+    "MunifTanjim/nui.nvim",
+  }
+}
+
+-- }}}
+
+-- Virtual-types {{{
+use {
+  'jubnzv/virtual-types.nvim',
+  config = function()
+  end
+}
+
+-- }}}
+
+-- Lsp Lines {{{
+use {
+  "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+  config = function()
+    require("lsp_lines").register_lsp_virtual_lines()
+  end,
+}
+
+-- }}}
+
+-- Goto-preview {{{
+-- https://github.com/rmagatti/goto-preview
+use {
+  'rmagatti/goto-preview',
+  config = function()
+    require('goto-preview').setup {}
+  end
+}
+
+-- }}}
+
+-- Regexplainer {{{
+-- https://github.com/bennypowers/nvim-regexplainer
+use {
+  'bennypowers/nvim-regexplainer',
+  config = function()
+    require'regexplainer'.setup {
+      filetypes = {
+        'html',
+        'js',
+        'cjs',
+        'mjs',
+        'ts',
+        'jsx',
+        'tsx',
+        'cjsx',
+        'mjsx',
+        'md',
+        'py',
+      }
+    }
+  end,
+  requires = {
+    'nvim-treesitter/nvim-treesitter',
+    'MunifTanjim/nui.nvim',
+  }
+}
+
+-- }}}
+
+-- Pretty fold {{{
+use {
+  'anuvyklack/pretty-fold.nvim',
+   requires = 'anuvyklack/nvim-keymap-amend', -- only for preview
+   config = function()
+      require('pretty-fold').setup()
+      require('pretty-fold.preview').setup()
+   end
+}
+
+-- }}}
+
+-- Renamer: Fancy rename ui {{{
+-- https://github.com/filipdutescu/renamer.nvim
+use {
+  'filipdutescu/renamer.nvim',
+  branch = 'master',
+  requires = { {'nvim-lua/plenary.nvim'} },
+  config = function()
+    require('renamer').setup{}
+  end
+}
 -- }}}
 
 -- }}}

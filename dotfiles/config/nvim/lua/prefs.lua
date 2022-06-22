@@ -125,6 +125,11 @@ opt.completeopt = "menu,menuone,noselect" -- For nvim=cmp
 --- Misc. Options ---
 ---------------------
 
+-- Disable LSP virtual text due to having lsp_lines
+vim.diagnostic.config({
+  virtual_text = false,
+})
+
 -- FILETYPE TWEAK --
 cmd [[autocmd FileType markdown setlocal spell shiftwidth=2 softtabstop=2 expandtab]]
 cmd [[autocmd FileType lua setlocal shiftwidth=2 softtabstop=2 expandtab]]
@@ -158,12 +163,12 @@ cmd [[au VimEnter * FocusToggle]]
 cmd [[au BufWinEnter * silent! :%foldopen!]]
 
 -- Auto run :PackerCompile when plugins.lua is updated
-vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
-  augroup end
-]])
+-- vim.cmd([[
+--   augroup packer_user_config
+--     autocmd!
+--     autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+--   augroup end
+-- ]])
 
 -- Async Tasks options
 vim.g.asyncrun_open = 6
@@ -175,6 +180,6 @@ vim.g.floaterm_position = "bottomright"
 
 -- Null-ls
 -- Fix for https://github.com/jose-elias-alvarez/null-ls.nvim/issues/428
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.offsetEncoding = { "utf-16" }
-require("lspconfig").clangd.setup({ capabilities = capabilities })
+-- local capabilities = vim.lsp.protocol.make_client_capabilities()
+-- capabilities.offsetEncoding = { "utf-16" }
+-- require("lspconfig").clangd.setup({ capabilities = capabilities })

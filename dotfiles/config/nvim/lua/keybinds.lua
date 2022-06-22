@@ -132,15 +132,15 @@ inoremap("<f13>", "<CR>")
 --- PLUGIN MAPPINGS ---
 -----------------------
 
--- Nvim-tree
--- https://github.com/kyazdani42/nvim-tree.lua
-nnoremap("<leader>.", ":NvimTreeToggle<CR>")
+-- NeoTree
+-- https://github.com/nvim-neo-tree/neo-tree.nvim
+nnoremap("<leader>.", ":Neotree toggle reveal<CR>")
 -- Custom bind to quickly go to symlinked Github dir
-nnoremap("<leader>>", ":cd ~/HDD/Github | :NvimTreeToggle<CR>")
+nnoremap("<leader>,", ":Neotree toggle position=float<CR>")
 
 -- LSP Config
 -- see plugins/lsp-config.lua
-nnoremap("cr", "<cmd>lua vim.lsp.buf.rename()<CR>")
+-- nnoremap("cr", "<cmd>lua vim.lsp.buf.rename()<CR>")
 
 -- Telescope
 -- See https://github.com/nvim-telescope/telescope.nvim/issues/394
@@ -179,8 +179,8 @@ vim.api.nvim_set_keymap('x', 'ga', '<Plug>(EasyAlign)', {} )
 -- Renamer: Use as alternate in case LSP doesn't work
 -- https://github.com/filipdutescu/renamer.nvim
 vim.api.nvim_set_keymap('i', '<F2>', '<cmd>lua require("renamer").rename()<cr>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', 'cR', '<cmd>lua require("renamer").rename()<cr>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('v', 'cR', '<cmd>lua require("renamer").rename()<cr>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', 'cr', '<cmd>lua require("renamer").rename()<cr>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', 'cr', '<cmd>lua require("renamer").rename()<cr>', { noremap = true, silent = true })
 
 -- Symbols Outline
 -- nnoremap("<leader>b", ":SymbolsOutline<CR>")
@@ -195,7 +195,7 @@ nnoremap("gD", "<cmd>lua vim.lsp.buf.type_definition()<CR>")
 nnoremap("gr", "<cmd>lua vim.lsp.buf.references()<CR>")
 nnoremap("g0", "<cmd>lua vim.lsp.buf.document_symbol()<CR>")
 nnoremap("gw", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>")
-nnoremap("<leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>")
+nnoremap("<leader>fz", "<cmd>lua vim.lsp.buf.formatting()<CR>")
 nnoremap("<leader>e", "<cmd>lua vim.diagnostic.open_float()<CR>")
 nnoremap("<leader>a", "<cmd>lua vim.lsp.buf.code_action()<CR>")
 vnoremap("<leader>a", "<cmd>lua require'telescope.builtin'.lsp_range_code_actions{}<CR>")
@@ -261,3 +261,12 @@ vim.g.doge_mapping = '<Leader>v'
 -- Vsnip
 -- https://github.com/hrsh7th/vim-vsnip
 -- exprinoremap("<Tab>", "vsnip#jumpable(1) ? <Plug>(vsnip-jump-next)")
+
+-- Goto-preview
+-- https://github.com/rmagatti/Goto-preview
+nnoremap("god", ":lua require('goto-preview').goto_preview_definition()<CR>")
+nnoremap("goi", ":lua require('goto-preview').goto_preview_implementation()<CR>")
+nnoremap("gor", ":lua require('goto-preview').goto_preview_references()<CR>")
+nnoremap("gO", ":lua require('goto-preview').close_all_win()<CR>")
+
+-- Renamer
