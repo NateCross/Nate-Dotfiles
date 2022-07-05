@@ -137,7 +137,9 @@ cmd [[autocmd FileType html setlocal shiftwidth=2 softtabstop=2 expandtab]]
 cmd [[autocmd FileType js setlocal shiftwidth=2 softtabstop=2 expandtab]]
 cmd [[autocmd FileType css setlocal shiftwidth=2 softtabstop=2 expandtab]]
 cmd [[autocmd FileType javascript setlocal shiftwidth=2 softtabstop=2 expandtab]]
+cmd [[autocmd FileType javascriptreact setlocal shiftwidth=2 softtabstop=2 expandtab]]
 cmd [[autocmd FileType typescript setlocal shiftwidth=2 softtabstop=2 expandtab]]
+cmd [[autocmd FileType typescriptreact setlocal shiftwidth=2 softtabstop=2 expandtab]]
 
 -- Make .h files be recognized as c, not cpp
 cmd [[let g:c_syntax_for_h = 1]]

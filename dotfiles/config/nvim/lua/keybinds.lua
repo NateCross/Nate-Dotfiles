@@ -150,7 +150,8 @@ nnoremap("<leader>fg", "<cmd>lua require('telescope.builtin').git_files()<cr>")
 nnoremap("<leader>fs", "<cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>")
 nnoremap("<leader>fe", ":Telescope find_files find_command=rg,--ignore,--hidden,--files<CR>")
 nnoremap("<leader>fd", "<cmd>lua require('telescope.builtin').live_grep()<cr>")
-nnoremap("<leader>fb", "<cmd>lua require 'telescope'.extensions.file_browser.file_browser()<CR>")
+nnoremap("<leader>fb", "<cmd>lua require 'telescope.builtin'.buffers()<CR>")
+nnoremap("<leader>fm", "<cmd>lua require('telescope.builtin').keymaps()<CR>")
 -- nnoremap("<leader><space>", ":Telescope command_palette<CR>")
 
 -- fzf-lua

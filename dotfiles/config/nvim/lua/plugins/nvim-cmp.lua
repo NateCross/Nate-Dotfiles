@@ -26,6 +26,7 @@ local source_mapping = {
       { name = 'cmp_tabnine' },
       { name = 'orgmode' },
       { name = 'treesitter' },
+      { name = 'nvim_lsp' },
 	},
     completion = {
       completeopt = 'menu,menuone,noinsert',
@@ -154,5 +155,8 @@ local source_mapping = {
     capabilities = capabilities
   }
   require('lspconfig')["tsserver"].setup {
+    capabilities = capabilities
+  }
+  require('lspconfig')["cssls"].setup {
     capabilities = capabilities
   }

@@ -233,6 +233,7 @@ use {
   config = function()
     require('nvim-autopairs').setup({
       disable_filetype = { "TelescopePrompt" , "vim" },
+      check_ts = true,
     })
     -- These lines are required to make it work with nvim-cmp
     local cmp_autopairs = require("nvim-autopairs.completion.cmp")
@@ -342,7 +343,7 @@ use {
       conditions = {
           exists = true,
           filename_is_not = {},
-          filetype_is_not = {},
+          filetype_is_not = {'jsx', 'tsx'},
           modifiable = true
       },
       write_all_buffers = false,
