@@ -137,6 +137,9 @@ dotfiles:
   d_powerline-custom:
     src: tmux/powerline-custom
     dst: ~/.tmux/powerline-custom
+  d_emacs:
+    src: config/emacs
+    dst: ~/.config/emacs
 profiles:
   neovim:
     dotfiles:
@@ -202,3 +205,6 @@ profiles:
     actions:
     - install_tpm
     - install_libtmux
+  emacs:
+    dotfiles:
+    - d_emacs

@@ -343,7 +343,7 @@ use {
       conditions = {
           exists = true,
           filename_is_not = {},
-          filetype_is_not = {'jsx', 'tsx'},
+          filetype_is_not = {'javascriptreact', 'typescriptreact'},
           modifiable = true
       },
       write_all_buffers = false,
@@ -476,20 +476,20 @@ use {
 
 -- Shade: Dims inactive regions {{{
 -- https://github.com/sunjon/Shade.nvim
-use {
-  'sunjon/shade.nvim',
-  config = function()
-    require'shade'.setup({
-      overlay_opacity = 50,
-      opacity_step = 1,
-      keys = {
-        brightness_up    = '<C-Up>',
-        brightness_down  = '<C-Down>',
-        toggle           = '<Leader>s',
-      }
-    })
-  end
-}
+-- use {
+--   'sunjon/shade.nvim',
+--   config = function()
+--     require'shade'.setup({
+--       overlay_opacity = 50,
+--       opacity_step = 1,
+--       keys = {
+--         brightness_up    = '<C-Up>',
+--         brightness_down  = '<C-Down>',
+--         toggle           = '<Leader>s',
+--       }
+--     })
+--   end
+-- }
 -- }}}
 
 -- Colorizer: Highlights hex code colors {{{
@@ -569,21 +569,21 @@ use {
 
 -- Focus: Arranges buffers {{{
 -- https://github.com/beauwilliams/focus.nvim
-use {
-  "beauwilliams/focus.nvim",
-  cmd = { "FocusToggle" },
-  config = function()
-    require("focus").setup({
-      -- excluded_filetypes = {"toggleterm"}
-      -- excluded_buftypes = {"NvimTree"}
-      -- NOTE: Insert DAP UI here
-      -- enable = true,
-      compatible_filetrees = {
-        "OUTLINE", "DAP Scopes", "sh", "DAP Breakpoints", "DAP Stacks",
-        "DAP Watches", "dap-repl", "Quickfix List", "quickfix"}
-    })
-  end
-}
+-- use {
+--   "beauwilliams/focus.nvim",
+--   cmd = { "FocusToggle" },
+--   config = function()
+--     require("focus").setup({
+--       -- excluded_filetypes = {"toggleterm"}
+--       -- excluded_buftypes = {"NvimTree"}
+--       -- NOTE: Insert DAP UI here
+--       -- enable = true,
+--       compatible_filetrees = {
+--         "OUTLINE", "DAP Scopes", "sh", "DAP Breakpoints", "DAP Stacks",
+--         "DAP Watches", "dap-repl", "Quickfix List", "quickfix"}
+--     })
+--   end
+-- }
 -- WARN: Really janky, messes up a lotta buffers like with DAP
 -- }}}
 
@@ -600,23 +600,23 @@ use {
 
 -- fzf-lua: Improved fzf in vim functionality {{{
 -- Prefer fzf over Telescope if possible
-use {
-  'ibhagwan/fzf-lua',
+-- use {
+  -- 'ibhagwan/fzf-lua',
   -- optional for icon support
-  requires = { 'kyazdani42/nvim-web-devicons' },
-  config = function()
-    require("plugins/fzf-lua")
-  end
-}
+--   requires = { 'kyazdani42/nvim-web-devicons' },
+--   config = function()
+--     require("plugins/fzf-lua")
+--   end
+-- }
 -- }}}
 
 -- Luapad: Automatically evaluate lua statements in one command {{{
 -- https://github.com/rafcamlet/nvim-luapad
-use {
-  'rafcamlet/nvim-luapad',
-  config = function()
-  end
-}
+-- use {
+--   'rafcamlet/nvim-luapad',
+--   config = function()
+--   end
+-- }
 -- }}}
 
 -- Sniprun: Runs code snippets with :SnipRun {{{
@@ -681,19 +681,19 @@ use {
 
 -- Bracey: Live server for vim {{{
 -- (https://github.com/turbio/bracey.vim)
-use {
-  'turbio/bracey.vim',
-  run = 'npm install --prefix server',
-}
+-- use {
+--   'turbio/bracey.vim',
+--   run = 'npm install --prefix server',
+-- }
 
 -- }}}
 
 -- Vim-Doge: Documentation generation {{{
 -- https://github.com/kkoomen/vim-doge
-use {
-  'kkoomen/vim-doge',
-  run = ':doge#install()',
-}
+-- use {
+--   'kkoomen/vim-doge',
+--   run = ':doge#install()',
+-- }
 -- }}}
 
 -- Startup time {{{
@@ -780,11 +780,11 @@ use {
 -- }}}
 
 -- Virtual-types {{{
-use {
-  'jubnzv/virtual-types.nvim',
-  config = function()
-  end
-}
+-- use {
+--   'jubnzv/virtual-types.nvim',
+--   config = function()
+--   end
+-- }
 
 -- }}}
 

@@ -6,7 +6,7 @@ require'nvim-treesitter.configs'.setup {
   ignore_install = {}, -- List of parsers to ignore installing
   indent = {
     enable = true,
-    disable = { "python", "py" },
+    disable = { "python", "py", "c", "cpp" },
   },
   highlight = {
 	enable = true,              -- false will disable the whole extension

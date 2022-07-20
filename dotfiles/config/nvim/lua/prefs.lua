@@ -77,8 +77,8 @@ opt.lazyredraw = true         -- faster scrolling
 opt.synmaxcol  = 240          -- max column for syntax highlight
 
 -- Disable filetype.vim and use only filetype.lua
-g.do_filetype_lua    = 1
-g.did_load_filetypes = 0
+-- g.do_filetype_lua    = 1
+-- g.did_load_filetypes = 0
 
 -- Disable unneeded providers
 g.loaded_python3_provider = 0
@@ -157,7 +157,7 @@ exec([[
 
 -- Automatically switches off Focus
 -- Turn it back on with ";ft"
-cmd [[au VimEnter * FocusToggle]]
+-- cmd [[au VimEnter * FocusToggle]]
 
 -- Automatically open all folds on entering a buffer
 -- cmd [[au BufEnter * normal zR]]

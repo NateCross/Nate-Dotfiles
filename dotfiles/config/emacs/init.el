@@ -1,0 +1,97 @@
+;; ----- PACKAGES -----
+
+;; Package Sources
+
+;; https://ianyepan.github.io/posts/setting-up-use-package/
+(require 'package)
+(setq package-archives '(("melpa" . "https://melpa.org/packages/")
+                         ("org" . "https://orgmode.org/elpa/")
+                         ("elpa" . "https://elpa.gnu.org/packages/")))
+(package-initialize)
+
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+(eval-and-compile
+  (setq use-package-always-ensure t
+	use-package-expand-minimally t))
+
+;; (unless package-archive-contents
+;;   (package-refresh-contents))
+;; 
+(eval-when-compile
+  (require 'use-package))
+
+;; ------ USE PACKAGE -----
+
+(use-package dashboard
+  :config
+  (dashboard-setup-startup-hook))
+
+(use-package company
+  :bind (:map company-active-map
+    ("C-n" . company-select-next)
+    ("C-p" . company-select-previous)
+    )
+  :config
+  (setq company-idle-delay 0.3)
+  (global-company-mode t)
+)
+
+(use-package evil
+  :init
+  (setq evil-want-integration t)
+  (setq evil-want-keybinding nil)
+  (setq evil-want-C-u-scroll t)
+  (setq evil-want-C-i-jump nil)
+  :config
+  (evil-mode 1)
+  (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
+  (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char-and-join)
+
+  ;; Use visual line motions even outside of visual-line-mode buffers
+  (evil-global-set-key 'motion "j" 'evil-next-visual-line)
+  (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
+
+  (evil-set-initial-state 'messages-buffer-mode 'normal)
+  (evil-set-initial-state 'dashboard-mode 'normal))
+
+(use-package evil-collection
+  :after evil
+  :config
+  (evil-collection-init))
+
+;; ----- OPTIONS -----
+
+(setq
+ inhibit-startup-screen t    ; Don't show splash screen on startup
+ )
+
+;; ----- MODES -----
+
+;; (tool-bar-mode -1)
+;; (scroll-bar-mode -1)
+(global-hl-line-mode t)             ; Cursor line
+(blink-cursor-mode t)
+
+;; Display line numbers in every buffer
+(global-display-line-numbers-mode 1)
+
+;; ----- THEME -----
+
+;; Modus Vivendi
+;; TODO: Customize Modus Vivendi
+(load-theme 'modus-vivendi t)
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages '(use-package)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
