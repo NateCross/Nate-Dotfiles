@@ -271,3 +271,6 @@ nnoremap("gor", ":lua require('goto-preview').goto_preview_references()<CR>")
 nnoremap("gO", ":lua require('goto-preview').close_all_win()<CR>")
 
 -- Renamer
+
+-- Notify
+nnoremap("<leader>nc", ":lua require('notify').dismiss()<CR>")
