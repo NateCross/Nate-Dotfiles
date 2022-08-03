@@ -31,7 +31,9 @@
 -- {{{ Packer Setup
 local fn = vim.fn
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+local is_bootstrap = false
 if fn.empty(fn.glob(install_path)) > 0 then
+  is_bootstrap = true
   packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
 end
 
@@ -61,7 +63,7 @@ use {
 use {
   'neovim/nvim-lspconfig',
   config = function()
-      require("plugins/lsp-config")
+    require("plugins/lsp-config")
   end,
 }
 
@@ -213,17 +215,6 @@ use {
   }
   end
 }
--- }}}
-
--- Wilder: a better, customizable wildmenu {{{
--- https://github.com/gelguy/wilder.nvim
--- use {
---   'gelguy/wilder.nvim',
---   run = ':UpdateRemotePlugins',
---   config = function()
---     require("plugins/wilder")
---   end,
--- }
 -- }}}
 
 -- Nvim-autopairs: Automatically adds parentheses and stuff {{{
@@ -474,24 +465,6 @@ use {
 }
 -- }}}
 
--- Shade: Dims inactive regions {{{
--- https://github.com/sunjon/Shade.nvim
--- use {
---   'sunjon/shade.nvim',
---   config = function()
---     require'shade'.setup({
---       overlay_opacity = 50,
---       opacity_step = 1,
---       keys = {
---         brightness_up    = '<C-Up>',
---         brightness_down  = '<C-Down>',
---         toggle           = '<Leader>s',
---       }
---     })
---   end
--- }
--- }}}
-
 -- Colorizer: Highlights hex code colors {{{
 -- https://github.com/chrisbra/Colorizer
 use 'chrisbra/Colorizer'
@@ -531,19 +504,6 @@ use {
 }
 -- }}}
 
--- DAP Install: So I can actually get the debuggers to work {{{
--- https://github.com/Pocco81/DAPInstall.nvim
--- use {
---   "Pocco81/DAPInstall.nvim",
---   requires = 'mfussenegger/nvim-dap',
---   config = function()
---     require("plugins/nvim-dap-install")
---   end
--- }
--- NOTE: THE ABOVE TWO DAP PLUGINS DO NOT WORK RIGHT ON WINDOWS
--- KEEP AN EYE OUT FOR WINDOWS SUPPORT IN THE FUTURE
--- }}}
-
 -- DAP Virtual Text: Shows variable values as virtual text {{{
 -- https://github.com/theHamsta/nvim-dap-virtual-text
 use {
@@ -565,26 +525,6 @@ use {
   }
   end
 }
--- }}}
-
--- Focus: Arranges buffers {{{
--- https://github.com/beauwilliams/focus.nvim
--- use {
---   "beauwilliams/focus.nvim",
---   cmd = { "FocusToggle" },
---   config = function()
---     require("focus").setup({
---       -- excluded_filetypes = {"toggleterm"}
---       -- excluded_buftypes = {"NvimTree"}
---       -- NOTE: Insert DAP UI here
---       -- enable = true,
---       compatible_filetrees = {
---         "OUTLINE", "DAP Scopes", "sh", "DAP Breakpoints", "DAP Stacks",
---         "DAP Watches", "dap-repl", "Quickfix List", "quickfix"}
---     })
---   end
--- }
--- WARN: Really janky, messes up a lotta buffers like with DAP
 -- }}}
 
 -- Floaterm: Spawns a floating terminal {{{
@@ -789,12 +729,19 @@ use {
 -- }}}
 
 -- Lsp Lines {{{
-use {
-  "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-  config = function()
-    require("lsp_lines").register_lsp_virtual_lines()
-  end,
-}
+-- use {
+--   "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+--   config = function()
+--     -- require("lsp_lines").register_lsp_virtual_lines()
+--     require("lsp_lines").setup()
+--     vim.keymap.set(
+--       "",
+--       "<Leader>tl",
+--       require("lsp_lines").toggle,
+--       { desc = "Toggle lsp_lines" }
+--     )
+--   end,
+-- }
 
 -- }}}
 
@@ -827,7 +774,11 @@ use {
         'mjsx',
         'md',
         'py',
-      }
+      },
+      auto = true,
+      mappings = {
+        toggle = 'gR',
+      },
     }
   end,
   requires = {
@@ -839,15 +790,13 @@ use {
 -- }}}
 
 -- Pretty fold {{{
-use {
-  'anuvyklack/pretty-fold.nvim',
-   requires = 'anuvyklack/nvim-keymap-amend', -- only for preview
-   config = function()
-      require('pretty-fold').setup()
-      require('pretty-fold.preview').setup()
-   end
-}
-
+-- use {
+--   'anuvyklack/pretty-fold.nvim',
+--    requires = 'anuvyklack/nvim-keymap-amend', -- only for preview
+--    config = function()
+--       require('pretty-fold').setup()
+--    end
+-- }
 -- }}}
 
 -- Renamer: Fancy rename ui {{{
@@ -862,6 +811,28 @@ use {
 }
 -- }}}
 
+use {
+  'gelguy/wilder.nvim',
+  config = function()
+    local wilder = require('wilder')
+    wilder.setup({modes = {':', '/', '?'}})
+    wilder.set_option('renderer', wilder.popupmenu_renderer(
+      wilder.popupmenu_palette_theme({
+        -- 'single', 'double', 'rounded' or 'solid'
+        -- can also be a list of 8 characters, see :h wilder#popupmenu_palette_theme() for more details
+        border = 'rounded',
+        max_height = '50%',      -- max height of the palette
+        min_height = 0,          -- set to the same as 'max_height' for a fixed height window
+        prompt_position = 'top', -- 'top' or 'bottom' to set the location of the prompt
+        reverse = 0,             -- set to 1 to reverse the order of the list, use in combination with 'prompt_position'
+        highlighter = wilder.basic_highlighter(),
+        left = {' ', wilder.popupmenu_devicons()},
+        right = {' ', wilder.popupmenu_scrollbar()},
+      })
+    ))
+  end,
+}
+
 -- }}}
 ------------------------
 --- PLUGINS END HERE ---
@@ -873,6 +844,15 @@ use {
     require('packer').sync()
   end
 end)
+
+if is_bootstrap then
+  print '=================================='
+  print '    Plugins are being installed'
+  print '    Wait until Packer completes,'
+  print '       then restart nvim'
+  print '=================================='
+  return
+end
 
 ------------------------
 --- PLUGIN BOOKMARKS ---

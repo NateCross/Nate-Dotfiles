@@ -34,6 +34,10 @@ Note: Use the tmux-server-on-startup.sh and tmux-server-on-shutdown.sh
 # https://github.com/hlissner/doom-emacs
 ./dotdrop.sh install -p doom-emacs
 
+# Emacs
+# Install emacs-nativecomp from pacman
+./dotdrop.sh install -p emacs
+
 # Kitty Terminal
 # https://sw.kovidgoyal.net/kitty/binary/
 ./dotdrop.sh install -p kitty

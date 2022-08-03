@@ -137,9 +137,12 @@ dotfiles:
   d_powerline-custom:
     src: tmux/powerline-custom
     dst: ~/.tmux/powerline-custom
-  d_emacs:
-    src: config/emacs
-    dst: ~/.config/emacs
+  f_init.el:
+    src: config/emacs/init.el
+    dst: ~/.config/emacs/init.el
+  f_early-init.el:
+    src: config/emacs/early-init.el
+    dst: ~/.config/emacs/early-init.el
 profiles:
   neovim:
     dotfiles:
@@ -207,4 +210,5 @@ profiles:
     - install_libtmux
   emacs:
     dotfiles:
-    - d_emacs
+    - f_init.el
+    - f_early-init.el
