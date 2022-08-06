@@ -97,7 +97,7 @@ immutability=1
 plugin=org.kde.plasma.eventcalendar
 
 [Containments][13][Applets][171][Configuration]
-PreloadWeight=59
+PreloadWeight=51
 
 [Containments][13][Applets][171][Configuration][ConfigDialog]
 DialogHeight=540
@@ -121,6 +121,9 @@ openWeatherMapCityId=1729564
 immutability=1
 plugin=org.kde.plasma.marginsseparator
 
+[Containments][13][Applets][40][Configuration]
+PreloadWeight=42
+
 [Containments][13][ConfigDialog]
 DialogHeight=1254
 DialogWidth=529
@@ -132,7 +135,7 @@ PreloadWeight=0
 advanced=true
 alignment=10
 alignmentUpgraded=true
-appletOrder=171
+appletOrder=171;40
 appletShadowsEnabled=false
 autoDecreaseIconSize=false
 autoSizeEnabled=false
@@ -216,6 +219,9 @@ DesktopLabelsStyle=1
 immutability=1
 plugin=org.kde.plasma.marginsseparator
 
+[Containments][14][Applets][73][Configuration]
+PreloadWeight=42
+
 [Containments][14][ConfigDialog]
 DialogHeight=1254
 DialogWidth=529
@@ -227,7 +233,7 @@ PreloadWeight=0
 advanced=true
 alignment=1
 alignmentUpgraded=true
-appletOrder=170
+appletOrder=73
 appletShadowsEnabled=false
 autoDecreaseIconSize=false
 autoSizeEnabled=false
@@ -296,11 +302,14 @@ immutability=1
 plugin=org.kde.plasma.showdesktop
 
 [Containments][15][Applets][172][Configuration]
-PreloadWeight=34
+PreloadWeight=26
 
 [Containments][15][Applets][42]
 immutability=1
 plugin=org.kde.plasma.marginsseparator
+
+[Containments][15][Applets][42][Configuration]
+PreloadWeight=42
 
 [Containments][15][ConfigDialog]
 DialogHeight=1254
@@ -313,7 +322,7 @@ PreloadWeight=0
 advanced=true
 alignment=2
 alignmentUpgraded=true
-appletOrder=172
+appletOrder=172;42
 appletShadowsEnabled=false
 autoDecreaseIconSize=false
 autoSizeEnabled=false
@@ -383,7 +392,7 @@ immutability=1
 plugin=org.kde.plasma.systemloadviewer
 
 [Containments][16][Applets][189][Configuration]
-PreloadWeight=34
+PreloadWeight=26
 
 [Containments][16][Applets][189][Configuration][ConfigDialog]
 DialogHeight=540
@@ -392,6 +401,9 @@ DialogWidth=720
 [Containments][16][Applets][45]
 immutability=1
 plugin=org.kde.plasma.marginsseparator
+
+[Containments][16][Applets][45][Configuration]
+PreloadWeight=42
 
 [Containments][16][ConfigDialog]
 DialogHeight=1254
@@ -404,7 +416,7 @@ PreloadWeight=0
 advanced=true
 alignment=2
 alignmentUpgraded=true
-appletOrder=189
+appletOrder=189;45
 appletShadowsEnabled=false
 autoDecreaseIconSize=false
 autoSizeEnabled=false
@@ -474,7 +486,7 @@ immutability=1
 plugin=org.kde.plasma.colorpicker
 
 [Containments][17][Applets][188][Configuration]
-PreloadWeight=39
+PreloadWeight=31
 
 [Containments][17][Applets][188][Configuration][ConfigDialog]
 DialogHeight=540
@@ -487,6 +499,9 @@ history=#c20d1a,#00000000
 immutability=1
 plugin=org.kde.plasma.marginsseparator
 
+[Containments][17][Applets][43][Configuration]
+PreloadWeight=42
+
 [Containments][17][ConfigDialog]
 DialogHeight=1254
 DialogWidth=529
@@ -497,7 +512,7 @@ PreloadWeight=0
 [Containments][17][General]
 advanced=true
 alignmentUpgraded=true
-appletOrder=188
+appletOrder=188;43
 appletShadowsEnabled=false
 autoDecreaseIconSize=false
 autoSizeEnabled=false
@@ -566,12 +581,15 @@ immutability=1
 plugin=org.kde.plasma.systemtray
 
 [Containments][18][Applets][44][Configuration]
-PreloadWeight=69
+PreloadWeight=61
 SystrayContainmentId=19
 
 [Containments][18][Applets][46]
 immutability=1
 plugin=org.kde.plasma.marginsseparator
+
+[Containments][18][Applets][46][Configuration]
+PreloadWeight=42
 
 [Containments][18][ConfigDialog]
 DialogHeight=1254
@@ -584,7 +602,7 @@ PreloadWeight=0
 advanced=true
 alignment=2
 alignmentUpgraded=true
-appletOrder=44
+appletOrder=44;46
 appletShadowsEnabled=false
 autoDecreaseIconSize=false
 autoSizeEnabled=false
@@ -625,7 +643,7 @@ reversed=true
 lengthPadding=0.19
 
 [Containments][19]
-PreloadWeight=34
+PreloadWeight=26
 activityId=
 formfactor=2
 immutability=1
@@ -640,11 +658,25 @@ immutability=1
 plugin=org.kde.plasma.diskquota
 
 [Containments][19][Applets][197][Configuration]
-PreloadWeight=42
+PreloadWeight=34
 
 [Containments][19][Applets][208]
 immutability=1
 plugin=org.kde.plasma.mediacontroller
+
+[Containments][19][Applets][212]
+immutability=1
+plugin=org.kde.plasma.keyboardlayout
+
+[Containments][19][Applets][212][Configuration]
+PreloadWeight=42
+
+[Containments][19][Applets][213]
+immutability=1
+plugin=org.kde.plasma.manage-inputmethod
+
+[Containments][19][Applets][213][Configuration]
+PreloadWeight=42
 
 [Containments][19][Applets][48]
 immutability=1
@@ -658,21 +690,21 @@ immutability=1
 plugin=org.kde.plasma.keyboardindicator
 
 [Containments][19][Applets][49][Configuration]
-PreloadWeight=34
+PreloadWeight=26
 
 [Containments][19][Applets][50]
 immutability=1
 plugin=org.kde.plasma.notifications
 
 [Containments][19][Applets][50][Configuration]
-PreloadWeight=39
+PreloadWeight=31
 
 [Containments][19][Applets][51]
 immutability=1
 plugin=org.kde.plasma.battery
 
 [Containments][19][Applets][51][Configuration]
-PreloadWeight=34
+PreloadWeight=26
 
 [Containments][19][Applets][52]
 immutability=1
@@ -686,57 +718,57 @@ immutability=1
 plugin=org.kde.plasma.volume
 
 [Containments][19][Applets][53][Configuration]
-PreloadWeight=34
+PreloadWeight=26
 
 [Containments][19][Applets][54]
 immutability=1
 plugin=org.kde.plasma.printmanager
 
 [Containments][19][Applets][54][Configuration]
-PreloadWeight=34
+PreloadWeight=26
 
 [Containments][19][Applets][55]
 immutability=1
 plugin=org.kde.plasma.networkmanagement
 
 [Containments][19][Applets][55][Configuration]
-PreloadWeight=34
+PreloadWeight=26
 
 [Containments][19][Applets][56]
 immutability=1
 plugin=org.kde.plasma.clipboard
 
 [Containments][19][Applets][56][Configuration]
-PreloadWeight=34
+PreloadWeight=26
 
 [Containments][19][Applets][57]
 immutability=1
 plugin=org.kde.plasma.devicenotifier
 
 [Containments][19][Applets][57][Configuration]
-PreloadWeight=34
+PreloadWeight=26
 
 [Containments][19][Applets][58]
 immutability=1
 plugin=org.kde.plasma.nightcolorcontrol
 
 [Containments][19][Applets][58][Configuration]
-PreloadWeight=34
+PreloadWeight=26
 
 [Containments][19][Applets][59]
 immutability=1
 plugin=org.kde.kdeconnect
 
 [Containments][19][Applets][59][Configuration]
-PreloadWeight=39
+PreloadWeight=31
 
 [Containments][19][ConfigDialog]
 DialogHeight=540
 DialogWidth=720
 
 [Containments][19][General]
-extraItems=com.github.zren.alphablackcontrol,org.kde.plasma.vault,org.kde.plasma.networkmanagement,org.kde.plasma.nightcolorcontrol,org.kde.plasma.mediacontroller,org.kde.plasma.devicenotifier,org.kde.plasma.keyboardindicator,org.kde.plasma.printmanager,org.kde.plasma.notifications,org.kde.plasma.bluetooth,org.kde.kdeconnect,org.kde.plasma.clipboard,org.kde.plasma.battery,org.kde.plasma.volume,org.kde.plasma.diskquota
-knownItems=com.github.zren.alphablackcontrol,org.kde.plasma.vault,org.kde.plasma.networkmanagement,org.kde.plasma.nightcolorcontrol,org.kde.plasma.mediacontroller,org.kde.plasma.devicenotifier,org.kde.plasma.keyboardindicator,org.kde.plasma.printmanager,org.kde.plasma.notifications,org.kde.plasma.bluetooth,org.kde.kdeconnect,org.kde.plasma.clipboard,org.kde.plasma.battery,org.kde.plasma.volume
+extraItems=org.kde.plasma.networkmanagement,org.kde.plasma.nightcolorcontrol,org.kde.plasma.mediacontroller,org.kde.plasma.devicenotifier,org.kde.plasma.keyboardindicator,org.kde.plasma.printmanager,org.kde.plasma.notifications,org.kde.plasma.bluetooth,org.kde.kdeconnect,org.kde.plasma.clipboard,org.kde.plasma.battery,org.kde.plasma.volume,org.kde.plasma.diskquota,org.kde.plasma.keyboardlayout,org.kde.plasma.manage-inputmethod
+knownItems=org.kde.plasma.networkmanagement,org.kde.plasma.nightcolorcontrol,org.kde.plasma.mediacontroller,org.kde.plasma.devicenotifier,org.kde.plasma.keyboardindicator,org.kde.plasma.printmanager,org.kde.plasma.notifications,org.kde.plasma.bluetooth,org.kde.kdeconnect,org.kde.plasma.clipboard,org.kde.plasma.battery,org.kde.plasma.volume,org.kde.plasma.keyboardlayout,org.kde.plasma.manage-inputmethod
 shownItems=org.kde.plasma.diskquota
 
 [Containments][20]
@@ -768,7 +800,7 @@ immutability=1
 plugin=org.kde.plasma.kickerdash
 
 [Containments][20][Applets][169][Configuration]
-PreloadWeight=84
+PreloadWeight=76
 
 [Containments][20][Applets][169][Configuration][General]
 favoritesPortedToKAstats=true
@@ -776,6 +808,9 @@ favoritesPortedToKAstats=true
 [Containments][20][Applets][86]
 immutability=1
 plugin=org.kde.plasma.marginsseparator
+
+[Containments][20][Applets][86][Configuration]
+PreloadWeight=42
 
 [Containments][20][ConfigDialog]
 DialogHeight=1254
@@ -788,7 +823,7 @@ PreloadWeight=0
 advanced=true
 alignment=1
 alignmentUpgraded=true
-appletOrder=169
+appletOrder=169;86
 appletShadowsEnabled=false
 autoDecreaseIconSize=false
 autoSizeEnabled=false
@@ -858,7 +893,7 @@ immutability=1
 plugin=org.kde.netspeedWidget
 
 [Containments][21][Applets][190][Configuration]
-PreloadWeight=34
+PreloadWeight=26
 
 [Containments][21][Applets][190][Configuration][ConfigDialog]
 DialogHeight=540
@@ -867,6 +902,9 @@ DialogWidth=720
 [Containments][21][Applets][61]
 immutability=1
 plugin=org.kde.plasma.marginsseparator
+
+[Containments][21][Applets][61][Configuration]
+PreloadWeight=42
 
 [Containments][21][ConfigDialog]
 DialogHeight=1254
@@ -879,7 +917,7 @@ PreloadWeight=0
 advanced=true
 alignment=2
 alignmentUpgraded=true
-appletOrder=190
+appletOrder=190;61
 appletShadowsEnabled=false
 autoDecreaseIconSize=false
 autoSizeEnabled=false
@@ -949,7 +987,7 @@ immutability=1
 plugin=org.kde.plasma.notes
 
 [Containments][22][Applets][191][Configuration]
-PreloadWeight=87
+PreloadWeight=79
 
 [Containments][22][Applets][191][Configuration][ConfigDialog]
 DialogHeight=540
@@ -957,6 +995,7 @@ DialogWidth=720
 
 [Containments][22][Applets][191][Configuration][General]
 color=black
+fontSize=10
 noteId=b08129d2-332a-4e8a-a587-1ed2acbca6
 
 [Containments][22][Applets][206]
@@ -964,7 +1003,7 @@ immutability=1
 plugin=org.kde.plasma_applet_dict
 
 [Containments][22][Applets][206][Configuration]
-PreloadWeight=57
+PreloadWeight=49
 
 [Containments][22][Applets][206][Configuration][ConfigDialog]
 DialogHeight=540
@@ -988,6 +1027,9 @@ lengthMargin=0
 immutability=1
 plugin=org.kde.plasma.marginsseparator
 
+[Containments][22][Applets][60][Configuration]
+PreloadWeight=42
+
 [Containments][22][ConfigDialog]
 DialogHeight=1254
 DialogWidth=529
@@ -998,7 +1040,7 @@ PreloadWeight=0
 [Containments][22][General]
 advanced=true
 alignmentUpgraded=true
-appletOrder=206;207;191
+appletOrder=206;191;60
 appletShadowsEnabled=false
 autoDecreaseIconSize=false
 autoSizeEnabled=false
@@ -1090,6 +1132,9 @@ useWheelForSeeking=true
 immutability=1
 plugin=org.kde.plasma.marginsseparator
 
+[Containments][23][Applets][63][Configuration]
+PreloadWeight=42
+
 [Containments][23][ConfigDialog]
 DialogHeight=1254
 DialogWidth=529
@@ -1101,7 +1146,7 @@ PreloadWeight=0
 advanced=true
 alignment=1
 alignmentUpgraded=true
-appletOrder=196
+appletOrder=63
 appletShadowsEnabled=false
 autoDecreaseIconSize=false
 autoSizeEnabled=false
@@ -1150,7 +1195,7 @@ customTextColor=
 disableBordersForMaximizedWindows=true
 globalLaunchers=
 icon=
-lastUsedActivity=11ae33be-0203-469d-b06a-6da7e08547f2
+lastUsedActivity=78040eae-ca79-44eb-b514-10ed9cb1d1ff
 launchers=
 popUpMargin=2
 preferredForShortcutsTouched=true
