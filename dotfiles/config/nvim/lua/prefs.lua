@@ -126,9 +126,9 @@ opt.completeopt = "menu,menuone,noselect" -- For nvim=cmp
 ---------------------
 
 -- Disable LSP virtual text due to having lsp_lines
-vim.diagnostic.config({
-  virtual_text = false,
-})
+-- vim.diagnostic.config({
+--   virtual_text = false,
+-- })
 
 -- FILETYPE TWEAK --
 cmd [[autocmd FileType markdown setlocal spell shiftwidth=2 softtabstop=2 expandtab]]
