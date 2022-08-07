@@ -33,10 +33,11 @@ vim.g.maplocalleader = ' '
 -- Might wanna see the vimpeccable's reload plugin for this
 
 -- Insert/visual mode exit commands
-inoremap("ii", "<Esc>")
-inoremap("jk", "<Esc>")
-inoremap("kj", "<Esc>")
-vnoremap("ii", "<Esc>")
+-- Not needed anymore because of Caps-Lock to Esc bind
+-- inoremap("ii", "<Esc>")
+-- inoremap("jk", "<Esc>")
+-- inoremap("kj", "<Esc>")
+-- vnoremap("ii", "<Esc>")
 
 -- Move lines up and down by alt+j/k
 -- NOTE: Not preferred because we use meta/alt in Tmux
@@ -152,6 +153,7 @@ nnoremap("<leader>fe", ":Telescope find_files find_command=rg,--ignore,--hidden,
 nnoremap("<leader>fd", "<cmd>lua require('telescope.builtin').live_grep()<cr>")
 nnoremap("<leader>fb", "<cmd>lua require 'telescope.builtin'.buffers()<CR>")
 nnoremap("<leader>fm", "<cmd>lua require('telescope.builtin').keymaps()<CR>")
+nnoremap("gr", "<cmd>lua require('telescope.builtin').lsp_references()<CR>")
 -- nnoremap("<leader><space>", ":Telescope command_palette<CR>")
 
 -- fzf-lua
@@ -193,7 +195,7 @@ nnoremap("gh", "<cmd>lua vim.lsp.buf.hover()<CR>")
 nnoremap("gi", "<cmd>lua vim.lsp.buf.implementation()<CR>")
 nnoremap("<c-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
 nnoremap("gD", "<cmd>lua vim.lsp.buf.type_definition()<CR>")
-nnoremap("gr", "<cmd>lua vim.lsp.buf.references()<CR>")
+-- nnoremap("gr", "<cmd>lua vim.lsp.buf.references()<CR>")
 nnoremap("g0", "<cmd>lua vim.lsp.buf.document_symbol()<CR>")
 nnoremap("gw", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>")
 nnoremap("<leader>fz", "<cmd>lua vim.lsp.buf.formatting()<CR>")
@@ -203,8 +205,8 @@ vnoremap("<leader>a", "<cmd>lua require'telescope.builtin'.lsp_range_code_action
 
 -- Neovide
 -- There's something funky when I use ctrl+f and ctrl+b
-nnoremap("<c-f>", "<c-f>M")
-nnoremap("<c-b>", "<c-b>M")
+-- nnoremap("<c-f>", "<c-f>M")
+-- nnoremap("<c-b>", "<c-b>M")
 
 -- Trouble
 -- https://github.com/folke/trouble.nvim

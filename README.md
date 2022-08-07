@@ -21,6 +21,8 @@ Run the following command once cloned.
 # Neovim
 # https://github.com/neovim/neovim
 ./dotdrop.sh install -p neovim
+# NOTE: Requires the following installed for plugins
+- Glow (Markdown Previewer)
 
 # Zsh
 # https://gist.github.com/derhuerst/12a1558a4b408b3b2b6e

@@ -833,6 +833,20 @@ use {
   end,
 }
 
+-- Glow-hover: LSP Hover uses Markdown
+-- https://github.com/JASONews/glow-hover.nvim
+use {
+  'JASONews/glow-hover.nvim',
+  config = function()
+    require'glow-hover'.setup {
+      max_width = 50,
+      padding = 10,
+      border = 'rounded',
+      glow_path = 'glow'
+    }
+  end,
+}
+
 -- }}}
 ------------------------
 --- PLUGINS END HERE ---
