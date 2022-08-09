@@ -63,6 +63,9 @@ Note: Use the tmux-server-on-startup.sh and tmux-server-on-shutdown.sh
 # https://github.com/jesseduffield/lazygit
 ./dotdrop.sh install -p lazygit
 
+# BetterDiscord
+./dotdrop.sh install -p betterdiscord
+
 # For future reference, to import files, run this
 ./dotdrop.sh import "path/to/dir-or-file" -p "name-of-profile"
 ```

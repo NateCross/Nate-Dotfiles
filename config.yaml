@@ -143,6 +143,12 @@ dotfiles:
   f_early-init.el:
     src: config/emacs/early-init.el
     dst: ~/.config/emacs/early-init.el
+  d_plugins:
+    src: config/BetterDiscord/plugins
+    dst: ~/.config/BetterDiscord/plugins
+  d_themes:
+    src: config/BetterDiscord/themes
+    dst: ~/.config/BetterDiscord/themes
 profiles:
   neovim:
     dotfiles:
@@ -212,3 +218,7 @@ profiles:
     dotfiles:
     - f_init.el
     - f_early-init.el
+  betterdiscord:
+    dotfiles:
+    - d_plugins
+    - d_themes
