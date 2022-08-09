@@ -185,7 +185,6 @@ profiles:
     - f_hn-tui.toml
   latte-dock:
     dotfiles:
-    - f_lattedockrc
     - f_nate-custom.layout.latte
     - f_nate-custom-v3.layout.latte
   wtfutil:
