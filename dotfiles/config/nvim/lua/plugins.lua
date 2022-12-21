@@ -67,11 +67,27 @@ use {
   end,
 }
 
--- https://github.com/williamboman/nvim-lsp-installer
+-- https://github.com/williamboman/mason.nvim
 use {
-  'williamboman/nvim-lsp-installer',
+  "williamboman/mason.nvim",
   config = function()
-    require("plugins/lsp-installer")
+    require"mason".setup()
+    -- require("plugins/lsp-installer")
+  end,
+}
+
+use {
+  "williamboman/mason-lspconfig.nvim",
+  config = function()
+    require"mason-lspconfig".setup({
+      automatic_installation = true,
+    })
+
+    require"mason-lspconfig".setup_handlers({
+      function (server_name) -- default handler (optional)
+        require("lspconfig")[server_name].setup {}
+      end,
+    })
   end,
 }
 -- }}}
@@ -130,11 +146,11 @@ use 'onsails/lspkind-nvim'
 -- Tabnine source for autocompletion {{{
 -- https://github.com/tzachar/cmp-tabnine
 -- WARN: Temporarily broken for me
-use {
-  'tzachar/cmp-tabnine',
-  run = './install.sh',
-  requires = 'hrsh7th/nvim-cmp'
-}
+-- use {
+--   'tzachar/cmp-tabnine',
+--   run = './install.sh',
+--   requires = 'hrsh7th/nvim-cmp'
+-- }
 -- }}}
 
 -- Vsnip {{{
@@ -322,28 +338,28 @@ use 'tpope/vim-surround'
 
 -- Auto-save: No need to think; it just saves {{{
 -- https://github.com/Pocco81/AutoSave.nvim
-use {
-  'Pocco81/AutoSave.nvim',
-  config = function()
-    local autosave = require("autosave")
-    autosave.setup(
-    {
-      enabled = true,
-      execution_message = "AutoSave: saved at " .. vim.fn.strftime("%H:%M:%S"),
-      events = {"InsertLeave", "TextChanged"},
-      conditions = {
-          exists = true,
-          filename_is_not = {},
-          filetype_is_not = {'javascriptreact', 'typescriptreact'},
-          modifiable = true
-      },
-      write_all_buffers = false,
-      on_off_commands = true,
-      clean_command_line_interval = 0,
-      debounce_delay = 135
-    })
-  end
-}
+-- use {
+--   'Pocco81/AutoSave.nvim',
+--   config = function()
+--     local autosave = require("autosave")
+--     autosave.setup(
+--     {
+--       enabled = true,
+--       execution_message = "AutoSave: saved at " .. vim.fn.strftime("%H:%M:%S"),
+--       events = {"InsertLeave", "TextChanged"},
+--       conditions = {
+--           exists = true,
+--           filename_is_not = {},
+--           filetype_is_not = {'javascriptreact', 'typescriptreact'},
+--           modifiable = true
+--       },
+--       write_all_buffers = false,
+--       on_off_commands = true,
+--       clean_command_line_interval = 0,
+--       debounce_delay = 135
+--     })
+--   end
+-- }
 -- }}}
 
 -- LSP Signature: Shows a guide when filling in functions {{{
