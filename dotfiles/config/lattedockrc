@@ -33,6 +33,8 @@ outlineWidth=1
 10=HDMI-0:::0,0 1920x1080
 11=VGA1:::1920,156 1366x768
 12=VGA1:::1920,156 1366x768
+13=eDP-1:::0,0 1920x1080
+14=HDMI-1:::1920,0 1366x768
 
 [UniversalSettings]
 badges3DStyle=false
@@ -40,7 +42,7 @@ canDisableBorders=false
 contextMenuActionsAlwaysShown=_layouts,_preferences,_quit_latte,_separator1,_add_latte_widgets,_add_view
 currentLayout=My Layout
 downloadWindowSize=800,550
-inAdvancedModeForEditSettings=false
+inAdvancedModeForEditSettings=true
 isAvailableGeometryBroadcastedToPlasma=true
 lastNonAssignedLayout=My Layout
 launchers=
@@ -51,7 +53,7 @@ metaPressAndHoldEnabled=true
 mouseSensitivity=2
 screenTrackerInterval=2500
 showInfoWindow=true
-singleModeLayoutName=nate-custom-v3 - 2
+singleModeLayoutName=nate-custom-v4
 version=2
 
 [UniversalSettings][ScreenScales]

@@ -160,3 +160,6 @@ local source_mapping = {
   require('lspconfig')["cssls"].setup {
     capabilities = capabilities
   }
+  require('lspconfig')["phpactor"].setup {
+    capabilities = capabilities
+  }

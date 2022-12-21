@@ -11,7 +11,13 @@ lsp_installer.on_server_ready(function(server)
     local opts = {  }
     -- (optional) Customize the options passed to the server
     if server.name == "emmet_ls" then
-        opts.filetypes = { 'html', 'css', 'typescriptreact', 'javascriptreact' }
+      opts.filetypes = { 'html', 'css', 'typescriptreact', 'javascriptreact', 'vue' }
+    end
+
+    if server.name == "volar" then
+      opts.typescript = {
+        tsdk = '/usr/local/lib/node_modules/typescript/lib'
+      }
     end
 
     if server.name == "cssls" then

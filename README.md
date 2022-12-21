@@ -28,6 +28,9 @@ Run the following command once cloned.
 # https://gist.github.com/derhuerst/12a1558a4b408b3b2b6e
 ./dotdrop.sh install -p zsh
 
+# Helix
+./dotdrop.sh install -p helix
+
 # Tmux
 ./dotdrop.sh install -p tmux
 Note: Use the tmux-server-on-startup.sh and tmux-server-on-shutdown.sh

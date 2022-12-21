@@ -1,0 +1,18 @@
+# Default config. Must change
+theme = "bogster-custom"
+
+[editor]
+line-number = "relative"
+mouse = true
+color-modes = true
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.file-picker]
+hidden = false
+
+[editor.indent-guides]
+render = true

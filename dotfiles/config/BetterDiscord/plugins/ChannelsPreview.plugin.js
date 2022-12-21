@@ -3,7 +3,7 @@
  * @author arg0NNY
  * @authorId 224538553944637440
  * @invite M8DBtcZjXD
- * @version 1.2.3
+ * @version 1.3.2
  * @description Allows you to view recent messages in channels without switching to it.
  * @website https://github.com/arg0NNY/DiscordPlugins/tree/master/ChannelsPreview
  * @source https://raw.githubusercontent.com/arg0NNY/DiscordPlugins/master/ChannelsPreview/ChannelsPreview.plugin.js
@@ -21,24 +21,17 @@ module.exports = (() => {
                     "github_username": 'arg0NNY'
                 }
             ],
-            "version": "1.2.3",
+            "version": "1.3.2",
             "description": "Allows you to view recent messages in channels without switching to it.",
             github: "https://github.com/arg0NNY/DiscordPlugins/tree/master/ChannelsPreview",
             github_raw: "https://raw.githubusercontent.com/arg0NNY/DiscordPlugins/master/ChannelsPreview/ChannelsPreview.plugin.js"
         },
         "changelog": [
             {
-                "type": "added",
-                "title": "What's new",
-                "items": [
-                    "Localization of the plugin has begun. You can help translate the plugin into your language on the Crowdin page, which can be found in the plugin settings."
-                ]
-            },
-            {
                 "type": "fixed",
                 "title": "Fixed",
                 "items": [
-                    "Plugin is now working correctly."
+                    "Fixed preview not showing up on guild channels."
                 ]
             }
         ],
@@ -195,7 +188,7 @@ module.exports = (() => {
                 cancelText: "Cancel",
                 onConfirm: () => {
                     require("request").get("https://rauenzi.github.io/BDPluginLibrary/release/0PluginLibrary.plugin.js", async (error, response, body) => {
-                        if (error) return require("electron").shell.openExternal("https://betterdiscord.net/ghdl?url=https://raw.githubusercontent.com/rauenzi/BDPluginLibrary/master/release/0PluginLibrary.plugin.js");
+                        if (error) return require("electron").shell.openExternal("https://betterdiscord.app/Download?id=9");
                         await new Promise(r => require("fs").writeFile(require("path").join(BdApi.Plugins.folder, "0PluginLibrary.plugin.js"), body, r));
                     });
                 }
@@ -217,20 +210,32 @@ module.exports = (() => {
                 Popouts,
                 Toasts,
                 Utilities,
-                Settings
+                Settings,
+                ReactTools
             } = Api;
             const {
                 React,
+                ReactDOM,
                 MessageActions,
                 MessageStore,
                 ChannelStore,
-                DiscordConstants,
-                Dispatcher
+                SelectedChannelStore,
+                DiscordPermissions,
+                GuildPermissions
             } = DiscordModules;
 
-            const {
-                ChannelTypes
-            } = DiscordConstants;
+            function getMangled(filter) {
+                const target = WebpackModules.getModule(m => Object.values(m).some(filter), {searchGetters: false});
+                return target ? [
+                    target,
+                    Object.keys(target).find(k => filter(target[k]))
+                ] : [];
+            }
+
+            const Dispatcher = WebpackModules.getByProps('_subscriptions', '_waitQueue');
+
+            const ChannelTypes = WebpackModules.getModule(m => typeof m === 'object' && 'GUILD_TEXT' in m, {searchExports: true});
+            const MessageTypes = WebpackModules.getModule(m => typeof m === 'object' && 'REPLY' in m, {searchExports: true});
 
             const ActionTypes = {
                 MESSAGE_CREATE: 'MESSAGE_CREATE'
@@ -239,23 +244,56 @@ module.exports = (() => {
             const Selectors = {
                 Messages: WebpackModules.getByProps('message', 'cozyMessage'),
                 MessageDividers: WebpackModules.getByProps('divider', 'unreadPill'),
+                EmptyMessage: WebpackModules.getByProps('emptyChannelIcon', 'locked'),
                 Chat: WebpackModules.getByProps('chat', 'channelName'),
                 Popout: WebpackModules.getByProps('messagesPopoutWrap'),
-                ChannelItem: WebpackModules.getByProps('containerDefault', 'channelInfo'),
+                ChannelItem: {
+                    ...WebpackModules.getByProps('containerDefault', 'channelInfo'),
+                    ...WebpackModules.getByProps('mainContent', 'notInteractive')
+                },
                 Channel: WebpackModules.getByProps('channel', 'interactive'),
                 Typing: WebpackModules.getByProps('typing', 'ellipsis'),
-                Sidebar: WebpackModules.getByProps('sidebar', 'guilds')
+                ChatLayout: WebpackModules.getByProps('sidebar', 'guilds')
             };
 
             let settings = {};
             let MESSAGES_FETCHING_LIMIT = 20;
+            const MESSAGE_GROUP_INTERVAL = 420000;
             let displayedSettingsNotice = false;
 
-            const ChannelItem = WebpackModules.getModule(m => m.default?.displayName === "ChannelItem");
-            const Interactive = WebpackModules.getModule(m => m.default?.displayName === 'Interactive');
-            const EmptyMessage = WebpackModules.getModule(m => m.default?.displayName === "EmptyMessages");
-            const MessageComponent = WebpackModules.getModule(m => m.default && m.ThreadStarterChatMessage && m.getElementFromMessageId);
-            const FluxTypingUsers = WebpackModules.getModule(m => m.default?.displayName === "FluxContainer(TypingUsers)");
+            const ChannelItem = getMangled(m => typeof m === 'function' && m?.toString?.().includes('notInteractive'));
+            const Anchor = WebpackModules.getModule(m => m?.toString().includes('noreferrer noopener') && m?.toString().includes('focusProps'));
+            const Chat = WebpackModules.getModule(m => m.type?.toString().includes('showingQuarantineBanner'));
+            const DMItemRenderer = getMangled(m => m?.toString?.().includes('{return(0,e.children)(p(e.id))}'));
+            const Clickable = WebpackModules.getModule(m => m?.defaultProps && m?.toString?.().includes('handleKeyPress'), {searchExports: true});
+            const AppearanceSettingsStore = WebpackModules.getByProps('fontSize', 'fontScale');
+            const VoiceChannelActions = WebpackModules.getByProps('updateChatOpen');
+
+            let MessageComponent = null;
+            let EmptyMessage = null;
+            let ThreadStartedMessage = null;
+            let FluxTypingUsers = null;
+            function attemptGettingModules(channel, needThreadStarter = false) {
+                function getModule(rootNode, className, filter) {
+                    return ReactTools.getComponents(rootNode.getElementsByClassName(className)[0])
+                        .find(c => filter(c));
+                }
+
+                return new Promise(resolve => {
+                    if (MessageComponent && EmptyMessage && FluxTypingUsers && (ThreadStartedMessage || !needThreadStarter)) return resolve();
+
+                    const elem = document.createElement('div');
+                    ReactDOM.render(React.createElement(Chat, { channel }), elem, () => {
+                        if (!MessageComponent) MessageComponent = getModule(elem, Selectors.Messages.messageListItem, m => m?.toString?.().includes('message'));
+                        if (!EmptyMessage) EmptyMessage = getModule(elem, Selectors.EmptyMessage.container, m => m?.toString?.().includes('showingBanner'));
+                        if (!FluxTypingUsers) FluxTypingUsers = ReactTools.getReactInstance(document.getElementsByClassName(Selectors.Chat.form)[0])?.memoizedProps?.children?.[2]?.type;
+                        if (!ThreadStartedMessage) ThreadStartedMessage = getModule(elem, Selectors.Messages.quotedChatMessage, m => m?.toString?.().includes('THREAD_STARTER_MESSAGE'));
+
+                        ReactDOM.unmountComponentAtNode(elem);
+                        resolve();
+                    });
+                })
+            }
 
             class ChannelsPreviewPopout extends React.Component {
                 constructor(props) {
@@ -301,8 +339,8 @@ module.exports = (() => {
                     }
 
                     function getGroupId(message) {
-                        const INTERVAL = DiscordConstants.MESSAGE_GROUP_INTERVAL / 1000;
-                        const Types = DiscordConstants.MessageTypes;
+                        const INTERVAL = MESSAGE_GROUP_INTERVAL / 1000;
+                        const Types = MessageTypes;
                         const previousMessage = getPreviousMessage(message);
                         if (!previousMessage) return currentGroupId = message.id;
 
@@ -329,29 +367,31 @@ module.exports = (() => {
                     }
 
                     const messagesElements = [];
-                    messages.forEach(message => {
-                        if (settings.appearance.dateDividers) {
-                            const previousMessage = getPreviousMessage(message);
-                            if (!previousMessage || !message.timestamp.isSame(previousMessage.timestamp, 'day'))
-                                messagesElements.push(buildDateDivider(message.timestamp));
-                        }
+                    if (MessageComponent)
+                        messages.forEach(message => {
+                            if (message.type === MessageTypes.THREAD_STARTER_MESSAGE && !ThreadStartedMessage) return;
 
-                        messagesElements.push(React.createElement(MessageComponent.default, {
-                            channel: channel,
-                            message: message,
-                            groupId: getGroupId(message),
-                            id: `chat-messages-${message.id}`,
-                            compact: settings.appearance.displayMode === 'compact'
-                        }));
-                    });
+                            if (settings.appearance.dateDividers) {
+                                const previousMessage = getPreviousMessage(message);
+                                if (!previousMessage || !message.timestamp.isSame(previousMessage.timestamp, 'day'))
+                                    messagesElements.push(buildDateDivider(message.timestamp));
+                            }
 
-                    if (messagesElements.filter(m => !!m.props?.message).length < MESSAGES_FETCHING_LIMIT)
-                        messagesElements.unshift(React.createElement(EmptyMessage.default, {
+                            messagesElements.push(React.createElement(message.type === MessageTypes.THREAD_STARTER_MESSAGE ? ThreadStartedMessage : MessageComponent, {
+                                channel: channel,
+                                message: message,
+                                groupId: getGroupId(message),
+                                id: `chat-messages-${message.id}`,
+                                compact: settings.appearance.displayMode === 'compact'
+                            }));
+                        });
+
+                    if (EmptyMessage && messagesElements.filter(m => !!m.props?.message).length < MESSAGES_FETCHING_LIMIT)
+                        messagesElements.unshift(React.createElement(EmptyMessage, {
                             channel
                         }));
 
-                    const globalState = WebpackModules.getByProps('get', 'set', 'stringify').get('AccessibilityStore')._state;
-                    const messageGroupSpacing = settings.appearance.groupSpacingSync ? (globalState.messageGroupSpacing ?? 16) : settings.appearance.groupSpacing;
+                    const messageGroupSpacing = settings.appearance.groupSpacingSync ? (AppearanceSettingsStore.messageGroupSpacing ?? 16) : settings.appearance.groupSpacing;
 
                     return React.createElement(
                         'div',
@@ -366,7 +406,7 @@ module.exports = (() => {
                             },
                             [
                                 ...messagesElements,
-                                ...(settings.appearance.typingUsers !== false ? [React.createElement(FluxTypingUsers.default, {channel})] : [])
+                                ...(FluxTypingUsers && settings.appearance.typingUsers !== false ? [React.createElement(FluxTypingUsers, {channel})] : [])
                             ]
                         )
                     );
@@ -378,16 +418,26 @@ module.exports = (() => {
                     this.hoverTimeout = null;
                     this.current = null;
                     this.popouts = [];
+                    this.darkenNode = null;
                 }
 
                 darken() {
                     if (!settings.appearance.darkenChat) return;
 
-                    document.querySelector(`.${Selectors.Sidebar.sidebar} + div`).style.setProperty('--preview-darken-opacity', settings.appearance.darkenLevel);
+                    if (this.darkenNode) this.undarken();
+                    this.darkenNode = document.createElement('div');
+                    this.darkenNode.id = 'ChannelsPreview-darken';
+                    this.darkenNode.style.setProperty('left', document.querySelector(`.${Selectors.ChatLayout.sidebar}`)?.clientWidth + 'px');
+                    document.querySelector(`.${Selectors.ChatLayout.content}`)?.appendChild(this.darkenNode);
+                    setTimeout(() => this.darkenNode.style.opacity = settings.appearance.darkenLevel);
                 }
 
                 undarken() {
-                    document.querySelector(`.${Selectors.Sidebar.sidebar} + div`).removeAttribute('style');
+                    if (!this.darkenNode) return;
+
+                    this.darkenNode.style.opacity = 0;
+                    this.darkenNode.addEventListener('transitionend', e => e.currentTarget.remove());
+                    this.darkenNode = null;
                 }
 
                 open(event, channel) {
@@ -420,8 +470,10 @@ module.exports = (() => {
                     await MessageActions.fetchMessages({channelId: channel.id, limit: MESSAGES_FETCHING_LIMIT});
                     if (this.current?.channel !== channel) return;
 
-                    const messages = MessageStore.getMessages(channel.id).toArray().slice(0, MESSAGES_FETCHING_LIMIT);
+                    const messages = MessageStore.getMessages(channel.id).toArray().slice(0, MESSAGES_FETCHING_LIMIT)
                     const storedChannel = ChannelStore.getChannel(channel.id);
+
+                    await attemptGettingModules(channel, messages.some(m => m.type === MessageTypes.THREAD_STARTER_MESSAGE));
 
                     const parentChannelElem = event.target.closest(`.${Selectors.ChannelItem.containerDefault}`) ?? event.target.closest(`.${Selectors.Channel.channel}`);
 
@@ -429,7 +481,6 @@ module.exports = (() => {
                         position: "right",
                         align: "center",
                         spacing: 20,
-                        animation: Popouts.AnimationTypes.TRANSLATE,
                         autoInvert: true,
                         nudgeAlignIntoViewport: true,
                         render: () => {
@@ -478,21 +529,28 @@ module.exports = (() => {
                         }
                     }
 
-                    const before = (that, [props]) => {
-                        if (props.selected) return;
+                    const before = (that, [props], isSelected = null) => {
+                        if (props.selected && !isSelected) return;
+
+                        const wrap = f => (isSelected === null ? f : (...p) => {
+                            if (!isSelected()) f(...p);
+                        });
 
                         const channel = props.channel;
-                        if (channel && [ChannelTypes.GUILD_TEXT, ChannelTypes.GUILD_ANNOUNCEMENT, ChannelTypes.DM, ChannelTypes.GROUP_DM].includes(channel.type)) {
-                            props.onMouseLeave = () => PopoutManager.leave();
+                        if (channel && [ChannelTypes.GUILD_TEXT, ChannelTypes.GUILD_ANNOUNCEMENT, ChannelTypes.DM, ChannelTypes.GROUP_DM,
+                            ChannelTypes.PUBLIC_THREAD, ChannelTypes.PRIVATE_THREAD, ChannelTypes.GUILD_VOICE].includes(channel.type)) {
+                            if (channel.type === ChannelTypes.GUILD_VOICE && !GuildPermissions.can(DiscordPermissions.CONNECT, channel)) return
+
+                            props.onMouseLeave = wrap(() => PopoutManager.leave());
 
                             switch (settings.trigger.displayOn) {
                                 case 'hover':
-                                    props.onMouseEnter = e => PopoutManager.hover(e, channel);
+                                    props.onMouseEnter = wrap(e => PopoutManager.hover(e, channel));
                                     break;
                                 case 'mwheel':
-                                    props.onMouseDown = e => {
+                                    props.onMouseDown = wrap(e => {
                                         if (e.button === 1) PopoutManager.open(e, channel);
-                                    }
+                                    });
                                     break;
                             }
                         }
@@ -508,29 +566,52 @@ module.exports = (() => {
                         }, 0);
                     };
 
-                    Patcher.before(ChannelItem, "default", before);
-                    Patcher.after(ChannelItem, "default", after);
+                    Patcher.before(...ChannelItem, before);
+                    Patcher.after(...ChannelItem, after);
 
                     // For DMs
-                    Patcher.before(Interactive, "default", (that, [p]) => {
-                        const e = Utilities.findInTree(p, e => e?.props?.to);
-                        if (!e || !e.props?.to?.includes || !e.props?.to?.includes('/channels/@me/')) return;
+                    Patcher.before(...DMItemRenderer, (self, props) => {
+                        if (!props[0]?.children?.toString?.().includes('LEAVE_GROUP_DM')) return
 
-                        modifyOnClick(p);
+                        Patcher.after(props[0], 'children', (self, props, value) => {
+                            const interactive = value.props?.children;
+                            if (!interactive) return;
 
-                        e.props.selected = p.selected;
-                        e.props.channel = ChannelStore.getChannel(e.props.to.split('@me/')[1]);
-                        before(e, [e.props]);
-                    });
-                    Patcher.after(Interactive, "default", (that, _, value) => {
-                        if (settings.trigger.displayOn !== 'mwheel') return;
-
-                        setTimeout(() => {
-                            const e = Utilities.findInTree(value, e => e?.props?.to);
+                            const e = Utilities.findInTree(interactive, e => e?.props?.to);
                             if (!e || !e.props?.to?.includes || !e.props?.to?.includes('/channels/@me/')) return;
 
-                            e.props.innerRef.current.onauxclick = e => e.preventDefault();
-                        }, 0);
+                            modifyOnClick(interactive.props);
+
+                            e.props.selected = interactive.props.selected;
+                            e.props.channel = ChannelStore.getChannel(e.props.to.split('@me/')[1]);
+                            before(e, [e.props]);
+
+
+                            if (settings.trigger.displayOn !== 'mwheel') return;
+                            setTimeout(() => {
+                                e.props.innerRef.current.onauxclick = e => e.preventDefault();
+                            });
+                        })
+                    })
+
+                    // For threads
+                    Patcher.before(Clickable.prototype, 'render', (self) => {
+                        if (self.props?.className !== Selectors.ChannelItem.mainContent) return;
+                        const { props } = self;
+                        const itemId = props['data-list-item-id']?.split('_');
+                        const channel = ChannelStore.getChannel(itemId?.[itemId.length - 1]);
+                        if (!channel) return;
+
+                        modifyOnClick(props);
+
+                        props.selected = SelectedChannelStore.getChannelId() === channel.id;
+                        props.channel = channel;
+                        before(self, [props], () => SelectedChannelStore.getChannelId() === channel.id);
+                    });
+
+                    // For voice chats
+                    Patcher.before(VoiceChannelActions, 'updateChatOpen', (self, [channelId]) => {
+                        if (PopoutManager.current?.channel?.id === channelId) PopoutManager.forceClose();
                     });
                 }
 
@@ -583,20 +664,15 @@ module.exports = (() => {
 #ChannelsPreview-container > * {
   list-style: none;
 }
-.${Selectors.Sidebar.sidebar} + div {
-    position: relative;
-    --preview-darken-opacity: 0;
-}
-.${Selectors.Sidebar.sidebar} + div::before {
-  content: '';
+#ChannelsPreview-darken {
   position: absolute;
   top: 0;
   left: 0;
-  height: 100%;
-  width: 100%;
+  right: 0;
+  bottom: 0;
   background: #000;
   pointer-events: none;
-  opacity: var(--preview-darken-opacity);
+  opacity: 0;
   transition: .3s opacity;
   z-index: 1000;
 }
@@ -613,6 +689,7 @@ module.exports = (() => {
                 }
 
                 onStop() {
+                    PopoutManager.undarken();
                     this.clearCss();
                     Patcher.unpatchAll();
                 }
@@ -625,7 +702,7 @@ module.exports = (() => {
                     const panel = this.buildSettingsPanel();
                     panel.addListener((section, id, value) => {
                         if (!displayedSettingsNotice) {
-                            Toasts.info('Switch guild for settings to apply!');
+                            Toasts.warning('Switch guild for settings to apply!');
                             displayedSettingsNotice = true;
                         }
 
@@ -640,7 +717,7 @@ module.exports = (() => {
                     element.prepend(new Settings.SettingField(null, React.createElement(DiscordModules.TextElement, {
                         children: [
                             'Not your language? Help translate the plugin on the ',
-                            React.createElement(DiscordModules.Anchor, {
+                            React.createElement(Anchor, {
                                 children: 'Crowdin page',
                                 href: 'https://crwd.in/betterdiscord-channelspreview'
                             }),

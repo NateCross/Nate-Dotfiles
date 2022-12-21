@@ -149,6 +149,12 @@ dotfiles:
   d_themes:
     src: config/BetterDiscord/themes
     dst: ~/.config/BetterDiscord/themes
+  f_config.toml:
+    src: config/helix/config.toml
+    dst: ~/.config/helix/config.toml
+  d_helix:
+    src: config/helix
+    dst: ~/.config/helix
 profiles:
   neovim:
     dotfiles:
@@ -221,3 +227,7 @@ profiles:
     dotfiles:
     - d_plugins
     - d_themes
+  helix:
+    dotfiles:
+    - f_config.toml
+    - d_helix
