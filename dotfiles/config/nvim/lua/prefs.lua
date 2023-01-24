@@ -65,7 +65,13 @@ opt.termguicolors   = true	-- More colors; for colorscheme
 -- }
 -- require'kanagawa'.setup({ overrides = overrides, colors = colors })
 
-cmd [[colorscheme uwu]]
+-- cmd [[colorscheme shado]]
+-- cmd [[autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE]]
+-- cmd [[autocmd vimenter * hi LineNr guibg=NONE ctermbg=NONE]]
+-- cmd [[autocmd vimenter * hi SignColumn guibg=NONE ctermbg=NONE]]
+
+-- cmd [[colorscheme oh-lucy-evening]]
+-- cmd [[colorscheme uwu]]
 
 
 -------------------

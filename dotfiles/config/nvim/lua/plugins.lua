@@ -479,6 +479,20 @@ use {
 use {
   'NateCross/nate-uwu',
 }
+
+use { 'Shadorain/shadotheme' }
+
+use {
+  'rose-pine/neovim',
+  as = 'rose-pine',
+  config = function()
+    require("rose-pine").setup({
+      dark_variant = 'moon',
+      disable_background = true,
+    })
+    vim.cmd('colorscheme rose-pine')
+  end
+}
 -- }}}
 
 -- Colorizer: Highlights hex code colors {{{

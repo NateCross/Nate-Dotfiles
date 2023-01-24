@@ -45,6 +45,13 @@ autoload -Uz _zinit
 ### ENV ###
 ###########
 
+export ANDROID_HOME="$HOME/Android/sdk"
+
+# Fixes building for Android
+unset ANDROID_SDK_ROOT
+
+export CHROME_EXECUTABLE="/usr/bin/chromium"
+
 # Using neovim as preferred editor
 export EDITOR="nvim.appimage"
 export VISUAL="nvim.appimage"
