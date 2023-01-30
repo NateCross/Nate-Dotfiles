@@ -692,6 +692,10 @@ use {
 use {
   "rcarriga/nvim-notify",
   config = function()
+    require("notify").setup({
+      background_colour = "#000000",
+    })
+
     vim.notify = require("notify")
   end
 }
@@ -865,19 +869,27 @@ use {
 
 -- Glow-hover: LSP Hover uses Markdown
 -- https://github.com/JASONews/glow-hover.nvim
-use {
-  'JASONews/glow-hover.nvim',
-  config = function()
-    require'glow-hover'.setup {
-      max_width = 50,
-      padding = 10,
-      border = 'rounded',
-      glow_path = 'glow'
-    }
-  end,
-}
+-- use {
+--   'JASONews/glow-hover.nvim',
+--   config = function()
+--     require'glow-hover'.setup {
+--       max_width = 50,
+--       padding = 10,
+--       border = 'rounded',
+--       glow_path = 'glow'
+--     }
+--   end,
+-- }
 
 -- }}}
+
+use {
+  'akinsho/flutter-tools.nvim',
+  requires = 'nvim-lua/plenary.nvim',
+  config = function()
+    require('flutter-tools').setup{}
+  end
+}
 ------------------------
 --- PLUGINS END HERE ---
 ------------------------
