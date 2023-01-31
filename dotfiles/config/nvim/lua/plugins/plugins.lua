@@ -27,6 +27,39 @@ return {
     end,
   },
 
+  -- Toggleterm
+  {
+    "akinsho/toggleterm.nvim",
+    -- config = function()
+    --   require("toggleterm").setup({
+    --     direction = "float",
+    --   })
+    -- end,
+    opts = {
+      direction = "float",
+      float_opts = {
+        border = "curved",
+      },
+    },
+    keys = function()
+      local Terminal = require("toggleterm.terminal").Terminal
+      local lazygit = Terminal:new({
+        cmd = "lazygit",
+        direction = "float",
+        hidden = true,
+      })
+
+      local function _lazygit_toggle()
+        lazygit:toggle()
+      end
+
+      return {
+        { "<leader>ft", "<cmd>ToggleTerm<cr>", desc = "Toggle terminal" },
+        { "<leader>gg", _lazygit_toggle, desc = "Lazygit" },
+      }
+    end,
+  },
+
   -- Customize nvim-cmp keymaps
   {
     "hrsh7th/nvim-cmp",
