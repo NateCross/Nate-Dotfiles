@@ -53,6 +53,43 @@ return {
     },
   },
 
+  -- Customize Bufferline
+  {
+    "akinsho/bufferline.nvim",
+    opts = function(_, opts)
+      opts.options.always_show_bufferline = true
+    end,
+  },
+
+  -- Customize startup
+  {
+    "goolord/alpha-nvim",
+    opts = function(_, opts)
+      local logo = [[
+                         _                                           
+                       _(_)_                          wWWWw   _      
+           @@@@       (_)@(_)   vVVVv     _     @@@@  (___) _(_)_    
+          @@()@@ wWWWw  (_)\    (___)   _(_)_  @@()@@   Y  (_)@(_)   
+           @@@@  (___)     `|/    Y    (_)@(_)  @@@@   \|/   (_)\    
+            /      Y       \|    \|/    /(_)    \|      |/      |    
+         \ |     \ |/       | / \ | /  \|/       |/    \|      \|/   
+         \\|//   \\|///  \\\|//\\\|/// \|///  \\\|//  \\|//  \\\|// 
+      ]]
+
+      opts.section.header.val = vim.split(logo, "\n")
+      -- opts.section.header.val = {
+      --   [[                 _                                           ]],
+      --   [[               _(_)_                          wWWWw   _      ]],
+      --   [[   @@@@       (_)@(_)   vVVVv     _     @@@@  (___) _(_)_    ]],
+      --   [[  @@()@@ wWWWw  (_)\    (___)   _(_)_  @@()@@   Y  (_)@(_)   ]],
+      --   [[   @@@@  (___)     `|/    Y    (_)@(_)  @@@@   \|/   (_)\    ]],
+      --   [[    /      Y       \|    \|/    /(_)    \|      |/      |    ]],
+      --   [[ \ |     \ |/       | / \ | /  \|/       |/    \|      \|/   ]],
+      --   [[ \\|//   \\|///  \\\|//\\\|/// \|///  \\\|//  \\|//  \\\|//  ]],
+      -- }
+    end,
+  },
+
   -- Configure LazyVim. Load last
   {
     "LazyVim/LazyVim",
