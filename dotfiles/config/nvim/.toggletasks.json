@@ -1,0 +1,12 @@
+{
+  "tasks": [
+    {
+      "name": "Dart: Run",
+      "cmd": "dart '${file}'",
+      "tags": [
+        "dart",
+        "run"
+      ]
+    }
+  ]
+}
