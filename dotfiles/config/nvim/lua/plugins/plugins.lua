@@ -26,6 +26,7 @@ return {
       require("transparent").setup({
         -- enable = true, -- boolean: enable transparent
         extra_groups = { -- table/string: additional groups that should be cleared
+          "NoiceCmdline",
           -- In particular, when you set it to 'all', that means all available groups
 
           -- example of akinsho/nvim-bufferline.lua
@@ -134,6 +135,7 @@ return {
       "nvim-treesitter",
       "nvim-cmp",
     },
+    event = "VeryLazy",
     config = function()
       require("tabout").setup({
         tabkey = "<Tab>", -- key to trigger tabout, set to an empty string to disable
@@ -242,7 +244,7 @@ return {
   {
     "rcarriga/nvim-notify",
     opts = {
-      background_color = "Normal",
+      background_colour = "#140a1d",
     },
   },
 

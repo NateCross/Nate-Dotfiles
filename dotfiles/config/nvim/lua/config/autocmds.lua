@@ -4,7 +4,21 @@
 
 vim.api.nvim_create_autocmd("BufEnter", {
   callback = function()
-    vim.cmd("TaboutToggle")
-    vim.cmd("TaboutToggle")
+    -- vim.cmd("echo 'Entering Buffer'")
+    -- vim.cmd([[TaboutToggle]])
+    -- vim.cmd([[TaboutToggle]])
+    -- vim.api.nvim_set_hl(0, "NotifyBackground", {
+    --   bg = "#111119",
+    -- })
   end,
 })
+
+-- vim.api.nvim_create_autocmd
+
+-- vim.api.nvim_create_autocmd("ColorScheme", {
+--   callback = function()
+--     vim.api.nvim_set_hl(0, "NotifyBackground", {
+--       bg = "#111119",
+--     })
+--   end,
+-- })

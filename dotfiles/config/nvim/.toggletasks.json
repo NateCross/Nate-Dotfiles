@@ -7,6 +7,14 @@
         "dart",
         "run"
       ]
+    },
+    {
+      "name": "Python: Run",
+      "cmd": "python '${file}'",
+      "tags": [
+        "python",
+        "run"
+      ]
     }
   ]
 }
