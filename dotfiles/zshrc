@@ -45,7 +45,7 @@ autoload -Uz _zinit
 ### ENV ###
 ###########
 
-export ANDROID_HOME="$HOME/Android/sdk"
+export ANDROID_HOME="$HOME/HDD/Android/sdk"
 
 # Fixes building for Android
 unset ANDROID_SDK_ROOT
@@ -225,8 +225,8 @@ HISTFILE=~/.zsh_history
 
 # Use modern completion system
 # NOTE: Not needed because of autocomplete
-# autoload -Uz compinit
-# compinit
+autoload -Uz compinit
+compinit
 
 # Case insensitive cd
 setopt nocaseglob
@@ -424,7 +424,7 @@ export NVM_DIR="$HOME/.nvm"
 ### WARN: Very buggy, prefer to not use
 # NOTE: FIX FZF TAB WITH ZOXIDE
 # https://github.com/Aloxaf/fzf-tab
-# zinit light Aloxaf/fzf-tab
+zinit light Aloxaf/fzf-tab
 
 ### FZF-ZSH
 # zinit light unixorn/fzf-zsh-plugin
@@ -441,8 +441,11 @@ zinit light jeffreytse/zsh-vi-mode
 
 ### Zsh Autocomplete: Realtime autocompletion
 ### Better than Fzf tab for completion
+### BUGGY
 # https://github.com/marlonrichert/zsh-autocomplete
-zinit light marlonrichert/zsh-autocomplete
+# zinit light marlonrichert/zsh-autocomplete
+
+zinit light zsh-users/zsh-autosuggestions
 
 # Fast syntax highlighting: Shows syntax highlighting in commands
 # https://github.com/zdharma-continuum/fast-syntax-highlighting
@@ -540,21 +543,43 @@ function zvm_after_init() {
   [ -f '/usr/share/fzf/completion.zsh' ] && source '/usr/share/fzf/completion.zsh'
 }
 
+### Initialize pyenv
+
+# Load pyenv automatically by appending
+# the following to 
+# ~/.bash_profile if it exists, otherwise ~/.profile (for login shells)
+# and ~/.bashrc (for interactive shells) :
+
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
+# Restart your shell for the changes to take effect.
+
+# Load pyenv-virtualenv automatically by adding
+# the following to ~/.bashrc:
+
+eval "$(pyenv virtualenv-init -)"
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/nate/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/nate/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/nate/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/nate/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
+# __conda_setup="$('/home/nate/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "/home/nate/miniconda3/etc/profile.d/conda.sh" ]; then
+#         . "/home/nate/miniconda3/etc/profile.d/conda.sh"
+#     else
+#         export PATH="/home/nate/miniconda3/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
 # <<< conda initialize <<<
 
-# Volta
-export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
+### Initialize phpenv
+
+export PHPENV_ROOT="/home/nate/.phpenv"
+if [ -d "${PHPENV_ROOT}" ]; then
+  export PATH="${PHPENV_ROOT}/bin:${PATH}"
+  eval "$(phpenv init -)"
+fi

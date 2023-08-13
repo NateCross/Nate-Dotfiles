@@ -135,7 +135,7 @@ return {
       "nvim-treesitter",
       "nvim-cmp",
     },
-    event = "VeryLazy",
+    -- event = "VeryLazy",
     config = function()
       require("tabout").setup({
         tabkey = "<Tab>", -- key to trigger tabout, set to an empty string to disable

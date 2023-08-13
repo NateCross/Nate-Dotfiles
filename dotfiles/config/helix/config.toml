@@ -7,7 +7,7 @@ C-j = "shrink_selection"
 C-k = "expand_selection"
 C-l = "select_next_sibling"
 
-# Z = { Z = "write_quit" }
+# Z = { Z = "write-quit" }
 
 # Vim stuff
 "{" = ["goto_prev_paragraph", "collapse_selection"]
@@ -63,7 +63,7 @@ S = "surround_add" # Basically 99% of what I use vim-surround for
 # Visual-mode specific muscle memory
 i = "select_textobject_inner"
 a = "select_textobject_around"
-x = "delete_selection"
+# x = "delete_selection"
 
 # Some extra binds to allow us to insert/append in select mode because it's nice with multiple cursors
 tab = ["insert_mode", "collapse_selection"] # tab is read by most terminal editors as "C-i"
@@ -106,3 +106,9 @@ hidden = false
 
 [editor.indent-guides]
 render = true
+
+[editor.soft-wrap]
+enable = true
+max-wrap = 25 # increase value to reduce forced mid-word wrapping
+max-indent-retain = 0
+wrap-indicator = ""  # set wrap-indicator to "" to hide it

@@ -15,6 +15,23 @@
         "python",
         "run"
       ]
+    },
+    {
+      "name": "C: Compile and Run",
+      "cmd": "gcc '${file}' -o '${file:t:r}' -Wall -g && ./'${file:t:r}'",
+      "tags": [
+        "c",
+        "run",
+        "compile"
+      ]
+    },
+    {
+      "name": "PHP: Run",
+      "cmd": "php '${file}'",
+      "tags": [
+        "php",
+        "run"
+      ]
     }
   ]
 }
